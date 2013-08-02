@@ -1,0 +1,267 @@
+---------- Date: 2013-07-10 07:09:30 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:35 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /iphone
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/seo_sniper.xml
+   id        : vQMod - SEO Sniper - Google Rich Snippets Bot
+   version   : 1.1
+   vqmver    : 2.X
+   author    : snairl
+SEARCH NOT FOUND (SKIPPED): $category_info = $this->model_catalog_category->getCategory($category_id);
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:35 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/product/captcha
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:36 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/product/review&amp;product_id=40
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:36 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:44 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /iphone
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:45 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/product/captcha
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:45 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/product/review&amp;product_id=40
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:45 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:50 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=common/home
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:53 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=checkout/cart/add
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:55 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/product&amp;product_id=46
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:55 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/product/captcha
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:55 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/product/review&amp;product_id=46
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:09:56 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:42:36 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:42:40 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /Apple-Cinema-30
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:42:40 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/product/captcha
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:42:40 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /index.php?route=product/product/review&amp;product_id=42
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2013-07-10 07:42:40 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /
+MOD DETAILS:
+   modFile   : /Volumes/Data HD/opencart-1.5.5.1/upload/vqmod/xml/auto-seo-title-vqmod.xml
+   id        : Automatic SEO Title
+   version   : 1.1.2
+   vqmver    : 2.1.0
+   author    : Fabius - http://opencartit.altervista.org
+Could not resolve path for [catalog/language/italian/product/product.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+

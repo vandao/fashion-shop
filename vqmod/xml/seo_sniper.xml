@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+        <id>vQMod - SEO Sniper - Google Rich Snippets Bot</id>
+        <version>1.1</version>
+        <vqmver>2.X</vqmver>
+        <author>snairl</author>
+        
+        <file name="catalog/controller/product/product.php">
+                <operation error="log">
+                        <search position="replace"><![CDATA[
+                        $product_info = $this->model_catalog_product->getProduct($product_id);
+                        ]]></search>
+                        <add><![CDATA[
+                        $product_info = $this->model_catalog_product->getProduct($product_id);
+                        $this->data['product_info'] = $product_info;
+                        ]]></add>
+                </operation>
+                <operation error="log">
+                        <search position="replace"><![CDATA[$category_info = $this->model_catalog_category->getCategory($path_id);]]></search>
+                        <add><![CDATA[$category_info = $this->model_catalog_category->getCategory($path_id);
+                        $this->data['category_info'] = $category_info;]]></add>
+                </operation>
+		<operation error="log">
+			<search position="replace"><![CDATA[$category_info = $this->model_catalog_category->getCategory($category_id);]]></search>
+			<add><![CDATA[$category_info = $this->model_catalog_category->getCategory($category_id);
+			$this->data['category_info'] = $category_info;]]></add>
+		</operation>
+        </file>
+        
+        <file name="catalog/controller/common/header.php">
+                <operation error="log">
+                        <search position="after"><![CDATA[
+                        $this->data['title'] = $this->document->getTitle();
+                        ]]></search>
+                        <add><![CDATA[
+                        if (isset($this->request->get['product_id'])) {
+                            $product_id = (int)$this->request->get['product_id'];
+                        } else {
+                            $product_id = 0;
+                        }
+                        $this->load->model('catalog/product');
+                        $product_info = $this->model_catalog_product->getProduct($product_id);
+                        $this->data['product_info'] = $product_info;
+                        $this->data['thumb'] = '';
+                        $this->data['pageUrl'] = '';
+                        
+                        if ($product_info) {
+                            $url = '';
+                            
+                            if (isset($this->request->get['path'])) {
+                                $url .= '&path=' . $this->request->get['path'];
+                            }
+                                        
+                            if (isset($this->request->get['filter'])) {
+                                $url .= '&filter=' . $this->request->get['filter'];
+                            }
+                                        
+                            if (isset($this->request->get['manufacturer_id'])) {
+                                $url .= '&manufacturer_id=' . $this->request->get['manufacturer_id'];
+                            }            
+
+                            if (isset($this->request->get['search'])) {
+                                $url .= '&search=' . $this->request->get['search'];
+                            }
+                                        
+                            if (isset($this->request->get['tag'])) {
+                                $url .= '&tag=' . $this->request->get['tag'];
+                            }
+                            
+                            if (isset($this->request->get['description'])) {
+                                $url .= '&description=' . $this->request->get['description'];
+                            }    
+                                        
+                            if (isset($this->request->get['category_id'])) {
+                                $url .= '&category_id=' . $this->request->get['category_id'];
+                            }
+                            
+                            if (isset($this->request->get['sub_category'])) {
+                                $url .= '&sub_category=' . $this->request->get['sub_category'];
+                            }    
+                            
+                            if (isset($this->request->get['sort'])) {
+                                $url .= '&sort=' . $this->request->get['sort'];
+                            }    
+
+                            if (isset($this->request->get['order'])) {
+                                $url .= '&order=' . $this->request->get['order'];
+                            }    
+                            
+                            if (isset($this->request->get['page'])) {
+                                $url .= '&page=' . $this->request->get['page'];
+                            }
+                                        
+                            if (isset($this->request->get['limit'])) {
+                                $url .= '&limit=' . $this->request->get['limit'];
+                            }
+                              
+                            $this->data['pageUrl'] = $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id']);
+                            
+                            $this->load->model('tool/image');
+                            
+                            if ($product_info['image']) {
+                                $this->data['thumb'] = $this->model_tool_image->resize($product_info['image'], 100, 100);
+                            } 
+                        }
+                        ]]></add>
+                </operation>
+        </file>
+        
+        <file name="catalog/view/theme/default/template/product/product.tpl">
+                <operation error="log">
+                        <search position="replace"><![CDATA[
+                        <div id="content">
+                        ]]></search>
+                        <add><![CDATA[
+                        <div id="content" itemscope itemtype="http://data-vocabulary.org/Product">
+                        ]]></add>
+                </operation>
+                <operation error="log">
+                        <search position="replace"><![CDATA[
+                        <h1><?php echo $heading_title; ?></h1>
+                        ]]></search>
+                        <add><![CDATA[
+                        <h1><span itemprop="name"><?php echo $heading_title; ?></span></h1>
+                        ]]></add>
+                </operation>
+                <operation error="log">
+                        <search position="replace"><![CDATA[
+                        <div class="image"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>
+                        ]]></search>
+                        <add><![CDATA[
+                        <div class="image"><a href="<?php echo $popup; ?>" title="<?php echo $heading_title; ?>" class="colorbox"><img itemprop="image" src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" id="image" /></a></div>
+                        ]]></add>
+                </operation>
+                <operation error="log">
+                        <search position="replace"><![CDATA[
+                        <div id="tab-description" class="tab-content"><?php echo $description; ?></div>
+                        ]]></search>
+                        <add><![CDATA[
+                        <div id="tab-description" class="tab-content" itemprop="description"><?php echo $description; ?></div>
+                        ]]></add>
+                </operation>
+                <operation error="log">
+                        <search position="replace"><![CDATA[
+                        <div class="review">
+                        ]]></search>
+                        <add><![CDATA[
+                        <div class="review" itemprop="review" itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
+                        ]]></add>
+                </operation>
+                <operation error="log">
+                        <search position="replace"><![CDATA[
+                        ;"><?php echo $reviews; ?></a>
+                        ]]></search>
+                        <add><![CDATA[
+                        ;"><span itemprop="count"><?php echo $reviews; ?></span></a>
+                        ]]></add>
+                </operation>
+                <operation error="log">
+                        <search position="replace"><![CDATA[<img src="catalog/view/theme/default/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" />]]></search>
+                        <add><![CDATA[
+                        <span itemprop="rating" style="display:none"><?php echo $rating; ?></span><img src="catalog/view/theme/default/image/stars-<?php echo $rating; ?>.png" alt="<?php echo $reviews; ?>" /> 
+                        ]]></add>
+                </operation>
+                <operation error="log">
+                        <search position="replace"><![CDATA[
+                        <span><?php echo $text_model; ?></span> <?php echo $model; ?><br />
+                        ]]></search>
+                        <add><![CDATA[
+                        <span><?php echo $text_model; ?></span> <span itemprop="identifier" content="sku:<?php echo $model; ?>"><?php echo $model; ?></span><br />
+                        ]]></add>
+                </operation>
+                
+                <operation error="log">
+                        <search position="before"><![CDATA[
+                        <div class="description">
+                        ]]></search>
+                        <add><![CDATA[
+                       <span itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer" style="display:none">
+                            <meta itemprop="currency" content="<?=$this->currency->getCode()?>" />
+                            <span itemprop="price"><?=$this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')), '', '', false);?></span>
+                            <span itemprop="condition" content="new">Brand New</span>
+                            <span itemprop="quantity"><?=$product_info['quantity']?></span>
+                            <?if($product_info['quantity']>0):?>
+                            <span itemprop="availability" content="in_stock">In stock! Order now!</span>
+                            <?else:?>
+                            <span itemprop="availability" content="out_of_stock">Out of stock</span>
+                            <?endif?>
+                        </span>
+                        ]]></add>
+                </operation>
+        </file>
+        
+        <file name="catalog/view/theme/default/template/common/header.tpl">
+                <operation error="log">
+                        <search position="replace"><![CDATA[
+                        <head>
+                        ]]></search>
+                        <add><![CDATA[
+                        <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# ">
+                        <meta property="og:title" content="<?=$product_info['name']?>"/>
+                        <meta property="og:url" content="<?=$pageUrl?>"/>
+                        <meta property="og:image" content="<?=$thumb?>"/>
+                        <meta property="og:type" content="product"/>
+                        <meta property="og:site_name" content="<?=str_replace('http://', '', rtrim($this->config->get('config_url'), '/'))?>"/>
+                        <meta property='og:description' content="<?=strip_tags(html_entity_decode($product_info['description']))?>"/>
+                        ]]></add>
+                </operation>
+                <operation error="log">
+                        <search position="replace"><![CDATA[
+                        <body>
+                        ]]></search>
+                        <add><![CDATA[
+                        <body itemscope itemtype="http://schema.org/ItemPage">
+                        ]]></add>
+                </operation>
+        </file>
+</modification>
