@@ -26,7 +26,7 @@ define('DIR_CATALOG', '/home/vandao/website/fashion-shop/catalog/');
 define('DB_DRIVER', 'mysql');
 define('DB_HOSTNAME', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'password');
+define('DB_PASSWORD', 'Vanmin0');
 define('DB_DATABASE', 'fashion-shop');
 define('DB_PREFIX', 'fs_');
 ?>
