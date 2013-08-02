@@ -1,26 +1,26 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://dev-fashion-shop.com/admin/');
-define('HTTP_CATALOG', 'http://dev-fashion-shop.com/');
-define('HTTP_IMAGE', 'http://dev-fashion-shop.com/image/');
+define('HTTP_SERVER', 'http://54.251.148.120/admin/');
+define('HTTP_CATALOG', 'http://54.251.148.120/');
+define('HTTP_IMAGE', 'http://54.251.148.120/image/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://dev-fashion-shop.com/admin/');
-define('HTTPS_CATALOG', 'http://dev-fashion-shop.com/');
-define('HTTPS_IMAGE', 'http://dev-fashion-shop.com/image/');
+define('HTTPS_SERVER', 'http://54.251.148.120/admin/');
+define('HTTPS_CATALOG', 'http://54.251.148.120/');
+define('HTTPS_IMAGE', 'http://54.251.148.120/image/');
 
 // DIR
-define('DIR_APPLICATION', 'F:/fashion-shop/admin/');
-define('DIR_SYSTEM', 'F:/fashion-shop/system/');
-define('DIR_DATABASE', 'F:/fashion-shop/system/database/');
-define('DIR_LANGUAGE', 'F:/fashion-shop/admin/language/');
-define('DIR_TEMPLATE', 'F:/fashion-shop/admin/view/template/');
-define('DIR_CONFIG', 'F:/fashion-shop/system/config/');
-define('DIR_IMAGE', 'F:/fashion-shop/image/');
-define('DIR_CACHE', 'F:/fashion-shop/system/cache/');
-define('DIR_DOWNLOAD', 'F:/fashion-shop/download/');
-define('DIR_LOGS', 'F:/fashion-shop/system/logs/');
-define('DIR_CATALOG', 'F:/fashion-shop/catalog/');
+define('DIR_APPLICATION', '/home/vandao/website/fashion-shop/admin/');
+define('DIR_SYSTEM', '/home/vandao/website/fashion-shop/system/');
+define('DIR_DATABASE', '/home/vandao/website/fashion-shop/system/database/');
+define('DIR_LANGUAGE', '/home/vandao/website/fashion-shop/admin/language/');
+define('DIR_TEMPLATE', '/home/vandao/website/fashion-shop/admin/view/template/');
+define('DIR_CONFIG', '/home/vandao/website/fashion-shop/system/config/');
+define('DIR_IMAGE', '/home/vandao/website/fashion-shop/image/');
+define('DIR_CACHE', '/home/vandao/website/fashion-shop/system/cache/');
+define('DIR_DOWNLOAD', '/home/vandao/website/fashion-shop/download/');
+define('DIR_LOGS', '/home/vandao/website/fashion-shop/system/logs/');
+define('DIR_CATALOG', '/home/vandao/website/fashion-shop/catalog/');
 
 // DB
 define('DB_DRIVER', 'mysql');

@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 26, 2013 at 04:43 PM
+-- Generation Time: Aug 02, 2013 at 09:26 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
@@ -16,7 +17,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `fashion_shop_vn`
+-- Database: `fashion-shop`
 --
 
 -- --------------------------------------------------------
@@ -25,6 +26,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `fs_address`
 --
 
+DROP TABLE IF EXISTS `fs_address`;
 CREATE TABLE IF NOT EXISTS `fs_address` (
   `address_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
@@ -41,18 +43,14 @@ CREATE TABLE IF NOT EXISTS `fs_address` (
   `zone_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`address_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `fs_address`
 --
 
 INSERT INTO `fs_address` (`address_id`, `customer_id`, `firstname`, `lastname`, `company`, `company_id`, `tax_id`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`) VALUES
-(6, 7, 'Van', 'Dao', '', '', '', '569 Tran Hung Dao, Quan 1', '', 'Dong Nai', '', 230, 3767),
-(2, 4, 'Van', 'Dao', '', '1123', '1233', '569', '', 'HCM', '08', 230, 3778),
-(3, 5, 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '70000', 230, 3778),
-(4, 6, 'Van', 'Dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 230, 3778),
-(5, 7, 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 230, 3778);
+(1, 1, 'Van', 'Dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', 'admin', 230, 3780);
 
 -- --------------------------------------------------------
 
@@ -60,6 +58,7 @@ INSERT INTO `fs_address` (`address_id`, `customer_id`, `firstname`, `lastname`, 
 -- Table structure for table `fs_affiliate`
 --
 
+DROP TABLE IF EXISTS `fs_affiliate`;
 CREATE TABLE IF NOT EXISTS `fs_affiliate` (
   `affiliate_id` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -105,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `fs_affiliate` (
 -- Table structure for table `fs_affiliate_transaction`
 --
 
+DROP TABLE IF EXISTS `fs_affiliate_transaction`;
 CREATE TABLE IF NOT EXISTS `fs_affiliate_transaction` (
   `affiliate_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `affiliate_id` int(11) NOT NULL,
@@ -126,6 +126,7 @@ CREATE TABLE IF NOT EXISTS `fs_affiliate_transaction` (
 -- Table structure for table `fs_attribute`
 --
 
+DROP TABLE IF EXISTS `fs_attribute`;
 CREATE TABLE IF NOT EXISTS `fs_attribute` (
   `attribute_id` int(11) NOT NULL AUTO_INCREMENT,
   `attribute_group_id` int(11) NOT NULL,
@@ -140,7 +141,15 @@ CREATE TABLE IF NOT EXISTS `fs_attribute` (
 INSERT INTO `fs_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) VALUES
 (1, 6, 1),
 (2, 6, 5),
-(3, 6, 3);
+(3, 6, 3),
+(4, 3, 1),
+(5, 3, 2),
+(6, 3, 3),
+(7, 3, 4),
+(8, 3, 5),
+(9, 3, 6),
+(10, 3, 7),
+(11, 3, 8);
 
 -- --------------------------------------------------------
 
@@ -148,6 +157,7 @@ INSERT INTO `fs_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) 
 -- Table structure for table `fs_attribute_description`
 --
 
+DROP TABLE IF EXISTS `fs_attribute_description`;
 CREATE TABLE IF NOT EXISTS `fs_attribute_description` (
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -160,9 +170,17 @@ CREATE TABLE IF NOT EXISTS `fs_attribute_description` (
 --
 
 INSERT INTO `fs_attribute_description` (`attribute_id`, `language_id`, `name`) VALUES
-(1, 2, 'Description'),
-(2, 2, 'No. of Cores'),
-(3, 2, 'Clockspeed');
+(11, 3, 'test 8'),
+(10, 3, 'test 7'),
+(9, 3, 'test 6'),
+(8, 3, 'test 5'),
+(7, 3, 'test 4'),
+(6, 3, 'test 3'),
+(5, 3, 'test 2'),
+(4, 3, 'test 1'),
+(2, 3, 'No. of Cores'),
+(1, 3, 'Description'),
+(3, 3, 'Clockspeed');
 
 -- --------------------------------------------------------
 
@@ -170,6 +188,7 @@ INSERT INTO `fs_attribute_description` (`attribute_id`, `language_id`, `name`) V
 -- Table structure for table `fs_attribute_group`
 --
 
+DROP TABLE IF EXISTS `fs_attribute_group`;
 CREATE TABLE IF NOT EXISTS `fs_attribute_group` (
   `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `sort_order` int(3) NOT NULL,
@@ -192,6 +211,7 @@ INSERT INTO `fs_attribute_group` (`attribute_group_id`, `sort_order`) VALUES
 -- Table structure for table `fs_attribute_group_description`
 --
 
+DROP TABLE IF EXISTS `fs_attribute_group_description`;
 CREATE TABLE IF NOT EXISTS `fs_attribute_group_description` (
   `attribute_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -204,10 +224,10 @@ CREATE TABLE IF NOT EXISTS `fs_attribute_group_description` (
 --
 
 INSERT INTO `fs_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
-(3, 2, 'Memory'),
-(4, 2, 'Technical'),
-(5, 2, 'Motherboard'),
-(6, 2, 'Processor');
+(6, 3, 'Processor'),
+(5, 3, 'Motherboard'),
+(4, 3, 'Technical'),
+(3, 3, 'Memory');
 
 -- --------------------------------------------------------
 
@@ -215,6 +235,7 @@ INSERT INTO `fs_attribute_group_description` (`attribute_group_id`, `language_id
 -- Table structure for table `fs_banner`
 --
 
+DROP TABLE IF EXISTS `fs_banner`;
 CREATE TABLE IF NOT EXISTS `fs_banner` (
   `banner_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_bin NOT NULL,
@@ -227,8 +248,9 @@ CREATE TABLE IF NOT EXISTS `fs_banner` (
 --
 
 INSERT INTO `fs_banner` (`banner_id`, `name`, `status`) VALUES
-(9, 'Slide trang chủ', 1),
-(10, 'Banner quảng cáo 1', 1);
+(8, 'Manufacturers', 1),
+(9, 'FashionCart Slideshow', 1),
+(10, 'Banner line - Home', 1);
 
 -- --------------------------------------------------------
 
@@ -236,28 +258,33 @@ INSERT INTO `fs_banner` (`banner_id`, `name`, `status`) VALUES
 -- Table structure for table `fs_banner_image`
 --
 
+DROP TABLE IF EXISTS `fs_banner_image`;
 CREATE TABLE IF NOT EXISTS `fs_banner_image` (
   `banner_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `banner_id` int(11) NOT NULL,
   `link` varchar(255) COLLATE utf8_bin NOT NULL,
   `image` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`banner_image_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=91 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=94 ;
 
 --
 -- Dumping data for table `fs_banner_image`
 --
 
 INSERT INTO `fs_banner_image` (`banner_image_id`, `banner_id`, `link`, `image`) VALUES
-(84, 9, 'http://opencart.vn', 'data/slideshow/bannertinhnhan2.png'),
-(83, 9, 'http://opencart.vn', 'data/slideshow/banner_8-3.png'),
-(82, 9, 'http://opencart.vn', 'data/slideshow/banner_8-03.png'),
-(85, 9, 'http://opencart.vn', 'data/slideshow/1.png'),
-(86, 9, 'http://opencart.vn', 'data/slideshow/BANNER_RUOU2_copy.png'),
-(87, 9, 'http://opencart.vn', 'data/slideshow/banh_kem_copy.png'),
-(88, 9, 'http://opencart.vn', 'data/slideshow/chocolate_chipchip_copy.png'),
-(89, 9, 'http://opencart.vn', 'data/slideshow/hoa_cuoi_3sua.png'),
-(90, 10, 'http://opencart.vn', 'data/banner/banner.gif');
+(91, 8, '', 'data/logo_1-140x140.jpg'),
+(92, 8, '', 'data/logo_2-140x140.jpg'),
+(93, 8, '', 'data/logo_3-140x140.jpg'),
+(90, 8, 'index.php?route=product/manufacturer/product&amp;manufacturer_id=5', 'data/logo_6-140x140.jpg'),
+(88, 8, 'index.php?route=product/manufacturer/product&amp;manufacturer_id=9', 'data/logo_4-140x140.jpg'),
+(89, 8, 'index.php?route=product/manufacturer/product&amp;manufacturer_id=8', 'data/logo_5-140x140.jpg'),
+(78, 9, '', 'data/banner1.png'),
+(79, 9, '', 'data/banner2.png'),
+(80, 9, '', 'data/banner3.png'),
+(81, 9, '', 'data/banner4.png'),
+(82, 10, '', 'data/sm_banner1.png'),
+(83, 10, '', 'data/sm_banner2.png'),
+(84, 10, '', 'data/sm_banner3.png');
 
 -- --------------------------------------------------------
 
@@ -265,6 +292,7 @@ INSERT INTO `fs_banner_image` (`banner_image_id`, `banner_id`, `link`, `image`) 
 -- Table structure for table `fs_banner_image_description`
 --
 
+DROP TABLE IF EXISTS `fs_banner_image_description`;
 CREATE TABLE IF NOT EXISTS `fs_banner_image_description` (
   `banner_image_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -278,43 +306,19 @@ CREATE TABLE IF NOT EXISTS `fs_banner_image_description` (
 --
 
 INSERT INTO `fs_banner_image_description` (`banner_image_id`, `language_id`, `banner_id`, `title`) VALUES
-(84, 2, 9, 'link3'),
-(83, 2, 9, 'link2'),
-(82, 2, 9, 'link1'),
-(85, 2, 9, 'link4'),
-(86, 2, 9, 'link5'),
-(87, 2, 9, 'link6'),
-(88, 2, 9, 'link7'),
-(89, 2, 9, 'link8'),
-(90, 2, 10, 'banner1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_cat`
---
-
-CREATE TABLE IF NOT EXISTS `fs_cat` (
-  `cat_id` int(11) NOT NULL AUTO_INCREMENT,
-  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `parent_id` int(11) NOT NULL DEFAULT '0',
-  `top` tinyint(1) NOT NULL,
-  `column` int(3) NOT NULL,
-  `sort_order` int(3) NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`cat_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=62 ;
-
---
--- Dumping data for table `fs_cat`
---
-
-INSERT INTO `fs_cat` (`cat_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
-(59, '', 0, 1, 1, 0, 0, '2012-05-26 06:46:05', '2013-05-26 10:43:55'),
-(60, '', 0, 0, 1, 1, 0, '2012-05-26 17:19:58', '2013-05-26 10:44:09'),
-(61, '', 0, 0, 1, 2, 0, '2012-05-26 17:20:19', '2013-05-26 10:44:19');
+(82, 3, 10, 'Watches'),
+(81, 3, 9, 'Shoes'),
+(80, 3, 9, 'Men''s Shirts'),
+(79, 3, 9, 'Clothes'),
+(78, 3, 9, 'Shoes'),
+(88, 3, 8, 'Silhouette'),
+(89, 3, 8, 'VERSAGE'),
+(90, 3, 8, 'Calvin Klein'),
+(92, 3, 8, 'SWAROVSKI'),
+(91, 3, 8, 'BVLGARI'),
+(83, 3, 10, 'Denims'),
+(84, 3, 10, 'Sales'),
+(93, 3, 8, 'BOSS');
 
 -- --------------------------------------------------------
 
@@ -322,6 +326,7 @@ INSERT INTO `fs_cat` (`cat_id`, `image`, `parent_id`, `top`, `column`, `sort_ord
 -- Table structure for table `fs_category`
 --
 
+DROP TABLE IF EXISTS `fs_category`;
 CREATE TABLE IF NOT EXISTS `fs_category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -333,15 +338,31 @@ CREATE TABLE IF NOT EXISTS `fs_category` (
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`category_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=66 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `fs_category`
 --
 
 INSERT INTO `fs_category` (`category_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
-(63, '', 0, 1, 1, 0, 1, '2012-03-02 15:38:36', '2012-03-02 15:49:05'),
-(65, '', 0, 1, 1, 0, 1, '2012-03-06 07:18:18', '2012-03-06 07:19:13');
+(25, '', 0, 1, 1, 3, 1, '2009-01-31 01:04:25', '2011-05-30 12:14:55'),
+(27, '', 20, 0, 0, 2, 1, '2009-01-31 01:55:34', '2013-06-26 15:48:33'),
+(20, 'data/compaq_presario.jpg', 0, 1, 1, 1, 1, '2009-01-05 21:49:43', '2013-06-26 15:47:17'),
+(24, '', 0, 1, 1, 5, 1, '2009-01-20 02:36:26', '2011-05-30 12:15:18'),
+(18, 'data/hp_2.jpg', 0, 1, 0, 2, 1, '2009-01-05 21:49:15', '2013-07-18 15:51:37'),
+(17, '', 0, 1, 1, 4, 1, '2009-01-03 21:08:57', '2011-05-30 12:15:11'),
+(28, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:12', '2010-08-22 06:32:46'),
+(26, '', 20, 0, 0, 1, 1, '2009-01-31 01:55:14', '2013-06-26 15:48:24'),
+(29, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:37', '2010-08-22 06:32:39'),
+(30, '', 25, 0, 0, 1, 1, '2009-02-02 13:11:59', '2010-08-22 06:33:00'),
+(31, '', 25, 0, 0, 1, 1, '2009-02-03 14:17:24', '2010-08-22 06:33:06'),
+(32, '', 25, 0, 0, 1, 1, '2009-02-03 14:17:34', '2010-08-22 06:33:12'),
+(33, '', 0, 1, 1, 6, 1, '2009-02-03 14:17:55', '2011-05-30 12:15:25'),
+(35, '', 28, 0, 0, 0, 1, '2010-09-17 10:06:48', '2010-09-18 14:02:42'),
+(36, '', 28, 0, 0, 0, 1, '2010-09-17 10:07:13', '2010-09-18 14:02:55'),
+(45, '', 18, 0, 0, 0, 1, '2010-09-24 18:29:16', '2013-06-26 15:51:08'),
+(46, '', 18, 0, 0, 0, 1, '2010-09-24 18:29:31', '2013-06-26 15:50:50'),
+(57, '', 0, 1, 1, 3, 1, '2011-04-26 08:53:16', '2011-05-30 12:15:05');
 
 -- --------------------------------------------------------
 
@@ -349,6 +370,7 @@ INSERT INTO `fs_category` (`category_id`, `image`, `parent_id`, `top`, `column`,
 -- Table structure for table `fs_category_description`
 --
 
+DROP TABLE IF EXISTS `fs_category_description`;
 CREATE TABLE IF NOT EXISTS `fs_category_description` (
   `category_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -365,8 +387,24 @@ CREATE TABLE IF NOT EXISTS `fs_category_description` (
 --
 
 INSERT INTO `fs_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_description`, `meta_keyword`) VALUES
-(63, 2, 'Hoa Tươi', '', '', ''),
-(65, 2, 'Quần áo ', '', '', '');
+(35, 3, 'test 1', '', '', ''),
+(36, 3, 'test 2', '', '', ''),
+(20, 3, 'Desktops', '&lt;p&gt;\r\n	Example of category description text&lt;/p&gt;\r\n', 'Example of category description', ''),
+(24, 3, 'Phones &amp; PDAs', '', '', ''),
+(25, 3, 'Components', '', '', ''),
+(17, 3, 'Software', '', '', ''),
+(26, 3, 'PC', '', '', ''),
+(32, 3, 'Web Cameras', '', '', ''),
+(31, 3, 'Scanners', '', '', ''),
+(30, 3, 'Printers', '', '', ''),
+(29, 3, 'Mice and Trackballs', '', '', ''),
+(27, 3, 'Mac', '', '', ''),
+(33, 3, 'Cameras', '', '', ''),
+(28, 3, 'Monitors', '', '', ''),
+(18, 3, 'Laptops &amp; Notebooks', '&lt;p&gt;\r\n	Shop Laptop feature only the best laptop deals on the market. By comparing laptop deals from the likes of PC World, Comet, Dixons, The Link and Carphone Warehouse, Shop Laptop has the most comprehensive selection of laptops on the internet. At Shop Laptop, we pride ourselves on offering customers the very best laptop deals. From refurbished laptops to netbooks, Shop Laptop ensures that every laptop - in every colour, style, size and technical spec - is featured on the site at the lowest possible price.&lt;/p&gt;\r\n', '', ''),
+(45, 3, 'Windows', '', '', ''),
+(46, 3, 'Macs', '', '', ''),
+(57, 3, 'Tablets', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -374,6 +412,7 @@ INSERT INTO `fs_category_description` (`category_id`, `language_id`, `name`, `de
 -- Table structure for table `fs_category_to_layout`
 --
 
+DROP TABLE IF EXISTS `fs_category_to_layout`;
 CREATE TABLE IF NOT EXISTS `fs_category_to_layout` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -392,6 +431,7 @@ CREATE TABLE IF NOT EXISTS `fs_category_to_layout` (
 -- Table structure for table `fs_category_to_store`
 --
 
+DROP TABLE IF EXISTS `fs_category_to_store`;
 CREATE TABLE IF NOT EXISTS `fs_category_to_store` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -403,98 +443,24 @@ CREATE TABLE IF NOT EXISTS `fs_category_to_store` (
 --
 
 INSERT INTO `fs_category_to_store` (`category_id`, `store_id`) VALUES
-(63, 0),
-(65, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_cat_description`
---
-
-CREATE TABLE IF NOT EXISTS `fs_cat_description` (
-  `cat_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `description` text COLLATE utf8_bin NOT NULL,
-  `meta_description` varchar(255) COLLATE utf8_bin NOT NULL,
-  `meta_keyword` varchar(255) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`cat_id`,`language_id`),
-  KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `fs_cat_description`
---
-
-INSERT INTO `fs_cat_description` (`cat_id`, `language_id`, `name`, `description`, `meta_description`, `meta_keyword`) VALUES
-(59, 2, 'Tin công ty', '&lt;p&gt;\r\n	Tin công ty&lt;/p&gt;\r\n', 'Tin công ty', 'Tin công ty'),
-(60, 2, 'Tin xã hội', '', '', ''),
-(61, 2, 'Tin văn hóa', '', '', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_cat_to_layout`
---
-
-CREATE TABLE IF NOT EXISTS `fs_cat_to_layout` (
-  `cat_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL,
-  `layout_id` int(11) NOT NULL,
-  PRIMARY KEY (`cat_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `fs_cat_to_layout`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_cat_to_store`
---
-
-CREATE TABLE IF NOT EXISTS `fs_cat_to_store` (
-  `cat_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL,
-  PRIMARY KEY (`cat_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `fs_cat_to_store`
---
-
-INSERT INTO `fs_cat_to_store` (`cat_id`, `store_id`) VALUES
-(59, 0),
-(60, 0),
-(61, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_comment`
---
-
-CREATE TABLE IF NOT EXISTS `fs_comment` (
-  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
-  `news_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `author` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `text` text COLLATE utf8_bin NOT NULL,
-  `rating` int(1) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`comment_id`),
-  KEY `news_id` (`news_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `fs_comment`
---
-
+(17, 0),
+(18, 0),
+(20, 0),
+(24, 0),
+(25, 0),
+(26, 0),
+(27, 0),
+(28, 0),
+(29, 0),
+(30, 0),
+(31, 0),
+(32, 0),
+(33, 0),
+(35, 0),
+(36, 0),
+(45, 0),
+(46, 0),
+(57, 0);
 
 -- --------------------------------------------------------
 
@@ -502,6 +468,7 @@ CREATE TABLE IF NOT EXISTS `fs_comment` (
 -- Table structure for table `fs_country`
 --
 
+DROP TABLE IF EXISTS `fs_country`;
 CREATE TABLE IF NOT EXISTS `fs_country` (
   `country_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8_bin NOT NULL,
@@ -747,7 +714,7 @@ INSERT INTO `fs_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 (227, 'Vanuatu', 'VU', 'VUT', '', 0, 1),
 (228, 'Vatican City State (Holy See)', 'VA', 'VAT', '', 0, 1),
 (229, 'Venezuela', 'VE', 'VEN', '', 0, 1),
-(230, 'Việt Nam', 'VN', 'VNM', '', 0, 1),
+(230, 'Viet Nam', 'VN', 'VNM', '', 0, 1),
 (231, 'Virgin Islands (British)', 'VG', 'VGB', '', 0, 1),
 (232, 'Virgin Islands (U.S.)', 'VI', 'VIR', '', 0, 1),
 (233, 'Wallis and Futuna Islands', 'WF', 'WLF', '', 0, 1),
@@ -764,6 +731,7 @@ INSERT INTO `fs_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 -- Table structure for table `fs_coupon`
 --
 
+DROP TABLE IF EXISTS `fs_coupon`;
 CREATE TABLE IF NOT EXISTS `fs_coupon` (
   `coupon_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8_bin NOT NULL,
@@ -787,7 +755,7 @@ CREATE TABLE IF NOT EXISTS `fs_coupon` (
 --
 
 INSERT INTO `fs_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logged`, `shipping`, `total`, `date_start`, `date_end`, `uses_total`, `uses_customer`, `status`, `date_added`) VALUES
-(4, '-10% Discount', '2222', 'P', '90.0000', 0, 0, '0.0000', '2013-05-26', '2013-11-30', 10, '10', 1, '2009-01-27 13:55:03'),
+(4, '-10% Discount', '2222', 'P', '10.0000', 0, 0, '0.0000', '2011-01-01', '2012-01-01', 10, '10', 1, '2009-01-27 13:55:03'),
 (5, 'Free Shipping', '3333', 'P', '0.0000', 0, 1, '100.0000', '2009-03-01', '2009-08-31', 10, '10', 1, '2009-03-14 21:13:53'),
 (6, '-10.00 Discount', '1111', 'F', '10.0000', 0, 0, '10.0000', '1970-11-01', '2020-11-01', 100000, '10000', 1, '2009-03-14 21:15:18');
 
@@ -797,6 +765,7 @@ INSERT INTO `fs_coupon` (`coupon_id`, `name`, `code`, `type`, `discount`, `logge
 -- Table structure for table `fs_coupon_history`
 --
 
+DROP TABLE IF EXISTS `fs_coupon_history`;
 CREATE TABLE IF NOT EXISTS `fs_coupon_history` (
   `coupon_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_id` int(11) NOT NULL,
@@ -805,16 +774,12 @@ CREATE TABLE IF NOT EXISTS `fs_coupon_history` (
   `amount` decimal(15,4) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`coupon_history_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `fs_coupon_history`
 --
 
-INSERT INTO `fs_coupon_history` (`coupon_history_id`, `coupon_id`, `order_id`, `customer_id`, `amount`, `date_added`) VALUES
-(1, 4, 6, 7, '-20000.0000', '2013-05-26 14:32:48'),
-(2, 4, 26, 7, '-900000.0000', '2013-05-26 16:18:26'),
-(3, 6, 27, 7, '-10.0000', '2013-05-26 16:28:47');
 
 -- --------------------------------------------------------
 
@@ -822,6 +787,7 @@ INSERT INTO `fs_coupon_history` (`coupon_history_id`, `coupon_id`, `order_id`, `
 -- Table structure for table `fs_coupon_product`
 --
 
+DROP TABLE IF EXISTS `fs_coupon_product`;
 CREATE TABLE IF NOT EXISTS `fs_coupon_product` (
   `coupon_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `coupon_id` int(11) NOT NULL,
@@ -840,6 +806,7 @@ CREATE TABLE IF NOT EXISTS `fs_coupon_product` (
 -- Table structure for table `fs_currency`
 --
 
+DROP TABLE IF EXISTS `fs_currency`;
 CREATE TABLE IF NOT EXISTS `fs_currency` (
   `currency_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -851,14 +818,17 @@ CREATE TABLE IF NOT EXISTS `fs_currency` (
   `status` tinyint(1) NOT NULL,
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`currency_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `fs_currency`
 --
 
 INSERT INTO `fs_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(3, 'VNĐ', 'vnd', '', ' vnđ', '0', 1.00000000, 1, '2012-05-24 23:56:21');
+(1, 'Pound Sterling', 'GBP', '£', '', '2', 0.64829999, 0, '2013-06-26 12:48:55'),
+(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 0, '2013-06-26 07:07:48'),
+(3, 'Euro', 'EUR', '', '€', '2', 0.76510000, 0, '2013-06-26 12:48:59'),
+(4, 'VND', 'VND', '', ' VND', '2', 1.00000000, 1, '2013-08-02 21:14:39');
 
 -- --------------------------------------------------------
 
@@ -866,6 +836,7 @@ INSERT INTO `fs_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbo
 -- Table structure for table `fs_customer`
 --
 
+DROP TABLE IF EXISTS `fs_customer`;
 CREATE TABLE IF NOT EXISTS `fs_customer` (
   `customer_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL DEFAULT '0',
@@ -886,19 +857,14 @@ CREATE TABLE IF NOT EXISTS `fs_customer` (
   `token` varchar(255) COLLATE utf8_bin NOT NULL,
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`customer_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `fs_customer`
 --
 
 INSERT INTO `fs_customer` (`customer_id`, `store_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `password`, `cart`, `wishlist`, `newsletter`, `address_id`, `customer_group_id`, `ip`, `status`, `approved`, `token`, `date_added`) VALUES
-(1, 0, '4545', '45454', 'lethanhtungpro@gmail.com', '454445', 'admin', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, 1, 0, 0, '0', 1, 0, '', '2012-05-28 14:45:58'),
-(2, 0, '4545', '45454', 'tung@gmail.com', '454445', 'admin', 'e10adc3949ba59abbe56e057f20f883e', NULL, NULL, 1, 0, 0, '0', 1, 0, '', '2012-05-28 14:46:10'),
-(4, 0, 'Van', 'Dao', 'jacknguyenvan@gmail.com', '234234234234', '', '5f4dcc3b5aa765d61d8327deb882cf99', NULL, NULL, 1, 2, 1, '127.0.0.1', 1, 1, '', '2013-05-25 20:52:53'),
-(5, 0, 'van', 'dao', 'van.dao@gmail.com', '84913136349', '', 'e10adc3949ba59abbe56e057f20f883e', 'a:1:{i:84;i:1;}', 'a:3:{i:0;s:2:"84";i:1;s:2:"78";i:2;s:2:"83";}', 1, 3, 1, '127.0.0.1', 1, 1, '', '2013-05-26 13:52:46'),
-(6, 0, 'Van', 'Dao', 'van.dao.dev@gmail.com', '84913136349', '', 'e10adc3949ba59abbe56e057f20f883e', 'a:0:{}', '', 1, 4, 1, '127.0.0.1', 1, 1, '', '2013-05-26 14:06:32'),
-(7, 0, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'e10adc3949ba59abbe56e057f20f883e', 'a:0:{}', '', 1, 5, 1, '127.0.0.1', 1, 1, '', '2013-05-26 14:15:56');
+(1, 0, 'Van', 'Dao', 'van.dao@kiss-concept.com', '84913136349', '', 'e10adc3949ba59abbe56e057f20f883e', 'a:1:{i:46;i:1;}', '', 0, 1, 1, '127.0.0.1', 1, 1, '', '2013-06-26 19:04:17');
 
 -- --------------------------------------------------------
 
@@ -906,6 +872,7 @@ INSERT INTO `fs_customer` (`customer_id`, `store_id`, `firstname`, `lastname`, `
 -- Table structure for table `fs_customer_group`
 --
 
+DROP TABLE IF EXISTS `fs_customer_group`;
 CREATE TABLE IF NOT EXISTS `fs_customer_group` (
   `customer_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `approval` int(1) NOT NULL,
@@ -922,7 +889,7 @@ CREATE TABLE IF NOT EXISTS `fs_customer_group` (
 --
 
 INSERT INTO `fs_customer_group` (`customer_group_id`, `approval`, `company_id_display`, `company_id_required`, `tax_id_display`, `tax_id_required`, `sort_order`) VALUES
-(1, 0, 0, 0, 0, 0, 1);
+(1, 0, 1, 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -930,6 +897,7 @@ INSERT INTO `fs_customer_group` (`customer_group_id`, `approval`, `company_id_di
 -- Table structure for table `fs_customer_group_description`
 --
 
+DROP TABLE IF EXISTS `fs_customer_group_description`;
 CREATE TABLE IF NOT EXISTS `fs_customer_group_description` (
   `customer_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -943,8 +911,7 @@ CREATE TABLE IF NOT EXISTS `fs_customer_group_description` (
 --
 
 INSERT INTO `fs_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES
-(1, 1, 'Default', 'test'),
-(1, 2, 'Khách hàng', 'Khách hàng thường');
+(1, 3, 'Default', 'test');
 
 -- --------------------------------------------------------
 
@@ -952,6 +919,7 @@ INSERT INTO `fs_customer_group_description` (`customer_group_id`, `language_id`,
 -- Table structure for table `fs_customer_ip`
 --
 
+DROP TABLE IF EXISTS `fs_customer_ip`;
 CREATE TABLE IF NOT EXISTS `fs_customer_ip` (
   `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
@@ -959,16 +927,14 @@ CREATE TABLE IF NOT EXISTS `fs_customer_ip` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_ip_id`),
   KEY `ip` (`ip`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `fs_customer_ip`
 --
 
 INSERT INTO `fs_customer_ip` (`customer_ip_id`, `customer_id`, `ip`, `date_added`) VALUES
-(2, 5, '127.0.0.1', '2013-05-26 13:53:25'),
-(3, 6, '127.0.0.1', '2013-05-26 14:06:37'),
-(4, 7, '127.0.0.1', '2013-05-26 14:16:00');
+(1, 1, '127.0.0.1', '2013-06-26 19:04:17');
 
 -- --------------------------------------------------------
 
@@ -976,6 +942,7 @@ INSERT INTO `fs_customer_ip` (`customer_ip_id`, `customer_id`, `ip`, `date_added
 -- Table structure for table `fs_customer_ip_blacklist`
 --
 
+DROP TABLE IF EXISTS `fs_customer_ip_blacklist`;
 CREATE TABLE IF NOT EXISTS `fs_customer_ip_blacklist` (
   `customer_ip_blacklist_id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(15) COLLATE utf8_bin NOT NULL,
@@ -994,6 +961,7 @@ CREATE TABLE IF NOT EXISTS `fs_customer_ip_blacklist` (
 -- Table structure for table `fs_customer_reward`
 --
 
+DROP TABLE IF EXISTS `fs_customer_reward`;
 CREATE TABLE IF NOT EXISTS `fs_customer_reward` (
   `customer_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL DEFAULT '0',
@@ -1015,6 +983,7 @@ CREATE TABLE IF NOT EXISTS `fs_customer_reward` (
 -- Table structure for table `fs_customer_transaction`
 --
 
+DROP TABLE IF EXISTS `fs_customer_transaction`;
 CREATE TABLE IF NOT EXISTS `fs_customer_transaction` (
   `customer_transaction_id` int(11) NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
@@ -1023,7 +992,7 @@ CREATE TABLE IF NOT EXISTS `fs_customer_transaction` (
   `amount` decimal(15,4) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_transaction_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `fs_customer_transaction`
@@ -1036,6 +1005,7 @@ CREATE TABLE IF NOT EXISTS `fs_customer_transaction` (
 -- Table structure for table `fs_download`
 --
 
+DROP TABLE IF EXISTS `fs_download`;
 CREATE TABLE IF NOT EXISTS `fs_download` (
   `download_id` int(11) NOT NULL AUTO_INCREMENT,
   `filename` varchar(128) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -1043,7 +1013,7 @@ CREATE TABLE IF NOT EXISTS `fs_download` (
   `remaining` int(11) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`download_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `fs_download`
@@ -1056,6 +1026,7 @@ CREATE TABLE IF NOT EXISTS `fs_download` (
 -- Table structure for table `fs_download_description`
 --
 
+DROP TABLE IF EXISTS `fs_download_description`;
 CREATE TABLE IF NOT EXISTS `fs_download_description` (
   `download_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -1074,12 +1045,13 @@ CREATE TABLE IF NOT EXISTS `fs_download_description` (
 -- Table structure for table `fs_extension`
 --
 
+DROP TABLE IF EXISTS `fs_extension`;
 CREATE TABLE IF NOT EXISTS `fs_extension` (
   `extension_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) COLLATE utf8_bin NOT NULL,
   `code` varchar(32) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`extension_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=466 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=437 ;
 
 --
 -- Dumping data for table `fs_extension`
@@ -1091,36 +1063,28 @@ INSERT INTO `fs_extension` (`extension_id`, `type`, `code`) VALUES
 (57, 'total', 'sub_total'),
 (58, 'total', 'tax'),
 (59, 'total', 'total'),
+(410, 'module', 'banner'),
+(426, 'module', 'carousel'),
 (390, 'total', 'credit'),
 (387, 'shipping', 'flat'),
 (349, 'total', 'handling'),
 (350, 'total', 'low_order_fee'),
 (389, 'total', 'coupon'),
 (413, 'module', 'category'),
+(411, 'module', 'affiliate'),
 (408, 'module', 'account'),
 (393, 'total', 'reward'),
 (398, 'total', 'voucher'),
 (407, 'payment', 'free_checkout'),
 (427, 'module', 'featured'),
-(419, 'module', 'slideshow'),
-(430, 'module', 'latest'),
-(438, 'module', 'cat'),
-(439, 'module', 'tnt_yahoo'),
-(440, 'module', 'information'),
-(442, 'module', 'tnt_welcome'),
-(443, 'module', 'tnt_productcat'),
-(444, 'module', 'banner'),
-(445, 'module', 'tnt_weather'),
-(446, 'module', 'tnt_random'),
-(447, 'module', 'visitor'),
-(448, 'module', 'bestseller'),
-(450, 'shipping', 'free'),
-(451, 'payment', 'bank_transfer'),
-(456, 'module', 'newsfeatured'),
-(457, 'module', 'newslatest'),
-(458, 'module', 'tnt_newscat'),
-(465, 'module', 'welcome'),
-(464, 'module', 'special');
+(428, 'module', 'custom_slideshow'),
+(429, 'module', 'custom_banner'),
+(430, 'module', 'bestseller'),
+(431, 'module', 'latest'),
+(432, 'module', 'special'),
+(433, 'module', 'welcome'),
+(434, 'module', 'styler'),
+(436, 'module', 'autoseotitle');
 
 -- --------------------------------------------------------
 
@@ -1128,6 +1092,7 @@ INSERT INTO `fs_extension` (`extension_id`, `type`, `code`) VALUES
 -- Table structure for table `fs_geo_zone`
 --
 
+DROP TABLE IF EXISTS `fs_geo_zone`;
 CREATE TABLE IF NOT EXISTS `fs_geo_zone` (
   `geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -1142,8 +1107,8 @@ CREATE TABLE IF NOT EXISTS `fs_geo_zone` (
 --
 
 INSERT INTO `fs_geo_zone` (`geo_zone_id`, `name`, `description`, `date_modified`, `date_added`) VALUES
-(3, 'Ngoại thành HCM', 'Ngoại thành HCM', '2013-05-26 15:18:03', '2009-01-06 23:26:25'),
-(4, 'Nội thành HCM', 'Nội thành HCM', '2013-05-25 21:04:23', '2009-06-23 01:14:53');
+(3, 'UK VAT Zone', 'UK VAT', '2010-02-26 22:33:24', '2009-01-06 23:26:25'),
+(4, 'UK Shipping', 'UK Shipping Zones', '2010-12-15 15:18:13', '2009-06-23 01:14:53');
 
 -- --------------------------------------------------------
 
@@ -1151,12 +1116,12 @@ INSERT INTO `fs_geo_zone` (`geo_zone_id`, `name`, `description`, `date_modified`
 -- Table structure for table `fs_information`
 --
 
+DROP TABLE IF EXISTS `fs_information`;
 CREATE TABLE IF NOT EXISTS `fs_information` (
   `information_id` int(11) NOT NULL AUTO_INCREMENT,
   `bottom` int(1) NOT NULL DEFAULT '0',
   `sort_order` int(3) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `top` int(1) NOT NULL,
   PRIMARY KEY (`information_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
 
@@ -1164,11 +1129,11 @@ CREATE TABLE IF NOT EXISTS `fs_information` (
 -- Dumping data for table `fs_information`
 --
 
-INSERT INTO `fs_information` (`information_id`, `bottom`, `sort_order`, `status`, `top`) VALUES
-(3, 0, 3, 1, 0),
-(4, 0, 1, 1, 1),
-(5, 0, 4, 1, 0),
-(6, 0, 2, 0, 1);
+INSERT INTO `fs_information` (`information_id`, `bottom`, `sort_order`, `status`) VALUES
+(3, 1, 3, 1),
+(4, 1, 1, 1),
+(5, 1, 4, 1),
+(6, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -1176,6 +1141,7 @@ INSERT INTO `fs_information` (`information_id`, `bottom`, `sort_order`, `status`
 -- Table structure for table `fs_information_description`
 --
 
+DROP TABLE IF EXISTS `fs_information_description`;
 CREATE TABLE IF NOT EXISTS `fs_information_description` (
   `information_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -1189,10 +1155,10 @@ CREATE TABLE IF NOT EXISTS `fs_information_description` (
 --
 
 INSERT INTO `fs_information_description` (`information_id`, `language_id`, `title`, `description`) VALUES
-(4, 2, 'Giới thiệu', '&lt;p&gt;\r\n	Giới thiệu&lt;/p&gt;\r\n'),
-(5, 2, 'Điều khoản và điều kiện', '&lt;p&gt;\r\n	Điều khoản và điều kiện&lt;/p&gt;\r\n'),
-(3, 2, 'Quyền riêng tư', '&lt;p&gt;\r\n	Quyền riêng tư&lt;/p&gt;\r\n'),
-(6, 2, 'Tuyển dụng', '&lt;p&gt;\r\n	Tuyển dụng&lt;/p&gt;\r\n');
+(3, 3, 'Privacy Policy', '&lt;p&gt;\r\n	Privacy Policy&lt;/p&gt;\r\n'),
+(5, 3, 'Terms &amp; Conditions', '&lt;p&gt;\r\n	Terms &amp;amp; Conditions&lt;/p&gt;\r\n'),
+(4, 3, 'About Us', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n'),
+(6, 3, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n');
 
 -- --------------------------------------------------------
 
@@ -1200,6 +1166,7 @@ INSERT INTO `fs_information_description` (`information_id`, `language_id`, `titl
 -- Table structure for table `fs_information_to_layout`
 --
 
+DROP TABLE IF EXISTS `fs_information_to_layout`;
 CREATE TABLE IF NOT EXISTS `fs_information_to_layout` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -1218,6 +1185,7 @@ CREATE TABLE IF NOT EXISTS `fs_information_to_layout` (
 -- Table structure for table `fs_information_to_store`
 --
 
+DROP TABLE IF EXISTS `fs_information_to_store`;
 CREATE TABLE IF NOT EXISTS `fs_information_to_store` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -1240,6 +1208,7 @@ INSERT INTO `fs_information_to_store` (`information_id`, `store_id`) VALUES
 -- Table structure for table `fs_language`
 --
 
+DROP TABLE IF EXISTS `fs_language`;
 CREATE TABLE IF NOT EXISTS `fs_language` (
   `language_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -1252,14 +1221,14 @@ CREATE TABLE IF NOT EXISTS `fs_language` (
   `status` tinyint(1) NOT NULL,
   PRIMARY KEY (`language_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `fs_language`
 --
 
 INSERT INTO `fs_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `filename`, `sort_order`, `status`) VALUES
-(2, 'Việt Nam', 'vn', 'vi_VN.UTF-8,vi_VN,vi-vn,vietnamese', 'vn.png', 'vietnamese', 'vietnamese', 2, 1);
+(3, 'Việt Nam', 'vn', 'vi_VN.UTF-8,vi_VN,vi-vn,vietnamese', 'vn.png', 'vietnamese', 'vietnamese', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1267,29 +1236,29 @@ INSERT INTO `fs_language` (`language_id`, `name`, `code`, `locale`, `image`, `di
 -- Table structure for table `fs_layout`
 --
 
+DROP TABLE IF EXISTS `fs_layout`;
 CREATE TABLE IF NOT EXISTS `fs_layout` (
   `layout_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`layout_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `fs_layout`
 --
 
 INSERT INTO `fs_layout` (`layout_id`, `name`) VALUES
-(1, 'Trang chủ'),
-(2, 'Chi tiết sản phẩm'),
-(3, 'Danh mục sản phẩm'),
-(4, 'Mặc định'),
-(5, 'Nhà sản xuất'),
-(6, 'Tài khoản'),
-(7, 'Thanh toán'),
-(8, 'Liên hệ'),
-(9, 'Sơ đồ trang'),
-(11, 'Thông tin'),
-(12, 'Chi tiết tin tức'),
-(13, 'Danh mục tin tức');
+(1, 'Home'),
+(2, 'Product'),
+(3, 'Category'),
+(4, 'Default'),
+(5, 'Manufacturer'),
+(6, 'Account'),
+(7, 'Checkout'),
+(8, 'Contact'),
+(9, 'Sitemap'),
+(10, 'Affiliate'),
+(11, 'Information');
 
 -- --------------------------------------------------------
 
@@ -1297,30 +1266,29 @@ INSERT INTO `fs_layout` (`layout_id`, `name`) VALUES
 -- Table structure for table `fs_layout_route`
 --
 
+DROP TABLE IF EXISTS `fs_layout_route`;
 CREATE TABLE IF NOT EXISTS `fs_layout_route` (
   `layout_route_id` int(11) NOT NULL AUTO_INCREMENT,
   `layout_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `route` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`layout_route_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=49 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=32 ;
 
 --
 -- Dumping data for table `fs_layout_route`
 --
 
 INSERT INTO `fs_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
-(34, 6, 0, 'account'),
-(35, 3, 0, 'product/category'),
-(38, 1, 0, 'common/home'),
-(46, 2, 0, 'product/product'),
-(40, 11, 0, 'information/information'),
-(45, 5, 0, 'product/manufacturer'),
-(37, 7, 0, 'checkout/'),
-(44, 8, 0, 'information/contact'),
-(48, 12, 0, 'news/news'),
-(36, 13, 0, 'news/cat'),
-(47, 9, 0, 'information/sitemap');
+(30, 6, 0, 'account'),
+(17, 10, 0, 'affiliate/'),
+(29, 3, 0, 'product/category'),
+(26, 1, 0, 'common/home'),
+(20, 2, 0, 'product/product'),
+(24, 11, 0, 'information/information'),
+(22, 5, 0, 'product/manufacturer'),
+(23, 7, 0, 'checkout/'),
+(31, 8, 0, 'information/contact');
 
 -- --------------------------------------------------------
 
@@ -1328,6 +1296,7 @@ INSERT INTO `fs_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `rout
 -- Table structure for table `fs_length_class`
 --
 
+DROP TABLE IF EXISTS `fs_length_class`;
 CREATE TABLE IF NOT EXISTS `fs_length_class` (
   `length_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` decimal(15,8) NOT NULL,
@@ -1349,6 +1318,7 @@ INSERT INTO `fs_length_class` (`length_class_id`, `value`) VALUES
 -- Table structure for table `fs_length_class_description`
 --
 
+DROP TABLE IF EXISTS `fs_length_class_description`;
 CREATE TABLE IF NOT EXISTS `fs_length_class_description` (
   `length_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
@@ -1362,9 +1332,9 @@ CREATE TABLE IF NOT EXISTS `fs_length_class_description` (
 --
 
 INSERT INTO `fs_length_class_description` (`length_class_id`, `language_id`, `title`, `unit`) VALUES
-(1, 2, 'Centimeter', 'cm'),
-(2, 2, 'Millimeter', 'mm'),
-(3, 2, 'Inch', 'in');
+(2, 3, 'Millimeter', 'mm'),
+(1, 3, 'Centimeter', 'cm'),
+(3, 3, 'Inch', 'in');
 
 -- --------------------------------------------------------
 
@@ -1372,6 +1342,7 @@ INSERT INTO `fs_length_class_description` (`length_class_id`, `language_id`, `ti
 -- Table structure for table `fs_manufacturer`
 --
 
+DROP TABLE IF EXISTS `fs_manufacturer`;
 CREATE TABLE IF NOT EXISTS `fs_manufacturer` (
   `manufacturer_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -1385,7 +1356,12 @@ CREATE TABLE IF NOT EXISTS `fs_manufacturer` (
 --
 
 INSERT INTO `fs_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`) VALUES
-(8, 'Apple', 'data/apple_logo.jpg', 0);
+(5, 'HTC', 'data/htc_logo.jpg', 0),
+(6, 'Palm', 'data/palm_logo.jpg', 0),
+(7, 'Hewlett-Packard', 'data/hp_logo.jpg', 0),
+(8, 'Apple', 'data/apple_logo.jpg', 0),
+(9, 'Canon', 'data/canon_logo.jpg', 0),
+(10, 'Sony', 'data/sony_logo.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -1393,6 +1369,7 @@ INSERT INTO `fs_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`)
 -- Table structure for table `fs_manufacturer_to_store`
 --
 
+DROP TABLE IF EXISTS `fs_manufacturer_to_store`;
 CREATE TABLE IF NOT EXISTS `fs_manufacturer_to_store` (
   `manufacturer_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -1404,188 +1381,12 @@ CREATE TABLE IF NOT EXISTS `fs_manufacturer_to_store` (
 --
 
 INSERT INTO `fs_manufacturer_to_store` (`manufacturer_id`, `store_id`) VALUES
-(8, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_news`
---
-
-CREATE TABLE IF NOT EXISTS `fs_news` (
-  `news_id` int(11) NOT NULL AUTO_INCREMENT,
-  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `date_available` date NOT NULL,
-  `subtract` tinyint(1) NOT NULL DEFAULT '1',
-  `sort_order` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `viewed` int(5) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`news_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=56 ;
-
---
--- Dumping data for table `fs_news`
---
-
-INSERT INTO `fs_news` (`news_id`, `image`, `date_available`, `subtract`, `sort_order`, `status`, `date_added`, `date_modified`, `viewed`) VALUES
-(53, 'data/Hoatuoi/20041214_kbb01.jpg', '2012-05-24', 1, 1, 1, '2012-05-26 06:54:07', '2012-05-26 15:58:21', 72);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_news_description`
---
-
-CREATE TABLE IF NOT EXISTS `fs_news_description` (
-  `news_id` int(11) NOT NULL AUTO_INCREMENT,
-  `language_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_bin NOT NULL,
-  `description` text COLLATE utf8_bin NOT NULL,
-  `meta_description` varchar(255) COLLATE utf8_bin NOT NULL,
-  `meta_keyword` varchar(255) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`news_id`,`language_id`),
-  KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=56 ;
-
---
--- Dumping data for table `fs_news_description`
---
-
-INSERT INTO `fs_news_description` (`news_id`, `language_id`, `name`, `description`, `meta_description`, `meta_keyword`) VALUES
-(53, 2, 'Phát hiện dấu vết urani làm giàu cấp độ cao hơn tại Iran', '&lt;p&gt;\r\n	&amp;nbsp;&lt;/p&gt;\r\n&lt;div class=&quot;fon33 mt1&quot; style=&quot;margin: 5px 0px 0px; padding: 0px; font-family: ''Times New Roman''; font-size: 11pt; font-weight: 700; line-height: 18px; color: rgb(95, 95, 95); &quot;&gt;\r\n	Các thanh sát viên hạt nhân Liên hợp quốc đã tìm thấy các dấu hiệu urani làm giàu ở cấp độ 27% tại cơ sở hạt nhân Fordo của Iran. Phát hiện này có nghĩa rằng Iran đã tiến gần hơn tới ngưỡng urani cần thiết để trang bị cho tên lửa hạt nhân.&lt;/div&gt;\r\n&lt;div class=&quot;fon34 mt3 mr2 fon43&quot; style=&quot;margin: 15px 10px 14px 0px; padding: 0px; font-family: ''Times New Roman''; font-size: 12pt; line-height: 20px !important; color: rgb(0, 0, 0); &quot;&gt;\r\n	&lt;div style=&quot;margin: 0px; padding: 0px; &quot;&gt;\r\n		&amp;nbsp;&lt;/div&gt;\r\n	&lt;div align=&quot;center&quot; style=&quot;margin: 0px; padding: 0px; &quot;&gt;\r\n		&lt;img src=&quot;http://dantri4.vcmedia.vn/6DQQJ7yW5QPfG6EzuGal/Image/2012/05/4_a5da1.jpg&quot; style=&quot;margin: 0px; padding: 0px; &quot; /&gt;&lt;/div&gt;\r\n	&lt;div align=&quot;center&quot; style=&quot;margin: 0px; padding: 0px; &quot;&gt;\r\n		&lt;span style=&quot;margin: 0px; padding: 0px; font-family: Tahoma; font-size: 10pt; &quot;&gt;Cơ sở hạt nhân Fordo nhìn từ vệ tinh.&lt;/span&gt;&lt;/div&gt;\r\n	&lt;p style=&quot;margin: 14px 0px; padding: 0px; font-size: 12pt; &quot;&gt;\r\n		Báo cáo của Cơ quan năng lượng nguyên tử quốc tế (IAEA) về sự tồn tại của các dấu vết urani làm giàu cao hơn diễn ra chỉ một ngày sau khi Iran và các cường quốc tế thế giới tổ chức các cuộc đàm phán về chương trình hạt nhân của Cộng hoà Hồi giáo.&lt;/p&gt;\r\n	&lt;div style=&quot;margin: 0px; padding: 0px; &quot;&gt;\r\n		Sự tồn tại của urani làm giàu ở cấp độ 27% đã được tìm thấy trong một cuộc phân tích về các mẫu thử môi trường được lấy hồi tháng 2 tại cơ sở hạt nhân Fordo gần thành phố Qom, miền bắc Iran.&lt;/div&gt;\r\n	&lt;div style=&quot;margin: 0px; padding: 0px; &quot;&gt;\r\n		&amp;nbsp;&lt;/div&gt;\r\n	&lt;div style=&quot;margin: 0px; padding: 0px; &quot;&gt;\r\n		Trong khi đó, Tehran cho hay mục đích của cơ sở Fordo là làm giàu urani cho mục đích dân sự tối đa là ở mức 20%, và số liệu đo đạc mới nhất có thể là ngẫu nhiên.&lt;/div&gt;\r\n	&lt;p style=&quot;margin: 14px 0px; padding: 0px; font-size: 12pt; &quot;&gt;\r\n		Theo các nhà phân tích, 27% có để đưa Iran tiến gần hơn tới việc sản xuất urani cấp độ vũ khí.&lt;/p&gt;\r\n	&lt;p style=&quot;margin: 14px 0px; padding: 0px; font-size: 12pt; &quot;&gt;\r\n		Báo cáo mới nhất của IAEA cho biết các quan chức Iran nói với các nhà đàm phán rằng việc sản xuất các hạt như vậy “có thể xảy ra vì các lý do kỹ thuật nằm ngoài kiểm soát của lò phản ứng”.&lt;/p&gt;\r\n	&lt;p style=&quot;margin: 14px 0px; padding: 0px; font-size: 12pt; &quot;&gt;\r\n		Iran khẳng định chương trình hạt nhân chỉ phục vụ mục đích hoà bình, nhưng các quốc gia phương Tây lo ngại Iran đang tìm cách chế tạo vũ khí hạt nhân, vốn cần urani làm giàu lên tới 90%.&lt;/p&gt;\r\n	&lt;div style=&quot;margin: 0px; padding: 0px; &quot;&gt;\r\n		Sau các cuộc đàm phán cấp cao tại Baghdad, người đứng đầu về chính sách đối ngoại của EU, bà Catherine Ashton, nói “những khác biệt lớn” vẫn còn, nhưng một số điểm chung đã được tìm thấy.&lt;/div&gt;\r\n	&lt;div style=&quot;margin: 0px; padding: 0px; &quot;&gt;\r\n		&amp;nbsp;&lt;/div&gt;\r\n	&lt;div align=&quot;center&quot; style=&quot;margin: 0px; padding: 0px; &quot;&gt;\r\n		&lt;img src=&quot;http://dantri4.vcmedia.vn/6DQQJ7yW5QPfG6EzuGal/Image/2012/05/3_db27b.jpg&quot; style=&quot;margin: 0px; padding: 0px; &quot; /&gt;&lt;/div&gt;\r\n	&lt;div align=&quot;center&quot; style=&quot;margin: 0px; padding: 0px; &quot;&gt;\r\n		&lt;span style=&quot;margin: 0px; padding: 0px; font-family: Tahoma; font-size: 10pt; &quot;&gt;Các nhà đàm phán quốc tế tại Baghdad, Iraq hôm 23/5.&lt;/span&gt;&lt;/div&gt;\r\n	&lt;p style=&quot;margin: 14px 0px; padding: 0px; font-size: 12pt; &quot;&gt;\r\n		Các cuộc đàm phán tiếp theo giữa Iran và 6 cường quốc - gồm Anh, Mỹ, Trung Quốc, Nga, Pháp và Đức - dự kiến sẽ diễn ra thủ đô Mátxcơva của Nga vào tháng tới.&lt;/p&gt;\r\n	&lt;p style=&quot;margin: 14px 0px; padding: 0px; font-size: 12pt; &quot;&gt;\r\n		Mục tiêu của nhóm quốc tế, được dẫn đầu bởi bà Ashton, tìm kiếm một thoả thuận từ phía Iran nhằm kiềm chế làm giàu urani và cho phép các thánh sát viên Liên hợp quốc thẩm tra hoạt động hạt nhân.&lt;/p&gt;\r\n	&lt;p style=&quot;margin: 14px 0px; padding: 0px; font-size: 12pt; &quot;&gt;\r\n		Hồi tháng 11 năm ngoái, một báo cáo của IAEA khẳng định Iran đã “tiến hành các hoạt động liên quan tới việc phát triển một thiết bị hạt nhân”.&lt;/p&gt;\r\n	&lt;p style=&quot;margin: 14px 0px; padding: 0px; font-size: 12pt; &quot;&gt;\r\n		Trong báo cáo mới nhất, IAEA tái khẳng định rằng tổ chức này đang tìm cách tiếp cận với căn cứ quân sự Parchin.&lt;/p&gt;\r\n	&lt;p style=&quot;margin: 14px 0px; padding: 0px; font-size: 12pt; &quot;&gt;\r\n		IEAE cho biết, kể từ tháng 11 năm ngoái, tổ chức này đã nhận được các thông tin liên quan tới các vụ thử chất nổ cao khả nghi tại đó, có thể liên quan tới các đầu đạn hạt nhân.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;p&gt;\r\n	&amp;nbsp;&lt;/p&gt;\r\n', 'Phát hiện dấu vết urani làm giàu cấp độ cao hơn tại Iran', 'Phát hiện dấu vết urani làm giàu cấp độ cao hơn tại Iran');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_news_image`
---
-
-CREATE TABLE IF NOT EXISTS `fs_news_image` (
-  `news_image_id` int(11) NOT NULL AUTO_INCREMENT,
-  `news_id` int(11) NOT NULL,
-  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `sort_order` int(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`news_image_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `fs_news_image`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_news_related`
---
-
-CREATE TABLE IF NOT EXISTS `fs_news_related` (
-  `news_id` int(11) NOT NULL,
-  `related_id` int(11) NOT NULL,
-  PRIMARY KEY (`news_id`,`related_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `fs_news_related`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_news_tag`
---
-
-CREATE TABLE IF NOT EXISTS `fs_news_tag` (
-  `news_tag_id` int(11) NOT NULL AUTO_INCREMENT,
-  `news_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  `tag` varchar(32) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`news_tag_id`),
-  KEY `news_id` (`news_id`),
-  KEY `language_id` (`language_id`),
-  KEY `tag` (`tag`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `fs_news_tag`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_news_to_cat`
---
-
-CREATE TABLE IF NOT EXISTS `fs_news_to_cat` (
-  `news_id` int(11) NOT NULL,
-  `cat_id` int(11) NOT NULL,
-  PRIMARY KEY (`news_id`,`cat_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `fs_news_to_cat`
---
-
-INSERT INTO `fs_news_to_cat` (`news_id`, `cat_id`) VALUES
-(53, 59);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_news_to_download`
---
-
-CREATE TABLE IF NOT EXISTS `fs_news_to_download` (
-  `news_id` int(11) NOT NULL,
-  `download_id` int(11) NOT NULL,
-  PRIMARY KEY (`news_id`,`download_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `fs_news_to_download`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_news_to_layout`
---
-
-CREATE TABLE IF NOT EXISTS `fs_news_to_layout` (
-  `news_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL,
-  `layout_id` int(11) NOT NULL,
-  PRIMARY KEY (`news_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `fs_news_to_layout`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fs_news_to_store`
---
-
-CREATE TABLE IF NOT EXISTS `fs_news_to_store` (
-  `news_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`news_id`,`store_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Dumping data for table `fs_news_to_store`
---
-
-INSERT INTO `fs_news_to_store` (`news_id`, `store_id`) VALUES
-(53, 0);
+(5, 0),
+(6, 0),
+(7, 0),
+(8, 0),
+(9, 0),
+(10, 0);
 
 -- --------------------------------------------------------
 
@@ -1593,6 +1394,7 @@ INSERT INTO `fs_news_to_store` (`news_id`, `store_id`) VALUES
 -- Table structure for table `fs_option`
 --
 
+DROP TABLE IF EXISTS `fs_option`;
 CREATE TABLE IF NOT EXISTS `fs_option` (
   `option_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) COLLATE utf8_bin NOT NULL,
@@ -1623,6 +1425,7 @@ INSERT INTO `fs_option` (`option_id`, `type`, `sort_order`) VALUES
 -- Table structure for table `fs_option_description`
 --
 
+DROP TABLE IF EXISTS `fs_option_description`;
 CREATE TABLE IF NOT EXISTS `fs_option_description` (
   `option_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -1635,17 +1438,17 @@ CREATE TABLE IF NOT EXISTS `fs_option_description` (
 --
 
 INSERT INTO `fs_option_description` (`option_id`, `language_id`, `name`) VALUES
-(1, 2, 'Radio'),
-(2, 2, 'Checkbox'),
-(4, 2, 'Text'),
-(6, 2, 'Textarea'),
-(8, 2, 'Date'),
-(7, 2, 'File'),
-(5, 2, 'Select'),
-(9, 2, 'Time'),
-(10, 2, 'Date &amp; Time'),
-(12, 2, 'Delivery Date'),
-(11, 2, 'Size');
+(10, 3, 'Date &amp; Time'),
+(9, 3, 'Time'),
+(5, 3, 'Select'),
+(7, 3, 'File'),
+(8, 3, 'Date'),
+(6, 3, 'Textarea'),
+(4, 3, 'Text'),
+(2, 3, 'Checkbox'),
+(1, 3, 'Radio'),
+(12, 3, 'Delivery Date'),
+(11, 3, 'Size');
 
 -- --------------------------------------------------------
 
@@ -1653,6 +1456,7 @@ INSERT INTO `fs_option_description` (`option_id`, `language_id`, `name`) VALUES
 -- Table structure for table `fs_option_value`
 --
 
+DROP TABLE IF EXISTS `fs_option_value`;
 CREATE TABLE IF NOT EXISTS `fs_option_value` (
   `option_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `option_id` int(11) NOT NULL,
@@ -1666,20 +1470,20 @@ CREATE TABLE IF NOT EXISTS `fs_option_value` (
 --
 
 INSERT INTO `fs_option_value` (`option_value_id`, `option_id`, `image`, `sort_order`) VALUES
+(43, 1, '', 3),
+(32, 1, '', 1),
 (45, 2, '', 4),
 (44, 2, '', 3),
 (42, 5, '', 4),
 (41, 5, '', 3),
 (39, 5, '', 1),
 (40, 5, '', 2),
-(43, 1, 'no_image.jpg', 3),
+(31, 1, '', 2),
 (23, 2, '', 1),
 (24, 2, '', 2),
-(46, 11, 'no_image.jpg', 1),
-(32, 1, 'no_image.jpg', 1),
-(31, 1, 'no_image.jpg', 2),
-(47, 11, 'no_image.jpg', 2),
-(48, 11, 'no_image.jpg', 3);
+(46, 11, '', 1),
+(47, 11, '', 2),
+(48, 11, '', 3);
 
 -- --------------------------------------------------------
 
@@ -1687,6 +1491,7 @@ INSERT INTO `fs_option_value` (`option_value_id`, `option_id`, `image`, `sort_or
 -- Table structure for table `fs_option_value_description`
 --
 
+DROP TABLE IF EXISTS `fs_option_value_description`;
 CREATE TABLE IF NOT EXISTS `fs_option_value_description` (
   `option_value_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -1700,20 +1505,20 @@ CREATE TABLE IF NOT EXISTS `fs_option_value_description` (
 --
 
 INSERT INTO `fs_option_value_description` (`option_value_id`, `language_id`, `option_id`, `name`) VALUES
-(31, 2, 1, 'Vừa'),
-(32, 2, 1, 'Nhỏ'),
-(45, 2, 2, 'Checkbox 4'),
-(44, 2, 2, 'Checkbox 3'),
-(43, 2, 1, 'Lớn'),
-(42, 2, 5, 'Yellow'),
-(41, 2, 5, 'Green'),
-(39, 2, 5, 'Red'),
-(40, 2, 5, 'Blue'),
-(23, 2, 2, 'Checkbox 1'),
-(24, 2, 2, 'Checkbox 2'),
-(48, 2, 11, 'Lớn'),
-(47, 2, 11, 'Vừa'),
-(46, 2, 11, 'Nhỏ');
+(24, 3, 2, 'Checkbox 2'),
+(23, 3, 2, 'Checkbox 1'),
+(40, 3, 5, 'Blue'),
+(39, 3, 5, 'Red'),
+(41, 3, 5, 'Green'),
+(42, 3, 5, 'Yellow'),
+(31, 3, 1, 'Medium'),
+(44, 3, 2, 'Checkbox 3'),
+(45, 3, 2, 'Checkbox 4'),
+(32, 3, 1, 'Small'),
+(43, 3, 1, 'Large'),
+(48, 3, 11, 'Large'),
+(47, 3, 11, 'Medium'),
+(46, 3, 11, 'Small');
 
 -- --------------------------------------------------------
 
@@ -1721,6 +1526,7 @@ INSERT INTO `fs_option_value_description` (`option_value_id`, `language_id`, `op
 -- Table structure for table `fs_order`
 --
 
+DROP TABLE IF EXISTS `fs_order`;
 CREATE TABLE IF NOT EXISTS `fs_order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `invoice_no` int(11) NOT NULL DEFAULT '0',
@@ -1781,33 +1587,12 @@ CREATE TABLE IF NOT EXISTS `fs_order` (
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=28 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `fs_order`
 --
 
-INSERT INTO `fs_order` (`order_id`, `invoice_no`, `invoice_prefix`, `store_id`, `store_name`, `store_url`, `customer_id`, `customer_group_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `payment_firstname`, `payment_lastname`, `payment_company`, `payment_company_id`, `payment_tax_id`, `payment_address_1`, `payment_address_2`, `payment_city`, `payment_postcode`, `payment_country`, `payment_country_id`, `payment_zone`, `payment_zone_id`, `payment_address_format`, `payment_method`, `payment_code`, `shipping_firstname`, `shipping_lastname`, `shipping_company`, `shipping_address_1`, `shipping_address_2`, `shipping_city`, `shipping_postcode`, `shipping_country`, `shipping_country_id`, `shipping_zone`, `shipping_zone_id`, `shipping_address_format`, `shipping_method`, `shipping_code`, `comment`, `total`, `order_status_id`, `affiliate_id`, `commission`, `language_id`, `currency_id`, `currency_code`, `currency_value`, `ip`, `forwarded_ip`, `user_agent`, `accept_language`, `date_added`, `date_modified`) VALUES
-(7, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Thu tiền khi giao hàng', 'cod', '', '', '', '', '', '', '', '', 0, '', 0, '', '', '', '', '1750000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 15:04:56', '2013-05-26 15:04:56'),
-(8, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Thu tiền khi giao hàng', 'cod', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Phí vận chuyển cố định', 'flat.flat', '', '1760000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 15:11:53', '2013-05-26 15:11:53'),
-(4, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Chuyển khoản ngân hàng', 'bank_transfer', '', '', '', '', '', '', '', '', 0, '', 0, '', '', '', '', '180000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 14:29:32', '2013-05-26 14:29:32'),
-(5, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Thu tiền khi giao hàng', 'cod', '', '', '', '', '', '', '', '', 0, '', 0, '', '', '', '', '180000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 14:30:01', '2013-05-26 14:30:01'),
-(10, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Thu tiền khi giao hàng', 'cod', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '200000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 15:43:14', '2013-05-26 15:43:14'),
-(11, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Thu tiền khi giao hàng', 'cod', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '200000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 15:48:02', '2013-05-26 15:48:02'),
-(12, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Chuyển khoản ngân hàng', 'bank_transfer', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '200000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 15:48:30', '2013-05-26 15:48:30'),
-(13, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Chuyển khoản ngân hàng', 'bank_transfer', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '200000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 15:50:06', '2013-05-26 15:50:06'),
-(14, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Chuyển khoản ngân hàng', 'bank_transfer', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '200000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 15:51:57', '2013-05-26 15:51:57'),
-(15, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Chuyển khoản ngân hàng', 'bank_transfer', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '200000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 15:52:15', '2013-05-26 15:52:15'),
-(16, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Chuyển khoản ngân hàng', 'bank_transfer', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '200000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 15:52:46', '2013-05-26 15:52:46'),
-(17, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Chuyển khoản ngân hàng', 'bank_transfer', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '200000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 15:53:00', '2013-05-26 15:53:00'),
-(19, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Thu tiền khi giao hàng', 'cod', '', '', '', '', '', '', '', '', 0, '', 0, '', '', '', '', '300000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 16:05:16', '2013-05-26 16:05:16'),
-(21, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Thu tiền khi giao hàng', 'cod', '', '', '', '', '', '', '', '', 0, '', 0, '', '', '', '', '300000.0000', 1, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 16:06:03', '2013-05-26 16:06:05'),
-(22, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.dev@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Thu tiền khi giao hàng', 'cod', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '350000.0000', 1, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 16:11:55', '2013-05-26 16:37:02'),
-(23, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Chuyển khoản ngân hàng', 'bank_transfer', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '250000.0000', 5, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 16:12:46', '2013-05-26 16:31:14'),
-(24, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Chuyển khoản ngân hàng', 'bank_transfer', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Phí vận chuyển cố định', 'flat.flat', '', '330000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 16:14:18', '2013-05-26 16:14:18'),
-(25, 0, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Thu tiền khi giao hàng', 'cod', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '300000.0000', 0, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 16:14:54', '2013-05-26 16:14:54'),
-(26, 4, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'van', 'dao', 'KiSS-Concept', '', '', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí', 'free_checkout', 'van', 'dao', 'KiSS-Concept', '569 Tran Hung Dao, Quan 1', '', 'Ho Chi Minh', '', 'Việt Nam', 230, 'Hồ Chí Minh', 3778, '', 'Miễn phí vận chuyển', 'free.free', '', '-600000.0000', 5, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 16:17:59', '2013-05-26 16:30:38'),
-(27, 3, 'INV-2011-00', 0, 'Fashion Online', 'http://dev-opencart.vn/', 7, 1, 'van', 'dao', 'van.dao.itn@gmail.com', '84913136349', '', 'Van', 'Dao', '', '', '', '569 Tran Hung Dao, Quan 1', '', 'Dong Nai', '', 'Việt Nam', 230, 'Đồng Nai', 3767, '', 'Thu tiền khi giao hàng', 'cod', 'Van', 'Dao', '', '569 Tran Hung Dao, Quan 1', '', 'Dong Nai', '', 'Việt Nam', 230, 'Đồng Nai', 3767, '', 'Phí vận chuyển cố định', 'flat.flat', '', '525990.0000', 5, 0, '0.0000', 2, 3, 'vnd', '1.00000000', '127.0.0.1', '', 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94 Safari/537.36', 'en-US,en;q=0.8,vi;q=0.6,fr-FR;q=0.4,fr;q=0.2', '2013-05-26 16:28:42', '2013-05-26 16:30:05');
 
 -- --------------------------------------------------------
 
@@ -1815,6 +1600,7 @@ INSERT INTO `fs_order` (`order_id`, `invoice_no`, `invoice_prefix`, `store_id`, 
 -- Table structure for table `fs_order_download`
 --
 
+DROP TABLE IF EXISTS `fs_order_download`;
 CREATE TABLE IF NOT EXISTS `fs_order_download` (
   `order_download_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1837,6 +1623,7 @@ CREATE TABLE IF NOT EXISTS `fs_order_download` (
 -- Table structure for table `fs_order_fraud`
 --
 
+DROP TABLE IF EXISTS `fs_order_fraud`;
 CREATE TABLE IF NOT EXISTS `fs_order_fraud` (
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
@@ -1905,6 +1692,7 @@ CREATE TABLE IF NOT EXISTS `fs_order_fraud` (
 -- Table structure for table `fs_order_history`
 --
 
+DROP TABLE IF EXISTS `fs_order_history`;
 CREATE TABLE IF NOT EXISTS `fs_order_history` (
   `order_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1913,21 +1701,12 @@ CREATE TABLE IF NOT EXISTS `fs_order_history` (
   `comment` text COLLATE utf8_bin NOT NULL,
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`order_history_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `fs_order_history`
 --
 
-INSERT INTO `fs_order_history` (`order_history_id`, `order_id`, `order_status_id`, `notify`, `comment`, `date_added`) VALUES
-(9, 21, 1, 1, '', '2013-05-26 16:06:05'),
-(10, 22, 1, 1, '', '2013-05-26 16:11:56'),
-(11, 23, 1, 1, 'Hướng dẫn chuyển khoản ngân hàng\n\nVui lòng chuyển số tiền cần thanh toán vào tài khoản\r\nĐào Nguyên Văn 0031001205631 \r\nNgân Hàng ViệtCombank\n\nBạn sẽ không nhận được sản phẩm bạn cho đến khi thanh toán hoàn tất.', '2013-05-26 16:12:54'),
-(12, 26, 1, 1, '', '2013-05-26 16:18:26'),
-(13, 27, 1, 1, '', '2013-05-26 16:28:47'),
-(14, 27, 5, 0, '', '2013-05-26 16:30:05'),
-(15, 26, 5, 0, '', '2013-05-26 16:30:38'),
-(16, 23, 5, 0, '', '2013-05-26 16:31:14');
 
 -- --------------------------------------------------------
 
@@ -1935,6 +1714,7 @@ INSERT INTO `fs_order_history` (`order_history_id`, `order_id`, `order_status_id
 -- Table structure for table `fs_order_misc`
 --
 
+DROP TABLE IF EXISTS `fs_order_misc`;
 CREATE TABLE IF NOT EXISTS `fs_order_misc` (
   `order_id` int(11) NOT NULL,
   `key` varchar(64) COLLATE utf8_bin NOT NULL,
@@ -1953,6 +1733,7 @@ CREATE TABLE IF NOT EXISTS `fs_order_misc` (
 -- Table structure for table `fs_order_option`
 --
 
+DROP TABLE IF EXISTS `fs_order_option`;
 CREATE TABLE IF NOT EXISTS `fs_order_option` (
   `order_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1976,6 +1757,7 @@ CREATE TABLE IF NOT EXISTS `fs_order_option` (
 -- Table structure for table `fs_order_product`
 --
 
+DROP TABLE IF EXISTS `fs_order_product`;
 CREATE TABLE IF NOT EXISTS `fs_order_product` (
   `order_product_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -1988,35 +1770,12 @@ CREATE TABLE IF NOT EXISTS `fs_order_product` (
   `tax` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `reward` int(8) NOT NULL,
   PRIMARY KEY (`order_product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `fs_order_product`
 --
 
-INSERT INTO `fs_order_product` (`order_product_id`, `order_id`, `product_id`, `name`, `model`, `quantity`, `price`, `total`, `tax`, `reward`) VALUES
-(7, 7, 84, 'Bộ Vest nam', 'QA 05', 1, '1500000.0000', '1500000.0000', '0.0000', 0),
-(8, 7, 81, 'Áo sơ mi nam ', 'QA 02', 1, '250000.0000', '250000.0000', '0.0000', 0),
-(9, 8, 84, 'Bộ Vest nam', 'QA 05', 1, '1500000.0000', '1500000.0000', '0.0000', 0),
-(4, 4, 85, 'Áo thun nữ dài tay ', 'QA 06', 1, '200000.0000', '200000.0000', '0.0000', 0),
-(5, 5, 85, 'Áo thun nữ dài tay ', 'QA 06', 1, '200000.0000', '200000.0000', '0.0000', 0),
-(10, 8, 81, 'Áo sơ mi nam ', 'QA 02', 1, '250000.0000', '250000.0000', '0.0000', 0),
-(13, 10, 85, 'Áo thun nữ dài tay ', 'QA 06', 1, '200000.0000', '200000.0000', '0.0000', 0),
-(14, 11, 85, 'Áo thun nữ dài tay ', 'QA 06', 1, '200000.0000', '200000.0000', '0.0000', 0),
-(15, 12, 85, 'Áo thun nữ dài tay ', 'QA 06', 1, '200000.0000', '200000.0000', '0.0000', 0),
-(16, 13, 85, 'Áo thun nữ dài tay ', 'QA 06', 1, '200000.0000', '200000.0000', '0.0000', 0),
-(17, 14, 85, 'Áo thun nữ dài tay ', 'QA 06', 1, '200000.0000', '200000.0000', '0.0000', 0),
-(18, 15, 85, 'Áo thun nữ dài tay ', 'QA 06', 1, '200000.0000', '200000.0000', '0.0000', 0),
-(19, 16, 85, 'Áo thun nữ dài tay ', 'QA 06', 1, '200000.0000', '200000.0000', '0.0000', 0),
-(20, 17, 85, 'Áo thun nữ dài tay ', 'QA 06', 1, '200000.0000', '200000.0000', '0.0000', 0),
-(22, 19, 83, 'Bộ quần áo trẻ em ', 'QA 03', 1, '300000.0000', '300000.0000', '0.0000', 0),
-(24, 21, 83, 'Bộ quần áo trẻ em ', 'QA 03', 1, '300000.0000', '300000.0000', '0.0000', 0),
-(25, 22, 54, 'Hoa cẩm chướng', 'Z_ HCM', 1, '350000.0000', '350000.0000', '0.0000', 0),
-(26, 23, 61, 'Hoa hồng nhung', 'Z_ HHN', 1, '250000.0000', '250000.0000', '0.0000', 0),
-(27, 24, 56, 'Hoa sinh nhật ', 'Z_ HSN', 1, '300000.0000', '300000.0000', '0.0000', 0),
-(28, 25, 56, 'Hoa sinh nhật ', 'Z_ HSN', 1, '300000.0000', '300000.0000', '0.0000', 0),
-(29, 26, 56, 'Hoa sinh nhật ', 'Z_ HSN', 1, '300000.0000', '300000.0000', '0.0000', 0),
-(30, 27, 50, 'Lãng hoa  01', 'Z_ PL01', 1, '496000.0000', '496000.0000', '0.0000', 0);
 
 -- --------------------------------------------------------
 
@@ -2024,6 +1783,7 @@ INSERT INTO `fs_order_product` (`order_product_id`, `order_id`, `product_id`, `n
 -- Table structure for table `fs_order_status`
 --
 
+DROP TABLE IF EXISTS `fs_order_status`;
 CREATE TABLE IF NOT EXISTS `fs_order_status` (
   `order_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
@@ -2036,20 +1796,20 @@ CREATE TABLE IF NOT EXISTS `fs_order_status` (
 --
 
 INSERT INTO `fs_order_status` (`order_status_id`, `language_id`, `name`) VALUES
-(2, 2, 'Đang xử lý'),
-(3, 2, 'Đã vận chuyển'),
-(7, 2, 'Hủy giao dịch'),
-(5, 2, 'Giao dịch hoàn thành'),
-(8, 2, 'Từ chối'),
-(9, 2, 'Hủy ngược lại'),
-(10, 2, 'Giao dịch lỗi'),
-(11, 2, 'Đã hoàn trả'),
-(12, 2, 'Đảo ngược'),
-(13, 2, 'Tiền chiết khấu'),
-(1, 2, 'Chờ xử lý'),
-(16, 2, 'Hủy bỏ'),
-(15, 2, 'Xử lý'),
-(14, 2, 'Hết hạn');
+(13, 3, 'Chargeback'),
+(12, 3, 'Reversed'),
+(11, 3, 'Refunded'),
+(10, 3, 'Failed'),
+(9, 3, 'Canceled Reversal'),
+(8, 3, 'Denied'),
+(5, 3, 'Complete'),
+(7, 3, 'Canceled'),
+(3, 3, 'Shipped'),
+(2, 3, 'Processing'),
+(1, 3, 'Pending'),
+(16, 3, 'Voided'),
+(15, 3, 'Processed'),
+(14, 3, 'Expired');
 
 -- --------------------------------------------------------
 
@@ -2057,6 +1817,7 @@ INSERT INTO `fs_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 -- Table structure for table `fs_order_total`
 --
 
+DROP TABLE IF EXISTS `fs_order_total`;
 CREATE TABLE IF NOT EXISTS `fs_order_total` (
   `order_total_id` int(10) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -2067,72 +1828,12 @@ CREATE TABLE IF NOT EXISTS `fs_order_total` (
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`order_total_id`),
   KEY `idx_orders_total_orders_id` (`order_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=81 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `fs_order_total`
 --
 
-INSERT INTO `fs_order_total` (`order_total_id`, `order_id`, `code`, `title`, `text`, `value`, `sort_order`) VALUES
-(20, 7, 'sub_total', 'Thành tiền:', '1,750,000 vnđ', '1750000.0000', 1),
-(21, 7, 'total', 'Tổng cộng :', '1,750,000 vnđ', '1750000.0000', 9),
-(22, 8, 'sub_total', 'Thành tiền:', '1,750,000 vnđ', '1750000.0000', 1),
-(23, 8, 'shipping', 'Phí vận chuyển cố định', '10,000 vnđ', '10000.0000', 3),
-(24, 8, 'total', 'Tổng cộng :', '1,760,000 vnđ', '1760000.0000', 9),
-(11, 4, 'sub_total', 'Thành tiền:', '200,000 vnđ', '200000.0000', 1),
-(12, 4, 'coupon', 'Mã giảm giá (2222):', '-20,000 vnđ', '-20000.0000', 4),
-(13, 4, 'total', 'Tổng cộng :', '180,000 vnđ', '180000.0000', 9),
-(14, 5, 'sub_total', 'Thành tiền:', '200,000 vnđ', '200000.0000', 1),
-(15, 5, 'coupon', 'Mã giảm giá (2222):', '-20,000 vnđ', '-20000.0000', 4),
-(16, 5, 'total', 'Tổng cộng :', '180,000 vnđ', '180000.0000', 9),
-(28, 10, 'sub_total', 'Thành tiền:', '200,000 vnđ', '200000.0000', 1),
-(29, 10, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(30, 10, 'total', 'Tổng cộng :', '200,000 vnđ', '200000.0000', 9),
-(31, 11, 'sub_total', 'Thành tiền:', '200,000 vnđ', '200000.0000', 1),
-(32, 11, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(33, 11, 'total', 'Tổng cộng :', '200,000 vnđ', '200000.0000', 9),
-(34, 12, 'sub_total', 'Thành tiền:', '200,000 vnđ', '200000.0000', 1),
-(35, 12, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(36, 12, 'total', 'Tổng cộng :', '200,000 vnđ', '200000.0000', 9),
-(37, 13, 'sub_total', 'Thành tiền:', '200,000 vnđ', '200000.0000', 1),
-(38, 13, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(39, 13, 'total', 'Tổng cộng :', '200,000 vnđ', '200000.0000', 9),
-(40, 14, 'sub_total', 'Thành tiền:', '200,000 vnđ', '200000.0000', 1),
-(41, 14, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(42, 14, 'total', 'Tổng cộng :', '200,000 vnđ', '200000.0000', 9),
-(43, 15, 'sub_total', 'Thành tiền:', '200,000 vnđ', '200000.0000', 1),
-(44, 15, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(45, 15, 'total', 'Tổng cộng :', '200,000 vnđ', '200000.0000', 9),
-(46, 16, 'sub_total', 'Thành tiền:', '200,000 vnđ', '200000.0000', 1),
-(47, 16, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(48, 16, 'total', 'Tổng cộng :', '200,000 vnđ', '200000.0000', 9),
-(49, 17, 'sub_total', 'Thành tiền:', '200,000 vnđ', '200000.0000', 1),
-(50, 17, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(51, 17, 'total', 'Tổng cộng :', '200,000 vnđ', '200000.0000', 9),
-(55, 19, 'sub_total', 'Thành tiền:', '300,000 vnđ', '300000.0000', 1),
-(56, 19, 'total', 'Tổng cộng :', '300,000 vnđ', '300000.0000', 9),
-(59, 21, 'sub_total', 'Thành tiền:', '300,000 vnđ', '300000.0000', 1),
-(60, 21, 'total', 'Tổng cộng :', '300,000 vnđ', '300000.0000', 9),
-(63, 22, 'total', 'Tổng cộng :', '350,000 vnđ', '350000.0000', 9),
-(62, 22, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(64, 23, 'sub_total', 'Thành tiền:', '250,000 vnđ', '250000.0000', 1),
-(65, 23, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(66, 23, 'total', 'Tổng cộng :', '250,000 vnđ', '250000.0000', 9),
-(67, 24, 'sub_total', 'Thành tiền:', '300,000 vnđ', '300000.0000', 1),
-(68, 24, 'shipping', 'Phí vận chuyển cố định', '30,000 vnđ', '30000.0000', 3),
-(69, 24, 'total', 'Tổng cộng :', '330,000 vnđ', '330000.0000', 9),
-(70, 25, 'sub_total', 'Thành tiền:', '300,000 vnđ', '300000.0000', 1),
-(71, 25, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(72, 25, 'total', 'Tổng cộng :', '300,000 vnđ', '300000.0000', 9),
-(73, 26, 'sub_total', 'Thành tiền:', '300,000 vnđ', '300000.0000', 1),
-(74, 26, 'shipping', 'Miễn phí vận chuyển', '0 vnđ', '0.0000', 3),
-(75, 26, 'coupon', 'Mã giảm giá (2222):', '-900,000 vnđ', '-900000.0000', 4),
-(76, 26, 'total', 'Tổng cộng :', '0 vnđ', '0.0000', 9),
-(77, 27, 'sub_total', 'Thành tiền:', '496,000 vnđ', '496000.0000', 1),
-(78, 27, 'shipping', 'Phí vận chuyển cố định', '30,000 vnđ', '30000.0000', 3),
-(79, 27, 'coupon', 'Mã giảm giá (1111):', '-10 vnđ', '-10.0000', 4),
-(80, 27, 'total', 'Tổng cộng :', '525,990 vnđ', '525990.0000', 9),
-(61, 22, 'sub_total', 'Thành tiền:', '350,000 vnđ', '350000.0000', 1);
 
 -- --------------------------------------------------------
 
@@ -2140,6 +1841,7 @@ INSERT INTO `fs_order_total` (`order_total_id`, `order_id`, `code`, `title`, `te
 -- Table structure for table `fs_order_voucher`
 --
 
+DROP TABLE IF EXISTS `fs_order_voucher`;
 CREATE TABLE IF NOT EXISTS `fs_order_voucher` (
   `order_voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -2167,6 +1869,7 @@ CREATE TABLE IF NOT EXISTS `fs_order_voucher` (
 -- Table structure for table `fs_product`
 --
 
+DROP TABLE IF EXISTS `fs_product`;
 CREATE TABLE IF NOT EXISTS `fs_product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `model` varchar(64) COLLATE utf8_bin NOT NULL,
@@ -2196,30 +1899,32 @@ CREATE TABLE IF NOT EXISTS `fs_product` (
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `viewed` int(5) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=86 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=50 ;
 
 --
 -- Dumping data for table `fs_product`
 --
 
 INSERT INTO `fs_product` (`product_id`, `model`, `sku`, `upc`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `date_added`, `date_modified`, `viewed`) VALUES
-(50, 'Z_ PL01', '', '', '', 0, 5, 'data/Hoatuoi/20041214_kbb01.jpg', 0, 1, '496000.0000', 0, 0, '2012-03-01', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-02 15:56:37', '2012-03-02 16:01:52', 2),
-(54, 'Z_ HCM', '', '', '', 0, 5, 'data/Hoatuoi/chon-hoa.gif', 0, 1, '350000.0000', 0, 0, '2012-03-01', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-02 16:22:55', '0000-00-00 00:00:00', 10),
-(55, 'Z_ HH', '', '', '', 1, 5, 'data/Hoatuoi/hoatuoi(1).jpg', 0, 1, '490000.0000', 0, 0, '2012-03-01', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-02 16:38:23', '0000-00-00 00:00:00', 0),
-(56, 'Z_ HSN', '', '', '', 0, 5, 'data/Hoatuoi/hsn24_4e2a6e622b7cf-160x120.jpg', 0, 1, '300000.0000', 0, 0, '2012-03-01', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-02 16:41:41', '0000-00-00 00:00:00', 6),
-(57, 'Z_ HTY', '', '', '', 1, 5, 'data/Hoatuoi/hty_50_4e3114418a98c-160x120.jpg', 0, 1, '350000.0000', 0, 0, '2012-03-01', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-02 16:43:29', '0000-00-00 00:00:00', 1),
-(58, 'Z_ HCC', '', '', '', 1, 5, 'data/Hoatuoi/images.jpeg', 0, 1, '400000.0000', 0, 0, '2012-03-01', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-02 16:49:18', '2012-06-04 15:14:20', 1),
-(59, 'Z_ HTY02', '', '', '', 1, 5, 'data/Hoatuoi/HTTY-42_674.jpg', 0, 1, '350000.0000', 0, 0, '2012-03-01', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-02 16:57:03', '0000-00-00 00:00:00', 0),
-(61, 'Z_ HHN', '', '', '', 0, 5, 'data/Hoatuoi/small_1246464261_nv_jpg.jpg', 0, 1, '250000.0000', 0, 0, '2012-03-01', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-02 17:36:18', '0000-00-00 00:00:00', 4),
-(62, 'Z_ HTY06', '', '', '', 1, 5, 'data/Hoatuoi/hc0261.jpg', 0, 1, '200000.0000', 0, 0, '2012-03-01', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-02 17:55:40', '0000-00-00 00:00:00', 0),
-(78, 'Vest Forever ', '', '', '', 100, 5, 'data/quan ao/ao-vest-nu-forever-fo-ao-0112.jpg', 0, 0, '600000.0000', 0, 0, '2012-03-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-06 07:17:32', '2012-03-06 07:18:35', 1),
-(79, ' Jean Suri JN001', '', '', '', 100, 5, 'data/quan ao/jn024.jpg', 0, 0, '250000.0000', 0, 0, '2012-03-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-06 07:26:14', '2012-03-06 07:27:51', 2),
-(80, 'QA 01', '', '', '', 100, 5, 'data/quan ao/4697_14528_21548402915_L.jpg', 0, 0, '600000.0000', 0, 0, '2012-03-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-06 07:44:47', '0000-00-00 00:00:00', 2),
-(81, 'QA 02', '', '', '', 100, 5, 'data/quan ao/1322461559_-o-s-mi-nam-body-08.jpg', 0, 0, '250000.0000', 0, 0, '2012-03-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-06 07:55:22', '0000-00-00 00:00:00', 1),
-(82, 'Vay 01', '', '', '', 100, 5, 'data/quan ao/vay.jpg', 0, 0, '200000.0000', 0, 0, '2012-03-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-06 07:59:40', '2012-03-10 10:07:05', 2),
-(83, 'QA 03', '', '', '', 99, 5, 'data/quan ao/bo-tre-em.jpg', 0, 0, '300000.0000', 0, 0, '2012-03-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-06 08:03:38', '2012-03-10 10:07:56', 7),
-(84, 'QA 05', '', '', '', 100, 5, 'data/quan ao/Vest nam.jpeg', 0, 1, '1500000.0000', 0, 0, '2012-03-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-06 08:09:21', '2013-05-26 15:10:45', 9),
-(85, 'QA 06', '', '', '', 100, 5, 'data/quan ao/jn024.jpg', 0, 1, '200000.0000', 0, 0, '2012-03-05', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2012-03-06 08:14:06', '2013-05-26 15:42:36', 25);
+(28, 'Product 1', '', '', '', 939, 7, 'data/htc_touch_hd_1.jpg', 5, 1, '100.0000', 200, 9, '2009-02-03', '146.40000000', 2, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, '2009-02-03 16:06:50', '2011-09-30 01:05:39', 0),
+(29, 'Product 2', '', '', '', 999, 6, 'data/palm_treo_pro_1.jpg', 6, 1, '279.9900', 0, 9, '2009-02-03', '133.00000000', 2, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, '2009-02-03 16:42:17', '2011-09-30 01:06:08', 0),
+(30, 'Product 3', '', '', '', 7, 6, 'data/canon_eos_5d_1.jpg', 9, 1, '100.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, '2009-02-03 16:59:00', '2011-09-30 01:05:23', 0),
+(31, 'Product 4', '', '', '', 1000, 6, 'data/nikon_d300_1.jpg', 0, 1, '80.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, '2009-02-03 17:00:10', '2011-09-30 01:06:00', 0),
+(32, 'Product 5', '', '', '', 999, 6, 'data/ipod_touch_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, '2009-02-03 17:07:26', '2011-09-30 01:07:22', 0),
+(33, 'Product 6', '', '', '', 1000, 6, 'data/samsung_syncmaster_941bw.jpg', 0, 1, '200.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, '2009-02-03 17:08:31', '2011-09-30 01:06:29', 0),
+(34, 'Product 7', '', '', '', 1000, 6, 'data/ipod_shuffle_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, '2009-02-03 18:07:54', '2011-09-30 01:07:17', 0),
+(35, 'Product 8', '', '', '', 1000, 5, '', 0, 0, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, '2009-02-03 18:08:31', '2011-09-30 01:06:17', 0),
+(36, 'Product 9', '', '', '', 994, 6, 'data/ipod_nano_1.jpg', 8, 0, '100.0000', 100, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, '2009-02-03 18:09:19', '2011-09-30 01:07:12', 0),
+(40, 'product 11', '', '', '', 970, 5, 'data/iphone_1.jpg', 8, 1, '101.0000', 0, 9, '2009-02-03', '10.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, '2009-02-03 21:07:12', '2013-06-26 17:57:12', 27),
+(41, 'Product 14', '', '', '', 977, 5, 'data/imac_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, '2009-02-03 21:07:26', '2011-09-30 01:06:44', 0),
+(42, 'Product 15', '', '', '', 990, 5, 'data/apple_cinema_30.jpg', 8, 1, '100.0000', 400, 9, '2009-02-04', '12.50000000', 1, '1.00000000', '2.00000000', '3.00000000', 1, 1, 2, 0, 1, '2009-02-03 21:07:37', '2013-06-26 16:11:58', 13),
+(43, 'Product 16', '', '', '', 929, 5, 'data/macbook_1.jpg', 8, 0, '500.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, '2009-02-03 21:07:49', '2011-09-30 01:05:46', 0),
+(44, 'Product 17', '', '', '', 1000, 5, 'data/macbook_air_1.jpg', 8, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, '2009-02-03 21:08:00', '2011-09-30 01:05:53', 0),
+(45, 'Product 18', '', '', '', 998, 5, 'data/macbook_pro_1.jpg', 8, 1, '2000.0000', 0, 100, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, '2009-02-03 21:08:17', '2011-09-15 22:22:01', 0),
+(46, 'Product 19', '', '', '', 1000, 5, 'data/sony_vaio_1.jpg', 10, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, '2009-02-03 21:08:29', '2011-09-30 01:06:39', 11),
+(47, 'Product 21', '', '', '', 1000, 5, 'data/hp_1.jpg', 7, 1, '100.0000', 400, 9, '2009-02-03', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 0, 1, 0, 1, '2009-02-03 21:08:40', '2011-09-30 01:05:28', 15),
+(48, 'product 20', 'test 1', '', 'test 2', 995, 5, 'data/ipod_classic_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-08', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, '2009-02-08 17:21:51', '2011-09-30 01:07:06', 6),
+(49, 'SAM1', '', '', '', 0, 8, 'data/samsung_tab_1.jpg', 0, 1, '199.9900', 0, 9, '2011-04-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, '2011-04-26 08:57:34', '2013-06-26 13:07:05', 15);
 
 -- --------------------------------------------------------
 
@@ -2227,6 +1932,7 @@ INSERT INTO `fs_product` (`product_id`, `model`, `sku`, `upc`, `location`, `quan
 -- Table structure for table `fs_product_attribute`
 --
 
+DROP TABLE IF EXISTS `fs_product_attribute`;
 CREATE TABLE IF NOT EXISTS `fs_product_attribute` (
   `product_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
@@ -2239,6 +1945,12 @@ CREATE TABLE IF NOT EXISTS `fs_product_attribute` (
 -- Dumping data for table `fs_product_attribute`
 --
 
+INSERT INTO `fs_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
+(47, 2, 3, '4'),
+(42, 3, 3, '100mhz'),
+(43, 4, 3, '8gb'),
+(47, 4, 3, '16GB'),
+(43, 2, 3, '1');
 
 -- --------------------------------------------------------
 
@@ -2246,6 +1958,7 @@ CREATE TABLE IF NOT EXISTS `fs_product_attribute` (
 -- Table structure for table `fs_product_description`
 --
 
+DROP TABLE IF EXISTS `fs_product_description`;
 CREATE TABLE IF NOT EXISTS `fs_product_description` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
@@ -2255,30 +1968,32 @@ CREATE TABLE IF NOT EXISTS `fs_product_description` (
   `meta_keyword` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`product_id`,`language_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=86 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=50 ;
 
 --
 -- Dumping data for table `fs_product_description`
 --
 
 INSERT INTO `fs_product_description` (`product_id`, `language_id`, `name`, `description`, `meta_description`, `meta_keyword`) VALUES
-(50, 2, 'Lãng hoa  01', '', '', ''),
-(54, 2, 'Hoa cẩm chướng', '', '', ''),
-(55, 2, 'Hoa hồng đỏ', '', '', ''),
-(56, 2, 'Hoa sinh nhật ', '', '', ''),
-(57, 2, 'Hoa tình yêu ', '', '', ''),
-(58, 2, 'Hoa cẩm chướng ', '', '', ''),
-(59, 2, 'Hoa tình yêu 02', '', '', ''),
-(61, 2, 'Hoa hồng nhung', '', '', ''),
-(62, 2, 'Hoa tình yêu 06', '', '', ''),
-(78, 2, 'Áo Vest nữ ', '', '', ''),
-(79, 2, 'Quần jeans nữ Suri JN001', '', '', ''),
-(80, 2, 'Áo khoác nữ ', '', '', ''),
-(81, 2, 'Áo sơ mi nam ', '', '', ''),
-(82, 2, 'Váy bé gái ', '', '', ''),
-(83, 2, 'Bộ quần áo trẻ em ', '', '', ''),
-(84, 2, 'Bộ Vest nam', '', '', ''),
-(85, 2, 'Áo thun nữ dài tay ', '', '', '');
+(42, 3, 'Apple Cinema 30&quot;', '&lt;p&gt;\r\n	&lt;font face=&quot;helvetica,geneva,arial&quot; size=&quot;2&quot;&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there''s no limit to what you can achieve. &lt;/font&gt;&lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it''s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. &lt;/font&gt;&lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple''s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. &lt;/font&gt;&lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. &lt;/font&gt;&lt;br /&gt;\r\n	&lt;br /&gt;\r\n	&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;/font&gt;&lt;/font&gt;&lt;/p&gt;\r\n&lt;h3&gt;\r\n	Features:&lt;/h3&gt;\r\n&lt;p&gt;\r\n	Unrivaled display performance&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wide-format design for simultaneous display of two full pages of text and graphics.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Lightning-fast pixel response for full-motion digital video playback.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Simple setup and operation&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports to support iSight and other desktop peripherals&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Sleek, elegant design&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Huge virtual workspace, very small footprint.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Narrow Bezel design to minimize visual impact of using dual displays&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Unique hinge design for effortless adjustment&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h3&gt;\r\n	Technical specifications&lt;/h3&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen size (diagonal viewable image size)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen type&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Resolutions&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		2560 x 1600 pixels (optimum resolution)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2048 x 1280&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1920 x 1200&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1280 x 800&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1024 x 640&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Display colors (maximum)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16.7 million&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Viewing angle (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		170° horizontal; 170° vertical&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Brightness (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 400 cd/m2&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Contrast ratio (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		700:1&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Response time (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16 ms&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Pixel pitch&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 0.250 mm&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen treatment&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Antiglare hardcoat&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;User controls (hardware and software)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Display Power,&lt;/li&gt;\r\n	&lt;li&gt;\r\n		System sleep, wake&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Brightness&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Monitor tilt&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Connectors and cables&lt;/b&gt;&lt;br /&gt;\r\n	Cable&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		DVI (Digital Visual Interface)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		FireWire 400&lt;/li&gt;\r\n	&lt;li&gt;\r\n		USB 2.0&lt;/li&gt;\r\n	&lt;li&gt;\r\n		DC power (24 V)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Connectors&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Two-port, self-powered USB 2.0 hub&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Kensington security port&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;VESA mount adapter&lt;/b&gt;&lt;br /&gt;\r\n	Requires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Electrical requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Input voltage: 100-240 VAC 50-60Hz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum power when operating: 150W&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Energy saver mode: 3W or less&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Environmental requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Operating temperature: 50° to 95° F (10° to 35° C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Storage temperature: -40° to 116° F (-40° to 47° C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Operating humidity: 20% to 80% noncondensing&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum operating altitude: 10,000 feet&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Agency approvals&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		FCC Part 15 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55022 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55024&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VCCI Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AS/NZS 3548 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CNS 13438 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ICES-003 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ISO 13406 part 2&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MPR II&lt;/li&gt;\r\n	&lt;li&gt;\r\n		IEC 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		UL 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CSA 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ENERGY STAR&lt;/li&gt;\r\n	&lt;li&gt;\r\n		TCO ''03&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Size and weight&lt;/b&gt;&lt;br /&gt;\r\n	30-inch Apple Cinema HD Display&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Height: 21.3 inches (54.3 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Width: 27.2 inches (68.8 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Depth: 8.46 inches (21.5 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Weight: 27.5 pounds (12.5 kg)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;System Requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Mac Pro, all graphic options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MacBook Pro&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI Express), all graphics options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		PowerBook G4 with dual-link DVI support&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', ''),
+(30, 3, 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon''s press material for the EOS 5D states that it ''defines (a) new D-SLR category'', while we''re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably ''chunkier''). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR''s, an important difference when compared to the latter is that the EOS 5D doesn''t have any environmental seals. While Canon don''t specifically refer to the EOS 5D as a ''professional'' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they''ve not bought too many EF-S lenses...) äë&lt;/p&gt;\r\n', '', ''),
+(49, 3, 'Samsung Galaxy Tab 10.1', '&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 – includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick – a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader’s Hub, Music Hub and Samsung Mini Apps Tray – which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time.&amp;nbsp;äö&lt;/p&gt;\r\n', '', ''),
+(43, 3, 'MacBook', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Intel Core 2 Duo processor&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;1GB memory, larger hard drives&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Sleek, 1.08-inch-thin design&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		MacBook makes it easy to hit the road thanks to its tough polycarbonate case, built-in wireless technologies, and innovative MagSafe Power Adapter that releases automatically if someone accidentally trips on the cord.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;b&gt;Built-in iSight camera&lt;/b&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Right out of the box, you can have a video chat with friends or family,2 record a video at your desk, or take fun pictures with Photo Booth&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', ''),
+(31, 3, 'Nikon D300', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines brand new technologies with advanced features inherited from Nikon&amp;#39;s newly announced D3 professional digital SLR camera to offer serious photographers remarkable performance combined with agility.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		Similar to the D3, the D300 features Nikon&amp;#39;s exclusive EXPEED Image Processing System that is central to driving the speed and processing power needed for many of the camera&amp;#39;s new features. The D300 features a new 51-point autofocus system with Nikon&amp;#39;s 3D Focus Tracking feature and two new LiveView shooting modes that allow users to frame a photograph using the camera&amp;#39;s high-resolution LCD monitor. The D300 shares a similar Scene Recognition System as is found in the D3; it promises to greatly enhance the accuracy of autofocus, autoexposure, and auto white balance by recognizing the subject or scene being photographed and applying this information to the calculations for the three functions.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 reacts with lightning speed, powering up in a mere 0.13 seconds and shooting with an imperceptible 45-millisecond shutter release lag time. The D300 is capable of shooting at a rapid six frames per second and can go as fast as eight frames per second when using the optional MB-D10 multi-power battery pack. In continuous bursts, the D300 can shoot up to 100 shots at full 12.3-megapixel resolution. (NORMAL-LARGE image setting, using a SanDisk Extreme IV 1GB CompactFlash card.)&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 incorporates a range of innovative technologies and features that will significantly improve the accuracy, control, and performance photographers can get from their equipment. Its new Scene Recognition System advances the use of Nikon&amp;#39;s acclaimed 1,005-segment sensor to recognize colors and light patterns that help the camera determine the subject and the type of scene being photographed before a picture is taken. This information is used to improve the accuracy of autofocus, autoexposure, and auto white balance functions in the D300. For example, the camera can track moving subjects better and by identifying them, it can also automatically select focus points faster and with greater accuracy. It can also analyze highlights and more accurately determine exposure, as well as infer light sources to deliver more accurate white balance detection.&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', ''),
+(41, 3, 'iMac', '&lt;div&gt;\r\n	Just when you thought iMac had everything, now there&acute;s even more. More powerful Intel Core 2 Duo processors. And more memory standard. Combine this with Mac OS X Leopard and iLife &acute;08, and it&acute;s more all-in-one than ever. iMac packs amazing performance into a stunningly slim space.&lt;/div&gt;\r\n', '', ''),
+(33, 3, 'Samsung SyncMaster 941BW', '&lt;div&gt;\r\n	Imagine the advantages of going big without slowing down. The big 19&amp;quot; 941BW monitor combines wide aspect ratio with fast pixel response time, for bigger images, more room to work and crisp motion. In addition, the exclusive MagicBright 2, MagicColor and MagicTune technologies help deliver the ideal image in every situation, while sleek, narrow bezels and adjustable stands deliver style just the way you want it. With the Samsung 941BW widescreen analog/digital LCD monitor, it&amp;#39;s not hard to imagine.&lt;/div&gt;\r\n', '', ''),
+(34, 3, 'iPod Shuffle', '&lt;div&gt;\r\n	&lt;strong&gt;Born to be worn.&lt;/strong&gt;\r\n	&lt;p&gt;\r\n		Clip on the worlds most wearable music player and take up to 240 songs with you anywhere. Choose from five colors including four new hues to make your musical fashion statement.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Random meets rhythm.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With iTunes autofill, iPod shuffle can deliver a new musical experience every time you sync. For more randomness, you can shuffle songs during playback with the slide of a switch.&lt;/p&gt;\r\n	&lt;strong&gt;Everything is easy.&lt;/strong&gt;\r\n	&lt;p&gt;\r\n		Charge and sync with the included USB dock. Operate the iPod shuffle controls with one hand. Enjoy up to 12 hours straight of skip-free music playback.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', ''),
+(40, 3, 'iPhone', '&lt;p class=&quot;intro&quot;&gt;\r\n	iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name or number in your address book, a favorites list, or a call log. It also automatically syncs all your contacts from a PC, Mac, or Internet service. And it lets you select and listen to voicemail messages in whatever order you want just like email.&lt;/p&gt;\r\n', '', ''),
+(28, 3, 'HTC Touch HD', '&lt;p&gt;\r\n	HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high definition clarity for a mobile experience you never thought possible. Seductively sleek, the HTC Touch HD provides the next generation of mobile functionality, all at a simple touch. Fully integrated with Windows Mobile Professional 6.1, ultrafast 3.5G, GPS, 5MP camera, plus lots more - all delivered on a breathtakingly crisp 3.8&amp;quot; WVGA touchscreen - you can take control of your mobile world with the HTC Touch HD.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Processor Qualcomm&amp;reg; MSM 7201A&amp;trade; 528 MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Operating System&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Memory: 512 MB ROM, 288 MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Dimensions: 115 mm x 62.8 mm x 12 mm / 146.4 grams&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.8-inch TFT-LCD flat touch-sensitive screen with 480 x 800 WVGA resolution&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/WCDMA: Europe/Asia: 900/2100 MHz; Up to 2 Mbps up-link and 7.2 Mbps down-link speeds&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM/GPRS/EDGE: Europe/Asia: 850/900/1800/1900 MHz (Band frequency, HSUPA availability, and data speed are operator dependent.)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Device Control via HTC TouchFLO&amp;trade; 3D &amp;amp; Touch-sensitive front panel buttons&lt;/li&gt;\r\n	&lt;li&gt;\r\n		GPS and A-GPS ready&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth&amp;reg; 2.0 with Enhanced Data Rate and A2DP for wireless stereo headsets&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wi-Fi&amp;reg;: IEEE 802.11 b/g&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HTC ExtUSB&amp;trade; (11-pin mini-USB 2.0)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		5 megapixel color camera with auto focus&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VGA CMOS color camera&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in 3.5 mm audio jack, microphone, speaker, and FM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Ring tone formats: AAC, AAC+, eAAC+, AMR-NB, AMR-WB, QCP, MP3, WMA, WAV&lt;/li&gt;\r\n	&lt;li&gt;\r\n		40 polyphonic and standard MIDI format 0 and 1 (SMF)/SP MIDI&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Rechargeable Lithium-ion or Lithium-ion polymer 1350 mAh battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Expansion Slot: microSD&amp;trade; memory card (SD 2.0 compatible)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AC Adapter Voltage range/frequency: 100 ~ 240V AC, 50/60 Hz DC output: 5V and 1A&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Special Features: FM Radio, G-Sensor&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', ''),
+(44, 3, 'MacBook Air', '&lt;div&gt;\r\n	MacBook Air is ultrathin, ultraportable, and ultra unlike anything else. But you don&amp;rsquo;t lose inches and pounds overnight. It&amp;rsquo;s the result of rethinking conventions. Of multiple wireless innovations. And of breakthrough design. With MacBook Air, mobile computing suddenly has a new standard.&lt;/div&gt;\r\n', '', ''),
+(45, 3, 'MacBook Pro', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Latest Intel mobile architecture&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Powered by the most advanced mobile processors from Intel, the new Core 2 Duo MacBook Pro is over 50% faster than the original Core Duo MacBook Pro and now supports up to 4GB of RAM.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Leading-edge graphics&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			The NVIDIA GeForce 8600M GT delivers exceptional graphics processing power. For the ultimate creative canvas, you can even configure the 17-inch model with a 1920-by-1200 resolution display.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Designed for life on the road&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Innovations such as a magnetic power connection and an illuminated keyboard with ambient light sensor put the MacBook Pro in a class by itself.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Connect. Create. Communicate.&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Quickly set up a video conference with the built-in iSight camera. Control presentations and media from up to 30 feet away with the included Apple Remote. Connect to high-bandwidth peripherals with FireWire 800 and DVI.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;b&gt;Next-generation wireless&lt;/b&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Featuring 802.11n wireless technology, the MacBook Pro delivers up to five times the performance and up to twice the range of previous-generation technologies.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', ''),
+(29, 3, 'Palm Treo Pro', '&lt;p&gt;\r\n	Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to business and personal email, stay on top of appointments and contacts, and use Wi-Fi or GPS when you&amp;rsquo;re out and about. Then watch a video on YouTube, catch up with news and sports on the web, or listen to a few songs. Balance your work and play the way you like it, with the Palm Treo Pro.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Edition&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Qualcomm&amp;reg; MSM7201 400MHz Processor&lt;/li&gt;\r\n	&lt;li&gt;\r\n		320x320 transflective colour TFT touchscreen&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/UMTS/EDGE/GPRS/GSM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Tri-band UMTS &amp;mdash; 850MHz, 1900MHz, 2100MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM &amp;mdash; 850/900/1800/1900&lt;/li&gt;\r\n	&lt;li&gt;\r\n		802.11b/g with WPA, WPA2, and 801.1x authentication&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in GPS&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth Version: 2.0 + Enhanced Data Rate&lt;/li&gt;\r\n	&lt;li&gt;\r\n		256MB storage (100MB user available), 128MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2.0 megapixel camera, up to 8x digital zoom and video capture&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Removable, rechargeable 1500mAh lithium-ion battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Up to 5.0 hours talk time and up to 250 hours standby&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroSDHC card expansion (up to 32GB supported)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroUSB 2.0 for synchronization and charging&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.5mm stereo headset jack&lt;/li&gt;\r\n	&lt;li&gt;\r\n		60mm (W) x 114mm (L) x 13.5mm (D) / 133g&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', ''),
+(36, 3, 'iPod Nano', '&lt;div&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Video in your pocket.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Its the small iPod with one very big idea: video. The worlds most popular music player now lets you enjoy movies, TV shows, and more on a two-inch display thats 65% brighter than before.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;Sleek and colorful.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		With an anodized aluminum and polished stainless steel enclosure and a choice of five colors, iPod nano is dressed to impress.&lt;/p&gt;\r\n	&lt;p&gt;\r\n		&lt;strong&gt;iTunes.&lt;/strong&gt;&lt;/p&gt;\r\n	&lt;p&gt;\r\n		Available as a free download, iTunes makes it easy to browse and buy millions of songs, movies, TV shows, audiobooks, and games and download free podcasts all at the iTunes Store. And you can import your own music, manage your whole media library, and sync your iPod or iPhone with ease.&lt;/p&gt;\r\n&lt;/div&gt;\r\n', '', ''),
+(46, 3, 'Sony VAIO', '&lt;div&gt;\r\n	Unprecedented power. The next generation of processing technology has arrived. Built into the newest VAIO notebooks lies Intel&amp;#39;s latest, most powerful innovation yet: Intel&amp;reg; Centrino&amp;reg; 2 processor technology. Boasting incredible speed, expanded wireless connectivity, enhanced multimedia support and greater energy efficiency, all the high-performance essentials are seamlessly combined into a single chip.&lt;/div&gt;\r\n', '', ''),
+(47, 3, 'HP LP3065', '&lt;p&gt;\r\n	Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel Monitor. This flagship monitor features best-in-class performance and presentation features on a huge wide-aspect screen while letting you work as comfortably as possible - you might even forget you&amp;#39;re at the office&lt;/p&gt;\r\n', '', ''),
+(32, 3, 'iPod Touch', '&lt;p&gt;\r\n	&lt;strong&gt;Revolutionary multi-touch interface.&lt;/strong&gt;&lt;br /&gt;\r\n	iPod touch features the same multi-touch screen technology as iPhone. Pinch to zoom in on a photo. Scroll through your songs and videos with a flick. Flip through your library by album artwork with Cover Flow.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Gorgeous 3.5-inch widescreen display.&lt;/strong&gt;&lt;br /&gt;\r\n	Watch your movies, TV shows, and photos come alive with bright, vivid color on the 320-by-480-pixel display.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Music downloads straight from iTunes.&lt;/strong&gt;&lt;br /&gt;\r\n	Shop the iTunes Wi-Fi Music Store from anywhere with Wi-Fi.1 Browse or search to find the music youre looking for, preview it, and buy it with just a tap.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Surf the web with Wi-Fi.&lt;/strong&gt;&lt;br /&gt;\r\n	Browse the web using Safari and watch YouTube videos on the first iPod with Wi-Fi built in&lt;br /&gt;\r\n	&amp;nbsp;&lt;/p&gt;\r\n', '', ''),
+(35, 3, 'Product 8', '&lt;p&gt;\r\n	Product 8&lt;/p&gt;\r\n', '', ''),
+(48, 3, 'iPod Classic', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;More room to move.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Experience a whole new way to browse and view your music and video.&lt;/p&gt;\r\n		&lt;p&gt;\r\n			&lt;strong&gt;Sleeker design.&lt;/strong&gt;&lt;/p&gt;\r\n		&lt;p&gt;\r\n			Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polished stainless steel enclosure with rounded edges.&lt;/p&gt;\r\n	&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', '');
 
 -- --------------------------------------------------------
 
@@ -2286,6 +2001,7 @@ INSERT INTO `fs_product_description` (`product_id`, `language_id`, `name`, `desc
 -- Table structure for table `fs_product_discount`
 --
 
+DROP TABLE IF EXISTS `fs_product_discount`;
 CREATE TABLE IF NOT EXISTS `fs_product_discount` (
   `product_discount_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -2297,12 +2013,17 @@ CREATE TABLE IF NOT EXISTS `fs_product_discount` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_discount_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=444 ;
 
 --
 -- Dumping data for table `fs_product_discount`
 --
 
+INSERT INTO `fs_product_discount` (`product_discount_id`, `product_id`, `customer_group_id`, `quantity`, `priority`, `price`, `date_start`, `date_end`) VALUES
+(296, 32, 6, 10, 1, '10.0000', '2010-01-01', '2010-01-31'),
+(443, 42, 1, 30, 1, '66.0000', '0000-00-00', '0000-00-00'),
+(442, 42, 1, 20, 1, '77.0000', '0000-00-00', '0000-00-00'),
+(441, 42, 1, 10, 1, '88.0000', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -2310,18 +2031,77 @@ CREATE TABLE IF NOT EXISTS `fs_product_discount` (
 -- Table structure for table `fs_product_image`
 --
 
+DROP TABLE IF EXISTS `fs_product_image`;
 CREATE TABLE IF NOT EXISTS `fs_product_image` (
   `product_image_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_image_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2367 ;
 
 --
 -- Dumping data for table `fs_product_image`
 --
 
+INSERT INTO `fs_product_image` (`product_image_id`, `product_id`, `image`, `sort_order`) VALUES
+(2345, 30, 'data/canon_eos_5d_2.jpg', 0),
+(2321, 47, 'data/hp_3.jpg', 0),
+(2035, 28, 'data/htc_touch_hd_2.jpg', 0),
+(2351, 41, 'data/imac_3.jpg', 0),
+(2366, 40, 'data/iphone_4.jpg', 0),
+(2001, 36, 'data/ipod_nano_5.jpg', 0),
+(2000, 36, 'data/ipod_nano_4.jpg', 0),
+(2005, 34, 'data/ipod_shuffle_5.jpg', 0),
+(2004, 34, 'data/ipod_shuffle_4.jpg', 0),
+(2011, 32, 'data/ipod_touch_7.jpg', 0),
+(2010, 32, 'data/ipod_touch_6.jpg', 0),
+(2009, 32, 'data/ipod_touch_5.jpg', 0),
+(1971, 43, 'data/macbook_5.jpg', 0),
+(1970, 43, 'data/macbook_4.jpg', 0),
+(1974, 44, 'data/macbook_air_4.jpg', 0),
+(1973, 44, 'data/macbook_air_2.jpg', 0),
+(1977, 45, 'data/macbook_pro_2.jpg', 0),
+(1976, 45, 'data/macbook_pro_3.jpg', 0),
+(1986, 31, 'data/nikon_d300_3.jpg', 0),
+(1985, 31, 'data/nikon_d300_2.jpg', 0),
+(1988, 29, 'data/palm_treo_pro_3.jpg', 0),
+(1995, 46, 'data/sony_vaio_5.jpg', 0),
+(1994, 46, 'data/sony_vaio_4.jpg', 0),
+(1991, 48, 'data/ipod_classic_4.jpg', 0),
+(1990, 48, 'data/ipod_classic_3.jpg', 0),
+(2365, 40, 'data/iphone_3.jpg', 0),
+(2364, 40, 'data/iphone_5.jpg', 0),
+(2344, 30, 'data/canon_eos_5d_3.jpg', 0),
+(2320, 47, 'data/hp_2.jpg', 0),
+(2034, 28, 'data/htc_touch_hd_3.jpg', 0),
+(2350, 41, 'data/imac_2.jpg', 0),
+(2363, 40, 'data/iphone_2.jpg', 0),
+(2362, 40, 'data/iphone_6.jpg', 0),
+(1989, 48, 'data/ipod_classic_2.jpg', 0),
+(1999, 36, 'data/ipod_nano_2.jpg', 0),
+(1998, 36, 'data/ipod_nano_3.jpg', 0),
+(2003, 34, 'data/ipod_shuffle_2.jpg', 0),
+(2002, 34, 'data/ipod_shuffle_3.jpg', 0),
+(2008, 32, 'data/ipod_touch_2.jpg', 0),
+(2007, 32, 'data/ipod_touch_3.jpg', 0),
+(2006, 32, 'data/ipod_touch_4.jpg', 0),
+(1969, 43, 'data/macbook_2.jpg', 0),
+(1968, 43, 'data/macbook_3.jpg', 0),
+(1972, 44, 'data/macbook_air_3.jpg', 0),
+(1975, 45, 'data/macbook_pro_4.jpg', 0),
+(1984, 31, 'data/nikon_d300_4.jpg', 0),
+(1983, 31, 'data/nikon_d300_5.jpg', 0),
+(1987, 29, 'data/palm_treo_pro_2.jpg', 0),
+(1993, 46, 'data/sony_vaio_2.jpg', 0),
+(1992, 46, 'data/sony_vaio_3.jpg', 0),
+(2361, 42, 'data/canon_eos_5d_2.jpg', 0),
+(2356, 49, 'data/samsung_tab_7.jpg', 0),
+(2355, 49, 'data/samsung_tab_6.jpg', 0),
+(2360, 42, 'data/canon_eos_5d_1.jpg', 0),
+(2359, 42, 'data/compaq_presario.jpg', 0),
+(2358, 42, 'data/hp_1.jpg', 0),
+(2357, 42, 'data/canon_logo.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -2329,6 +2109,7 @@ CREATE TABLE IF NOT EXISTS `fs_product_image` (
 -- Table structure for table `fs_product_option`
 --
 
+DROP TABLE IF EXISTS `fs_product_option`;
 CREATE TABLE IF NOT EXISTS `fs_product_option` (
   `product_option_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -2336,12 +2117,25 @@ CREATE TABLE IF NOT EXISTS `fs_product_option` (
   `option_value` text COLLATE utf8_bin NOT NULL,
   `required` tinyint(1) NOT NULL,
   PRIMARY KEY (`product_option_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=227 ;
 
 --
 -- Dumping data for table `fs_product_option`
 --
 
+INSERT INTO `fs_product_option` (`product_option_id`, `product_id`, `option_id`, `option_value`, `required`) VALUES
+(224, 35, 11, '', 1),
+(225, 47, 12, '2011-04-22', 1),
+(219, 42, 8, '2011-02-20', 1),
+(222, 42, 7, '', 1),
+(209, 42, 6, '', 1),
+(208, 42, 4, 'test', 1),
+(223, 42, 2, '', 1),
+(218, 42, 1, '', 1),
+(217, 42, 5, '', 1),
+(226, 30, 5, '', 1),
+(221, 42, 9, '22:25', 1),
+(220, 42, 10, '2011-02-20 22:25', 1);
 
 -- --------------------------------------------------------
 
@@ -2349,6 +2143,7 @@ CREATE TABLE IF NOT EXISTS `fs_product_option` (
 -- Table structure for table `fs_product_option_value`
 --
 
+DROP TABLE IF EXISTS `fs_product_option_value`;
 CREATE TABLE IF NOT EXISTS `fs_product_option_value` (
   `product_option_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_option_id` int(11) NOT NULL,
@@ -2364,12 +2159,29 @@ CREATE TABLE IF NOT EXISTS `fs_product_option_value` (
   `weight` decimal(15,8) NOT NULL,
   `weight_prefix` varchar(1) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`product_option_value_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `fs_product_option_value`
 --
 
+INSERT INTO `fs_product_option_value` (`product_option_value_id`, `product_option_id`, `product_id`, `option_id`, `option_value_id`, `quantity`, `subtract`, `price`, `price_prefix`, `points`, `points_prefix`, `weight`, `weight_prefix`) VALUES
+(9, 223, 42, 2, 24, 194, 1, '20.0000', '+', 0, '+', '20.00000000', '+'),
+(8, 223, 42, 2, 23, 48, 1, '10.0000', '+', 0, '+', '10.00000000', '+'),
+(7, 218, 42, 1, 43, 300, 1, '30.0000', '+', 3, '+', '30.00000000', '+'),
+(6, 218, 42, 1, 31, 146, 1, '20.0000', '+', 2, '-', '20.00000000', '+'),
+(5, 218, 42, 1, 32, 96, 1, '10.0000', '+', 1, '+', '10.00000000', '+'),
+(2, 217, 42, 5, 42, 200, 1, '2.0000', '+', 0, '+', '2.00000000', '+'),
+(1, 217, 42, 5, 41, 100, 0, '1.0000', '+', 0, '+', '1.00000000', '+'),
+(3, 217, 42, 5, 40, 300, 0, '3.0000', '+', 0, '+', '3.00000000', '+'),
+(4, 217, 42, 5, 39, 92, 1, '4.0000', '+', 0, '+', '4.00000000', '+'),
+(12, 224, 35, 11, 46, 0, 1, '5.0000', '+', 0, '+', '0.00000000', '+'),
+(13, 224, 35, 11, 47, 10, 1, '10.0000', '+', 0, '+', '0.00000000', '+'),
+(14, 224, 35, 11, 48, 15, 1, '15.0000', '+', 0, '+', '0.00000000', '+'),
+(16, 226, 30, 5, 40, 5, 1, '0.0000', '+', 0, '+', '0.00000000', '+'),
+(15, 226, 30, 5, 39, 2, 1, '0.0000', '+', 0, '+', '0.00000000', '+'),
+(10, 223, 42, 2, 44, 2696, 1, '30.0000', '+', 0, '+', '30.00000000', '+'),
+(11, 223, 42, 2, 45, 3998, 1, '40.0000', '+', 0, '+', '40.00000000', '+');
 
 -- --------------------------------------------------------
 
@@ -2377,6 +2189,7 @@ CREATE TABLE IF NOT EXISTS `fs_product_option_value` (
 -- Table structure for table `fs_product_related`
 --
 
+DROP TABLE IF EXISTS `fs_product_related`;
 CREATE TABLE IF NOT EXISTS `fs_product_related` (
   `product_id` int(11) NOT NULL,
   `related_id` int(11) NOT NULL,
@@ -2387,6 +2200,11 @@ CREATE TABLE IF NOT EXISTS `fs_product_related` (
 -- Dumping data for table `fs_product_related`
 --
 
+INSERT INTO `fs_product_related` (`product_id`, `related_id`) VALUES
+(40, 42),
+(41, 42),
+(42, 40),
+(42, 41);
 
 -- --------------------------------------------------------
 
@@ -2394,50 +2212,55 @@ CREATE TABLE IF NOT EXISTS `fs_product_related` (
 -- Table structure for table `fs_product_reward`
 --
 
+DROP TABLE IF EXISTS `fs_product_reward`;
 CREATE TABLE IF NOT EXISTS `fs_product_reward` (
   `product_reward_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL DEFAULT '0',
   `customer_group_id` int(11) NOT NULL DEFAULT '0',
   `points` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`product_reward_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=671 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=551 ;
 
 --
 -- Dumping data for table `fs_product_reward`
 --
 
 INSERT INTO `fs_product_reward` (`product_reward_id`, `product_id`, `customer_group_id`, `points`) VALUES
-(580, 55, 6, 0),
-(579, 55, 8, 0),
-(584, 57, 6, 0),
-(583, 57, 8, 0),
-(592, 61, 6, 0),
-(591, 61, 8, 0),
-(588, 59, 6, 0),
-(587, 59, 8, 0),
-(663, 58, 1, 0),
-(582, 56, 6, 0),
-(581, 56, 8, 0),
-(578, 54, 6, 0),
-(577, 54, 8, 0),
-(572, 50, 6, 0),
-(571, 50, 8, 0),
-(594, 62, 6, 0),
-(593, 62, 8, 0),
-(636, 78, 6, 0),
-(635, 78, 8, 0),
-(640, 79, 6, 0),
-(639, 79, 8, 0),
-(641, 80, 8, 0),
-(642, 80, 6, 0),
-(643, 81, 8, 0),
-(644, 81, 6, 0),
-(654, 82, 6, 0),
-(653, 82, 8, 0),
-(656, 83, 6, 0),
-(655, 83, 8, 0),
-(669, 84, 1, 0),
-(670, 85, 1, 0);
+(549, 42, 1, 0),
+(520, 47, 6, 30),
+(519, 47, 8, 300),
+(380, 28, 6, 400),
+(379, 28, 8, 400),
+(330, 43, 6, 60),
+(329, 43, 8, 600),
+(340, 29, 6, 0),
+(339, 29, 8, 0),
+(344, 48, 6, 0),
+(343, 48, 8, 0),
+(550, 40, 1, 0),
+(540, 30, 6, 20),
+(539, 30, 8, 200),
+(332, 44, 6, 70),
+(331, 44, 8, 700),
+(334, 45, 6, 80),
+(333, 45, 8, 800),
+(337, 31, 8, 0),
+(338, 31, 6, 0),
+(426, 35, 6, 0),
+(425, 35, 8, 0),
+(345, 33, 8, 0),
+(346, 33, 6, 0),
+(347, 46, 8, 0),
+(348, 46, 6, 0),
+(546, 41, 6, 0),
+(545, 41, 8, 0),
+(351, 36, 8, 0),
+(352, 36, 6, 0),
+(353, 34, 8, 0),
+(354, 34, 6, 0),
+(355, 32, 8, 0),
+(356, 32, 6, 0),
+(548, 49, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2445,6 +2268,7 @@ INSERT INTO `fs_product_reward` (`product_reward_id`, `product_id`, `customer_gr
 -- Table structure for table `fs_product_special`
 --
 
+DROP TABLE IF EXISTS `fs_product_special`;
 CREATE TABLE IF NOT EXISTS `fs_product_special` (
   `product_special_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -2455,12 +2279,16 @@ CREATE TABLE IF NOT EXISTS `fs_product_special` (
   `date_end` date NOT NULL DEFAULT '0000-00-00',
   PRIMARY KEY (`product_special_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=441 ;
 
 --
 -- Dumping data for table `fs_product_special`
 --
 
+INSERT INTO `fs_product_special` (`product_special_id`, `product_id`, `customer_group_id`, `priority`, `price`, `date_start`, `date_end`) VALUES
+(440, 42, 1, 1, '90.0000', '0000-00-00', '0000-00-00'),
+(439, 30, 8, 2, '90.0000', '0000-00-00', '0000-00-00'),
+(438, 30, 8, 1, '80.0000', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -2468,6 +2296,7 @@ CREATE TABLE IF NOT EXISTS `fs_product_special` (
 -- Table structure for table `fs_product_tag`
 --
 
+DROP TABLE IF EXISTS `fs_product_tag`;
 CREATE TABLE IF NOT EXISTS `fs_product_tag` (
   `product_tag_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -2477,12 +2306,15 @@ CREATE TABLE IF NOT EXISTS `fs_product_tag` (
   KEY `product_id` (`product_id`),
   KEY `language_id` (`language_id`),
   KEY `tag` (`tag`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=349 ;
 
 --
 -- Dumping data for table `fs_product_tag`
 --
 
+INSERT INTO `fs_product_tag` (`product_tag_id`, `product_id`, `language_id`, `tag`) VALUES
+(348, 42, 3, 'test 1'),
+(347, 42, 3, 'test 2');
 
 -- --------------------------------------------------------
 
@@ -2490,6 +2322,7 @@ CREATE TABLE IF NOT EXISTS `fs_product_tag` (
 -- Table structure for table `fs_product_to_category`
 --
 
+DROP TABLE IF EXISTS `fs_product_to_category`;
 CREATE TABLE IF NOT EXISTS `fs_product_to_category` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -2501,23 +2334,32 @@ CREATE TABLE IF NOT EXISTS `fs_product_to_category` (
 --
 
 INSERT INTO `fs_product_to_category` (`product_id`, `category_id`) VALUES
-(50, 63),
-(54, 63),
-(55, 63),
-(56, 63),
-(57, 63),
-(58, 63),
-(59, 63),
-(61, 63),
-(62, 63),
-(78, 65),
-(79, 65),
-(80, 65),
-(81, 65),
-(82, 65),
-(83, 65),
-(84, 65),
-(85, 65);
+(28, 20),
+(28, 24),
+(29, 20),
+(29, 24),
+(30, 20),
+(30, 33),
+(31, 33),
+(33, 20),
+(33, 28),
+(35, 20),
+(40, 20),
+(40, 24),
+(41, 27),
+(42, 20),
+(42, 28),
+(43, 18),
+(43, 20),
+(44, 18),
+(44, 20),
+(45, 18),
+(46, 18),
+(46, 20),
+(47, 18),
+(47, 20),
+(48, 20),
+(49, 57);
 
 -- --------------------------------------------------------
 
@@ -2525,6 +2367,7 @@ INSERT INTO `fs_product_to_category` (`product_id`, `category_id`) VALUES
 -- Table structure for table `fs_product_to_download`
 --
 
+DROP TABLE IF EXISTS `fs_product_to_download`;
 CREATE TABLE IF NOT EXISTS `fs_product_to_download` (
   `product_id` int(11) NOT NULL,
   `download_id` int(11) NOT NULL,
@@ -2542,6 +2385,7 @@ CREATE TABLE IF NOT EXISTS `fs_product_to_download` (
 -- Table structure for table `fs_product_to_layout`
 --
 
+DROP TABLE IF EXISTS `fs_product_to_layout`;
 CREATE TABLE IF NOT EXISTS `fs_product_to_layout` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
@@ -2560,6 +2404,7 @@ CREATE TABLE IF NOT EXISTS `fs_product_to_layout` (
 -- Table structure for table `fs_product_to_store`
 --
 
+DROP TABLE IF EXISTS `fs_product_to_store`;
 CREATE TABLE IF NOT EXISTS `fs_product_to_store` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0',
@@ -2571,23 +2416,25 @@ CREATE TABLE IF NOT EXISTS `fs_product_to_store` (
 --
 
 INSERT INTO `fs_product_to_store` (`product_id`, `store_id`) VALUES
-(50, 0),
-(54, 0),
-(55, 0),
-(56, 0),
-(57, 0),
-(58, 0),
-(59, 0),
-(61, 0),
-(62, 0),
-(78, 0),
-(79, 0),
-(80, 0),
-(81, 0),
-(82, 0),
-(83, 0),
-(84, 0),
-(85, 0);
+(28, 0),
+(29, 0),
+(30, 0),
+(31, 0),
+(32, 0),
+(33, 0),
+(34, 0),
+(35, 0),
+(36, 0),
+(40, 0),
+(41, 0),
+(42, 0),
+(43, 0),
+(44, 0),
+(45, 0),
+(46, 0),
+(47, 0),
+(48, 0),
+(49, 0);
 
 -- --------------------------------------------------------
 
@@ -2595,6 +2442,7 @@ INSERT INTO `fs_product_to_store` (`product_id`, `store_id`) VALUES
 -- Table structure for table `fs_return`
 --
 
+DROP TABLE IF EXISTS `fs_return`;
 CREATE TABLE IF NOT EXISTS `fs_return` (
   `return_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -2629,6 +2477,7 @@ CREATE TABLE IF NOT EXISTS `fs_return` (
 -- Table structure for table `fs_return_action`
 --
 
+DROP TABLE IF EXISTS `fs_return_action`;
 CREATE TABLE IF NOT EXISTS `fs_return_action` (
   `return_action_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
@@ -2641,9 +2490,9 @@ CREATE TABLE IF NOT EXISTS `fs_return_action` (
 --
 
 INSERT INTO `fs_return_action` (`return_action_id`, `language_id`, `name`) VALUES
-(1, 2, 'Hoàn trả'),
-(2, 2, 'Phát hành tín dụng'),
-(3, 2, 'Gửi bị thay thế');
+(3, 3, 'Replacement Sent'),
+(2, 3, 'Credit Issued'),
+(1, 3, 'Refunded');
 
 -- --------------------------------------------------------
 
@@ -2651,6 +2500,7 @@ INSERT INTO `fs_return_action` (`return_action_id`, `language_id`, `name`) VALUE
 -- Table structure for table `fs_return_history`
 --
 
+DROP TABLE IF EXISTS `fs_return_history`;
 CREATE TABLE IF NOT EXISTS `fs_return_history` (
   `return_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `return_id` int(11) NOT NULL,
@@ -2672,6 +2522,7 @@ CREATE TABLE IF NOT EXISTS `fs_return_history` (
 -- Table structure for table `fs_return_reason`
 --
 
+DROP TABLE IF EXISTS `fs_return_reason`;
 CREATE TABLE IF NOT EXISTS `fs_return_reason` (
   `return_reason_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
@@ -2684,11 +2535,11 @@ CREATE TABLE IF NOT EXISTS `fs_return_reason` (
 --
 
 INSERT INTO `fs_return_reason` (`return_reason_id`, `language_id`, `name`) VALUES
-(1, 2, 'Hàng bị hư hại khi nhận được'),
-(2, 2, 'Nhận sai hàng hóa'),
-(3, 2, 'Lỗi đơn hàng'),
-(4, 2, 'Hàng bị lỗi, (chi tiết)'),
-(5, 2, 'Lý do khác (chi tiết)');
+(4, 3, 'Faulty, please supply details'),
+(3, 3, 'Order Error'),
+(2, 3, 'Received Wrong Item'),
+(1, 3, 'Dead On Arrival'),
+(5, 3, 'Other, please supply details');
 
 -- --------------------------------------------------------
 
@@ -2696,6 +2547,7 @@ INSERT INTO `fs_return_reason` (`return_reason_id`, `language_id`, `name`) VALUE
 -- Table structure for table `fs_return_status`
 --
 
+DROP TABLE IF EXISTS `fs_return_status`;
 CREATE TABLE IF NOT EXISTS `fs_return_status` (
   `return_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL DEFAULT '0',
@@ -2708,9 +2560,9 @@ CREATE TABLE IF NOT EXISTS `fs_return_status` (
 --
 
 INSERT INTO `fs_return_status` (`return_status_id`, `language_id`, `name`) VALUES
-(1, 2, 'Đang chờ xử lý'),
-(3, 2, 'Hoàn thành'),
-(2, 2, 'Đang chờ Sản phẩm');
+(2, 3, 'Awaiting Products'),
+(3, 3, 'Complete'),
+(1, 3, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -2718,6 +2570,7 @@ INSERT INTO `fs_return_status` (`return_status_id`, `language_id`, `name`) VALUE
 -- Table structure for table `fs_review`
 --
 
+DROP TABLE IF EXISTS `fs_review`;
 CREATE TABLE IF NOT EXISTS `fs_review` (
   `review_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
@@ -2743,6 +2596,7 @@ CREATE TABLE IF NOT EXISTS `fs_review` (
 -- Table structure for table `fs_setting`
 --
 
+DROP TABLE IF EXISTS `fs_setting`;
 CREATE TABLE IF NOT EXISTS `fs_setting` (
   `setting_id` int(11) NOT NULL AUTO_INCREMENT,
   `store_id` int(11) NOT NULL DEFAULT '0',
@@ -2751,205 +2605,157 @@ CREATE TABLE IF NOT EXISTS `fs_setting` (
   `value` text COLLATE utf8_bin NOT NULL,
   `serialized` tinyint(1) NOT NULL,
   PRIMARY KEY (`setting_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=30031 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1171 ;
 
 --
 -- Dumping data for table `fs_setting`
 --
 
 INSERT INTO `fs_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `serialized`) VALUES
-(9457, 0, 'shipping', 'shipping_sort_order', '3', 0),
-(3453, 0, 'sub_total', 'sub_total_sort_order', '1', 0),
-(3452, 0, 'sub_total', 'sub_total_status', '1', 0),
-(272, 0, 'tax', 'tax_status', '1', 0),
-(16013, 0, 'total', 'total_sort_order', '9', 0),
-(16012, 0, 'total', 'total_status', '1', 0),
-(273, 0, 'tax', 'tax_sort_order', '5', 0),
-(19411, 0, 'free_checkout', 'free_checkout_sort_order', '1', 0),
-(29820, 0, 'cod', 'cod_sort_order', '5', 0),
-(29819, 0, 'cod', 'cod_status', '1', 0),
-(29818, 0, 'cod', 'cod_geo_zone_id', '3', 0),
-(9456, 0, 'shipping', 'shipping_status', '1', 0),
-(9455, 0, 'shipping', 'shipping_estimator', '1', 0),
-(13801, 0, 'coupon', 'coupon_sort_order', '4', 0),
-(13800, 0, 'coupon', 'coupon_status', '1', 0),
-(29799, 0, 'flat', 'flat_sort_order', '1', 0),
-(29798, 0, 'flat', 'flat_status', '1', 0),
-(29797, 0, 'flat', 'flat_geo_zone_id', '3', 0),
-(29796, 0, 'flat', 'flat_tax_class_id', '9', 0),
-(20026, 0, 'carousel', 'carousel_module', 'a:1:{i:0;a:9:{s:9:"banner_id";s:1:"8";s:5:"limit";s:1:"5";s:6:"scroll";s:1:"3";s:5:"width";s:2:"80";s:6:"height";s:2:"80";s:9:"layout_id";s:1:"1";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:2:"-1";}}', 1),
-(28937, 0, 'featured', 'featured_product', '54,85,50,56,84,83,61,57', 0),
-(28938, 0, 'featured', 'featured_module', 'a:1:{i:0;a:7:{s:5:"limit";s:1:"8";s:11:"image_width";s:2:"60";s:12:"image_height";s:2:"60";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"4";}}', 1),
-(29795, 0, 'flat', 'flat_cost', '30000', 0),
-(9444, 0, 'credit', 'credit_sort_order', '7', 0),
-(9443, 0, 'credit', 'credit_status', '1', 0),
-(18432, 0, 'reward', 'reward_sort_order', '2', 0),
-(18431, 0, 'reward', 'reward_status', '1', 0),
-(19721, 0, 'affiliate', 'affiliate_module', 'a:1:{i:0;a:4:{s:9:"layout_id";s:2:"10";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(25194, 0, 'category', 'category_module', 'a:4:{i:0;a:5:{s:9:"layout_id";s:1:"3";s:8:"position";s:11:"column_left";s:5:"count";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:1;a:5:{s:9:"layout_id";s:1:"2";s:8:"position";s:11:"column_left";s:5:"count";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:2;a:5:{s:9:"layout_id";s:1:"1";s:8:"position";s:11:"column_left";s:5:"count";s:1:"1";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:3;a:5:{s:9:"layout_id";s:1:"4";s:8:"position";s:11:"column_left";s:5:"count";s:1:"0";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(28119, 0, 'journal', 'journal_version', '1.2.0', 0),
-(19925, 0, 'account', 'account_module', 'a:1:{i:0;a:4:{s:9:"layout_id";s:1:"6";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(16017, 0, 'voucher', 'voucher_sort_order', '8', 0),
-(16016, 0, 'voucher', 'voucher_status', '1', 0),
-(19410, 0, 'free_checkout', 'free_checkout_status', '1', 0),
-(19409, 0, 'free_checkout', 'free_checkout_order_status_id', '1', 0),
-(29817, 0, 'cod', 'cod_order_status_id', '1', 0),
-(25193, 0, 'slideshow', 'slideshow_module', 'a:1:{i:0;a:7:{s:9:"banner_id";s:1:"9";s:5:"width";s:3:"980";s:6:"height";s:3:"342";s:9:"layout_id";s:1:"1";s:8:"position";s:15:"content_maintop";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(28224, 0, 'banner', 'banner_module', 'a:3:{i:0;a:7:{s:9:"banner_id";s:2:"10";s:5:"width";s:3:"190";s:6:"height";s:3:"158";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"column_left";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"5";}i:1;a:7:{s:9:"banner_id";s:2:"10";s:5:"width";s:3:"190";s:6:"height";s:3:"158";s:9:"layout_id";s:1:"1";s:8:"position";s:12:"column_right";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"5";}i:2;a:7:{s:9:"banner_id";s:2:"10";s:5:"width";s:3:"190";s:6:"height";s:3:"158";s:9:"layout_id";s:1:"1";s:8:"position";s:12:"column_right";s:6:"status";s:1:"0";s:10:"sort_order";s:2:"10";}}', 1),
-(29803, 0, 'free', 'free_sort_order', '1', 0),
-(25641, 0, 'visitor', 'visitor_theme', 'Shopping', 0),
-(25642, 0, 'visitor', 'visitor_module', 'a:1:{i:0;a:4:{s:9:"layout_id";s:1:"1";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:2:"10";}}', 1),
-(24297, 0, 'google_talk', 'google_talk_code', 'Le Thanh Tung&lt;br&gt;\r\nMobile 0904260064\r\n&lt;br&gt;Yahoo lethanhtunghp87', 0),
-(24298, 0, 'google_talk', 'google_talk_module', 'a:1:{i:0;a:4:{s:9:"layout_id";s:1:"1";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(28308, 0, 'latest', 'latest_module', 'a:1:{i:0;a:7:{s:5:"limit";s:1:"8";s:11:"image_width";s:2:"60";s:12:"image_height";s:2:"60";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"0";}}', 1),
-(24432, 0, 'news', 'news_module', 'a:3:{i:1;a:8:{s:5:"limit";s:1:"5";s:5:"image";s:1:"1";s:11:"image_width";s:2:"70";s:12:"image_height";s:2:"70";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"3";}i:2;a:8:{s:5:"limit";s:1:"5";s:5:"image";s:1:"1";s:11:"image_width";s:2:"70";s:12:"image_height";s:2:"70";s:9:"layout_id";s:2:"13";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"2";}i:3;a:8:{s:5:"limit";s:1:"6";s:5:"image";s:1:"1";s:11:"image_width";s:2:"70";s:12:"image_height";s:2:"70";s:9:"layout_id";s:2:"12";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"2";}}', 1),
-(29815, 0, 'bank_transfer', 'bank_transfer_sort_order', '3', 0),
-(24428, 0, 'categorynews', 'categorynews_module', 'a:3:{i:0;a:4:{s:9:"layout_id";s:1:"1";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"2";}i:1;a:4:{s:9:"layout_id";s:2:"13";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:2;a:4:{s:9:"layout_id";s:2:"12";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(30030, 0, 'config', 'config_google_analytics', '', 0),
-(30029, 0, 'config', 'config_error_filename', 'error.txt', 0),
-(30028, 0, 'config', 'config_error_log', '1', 0),
-(30027, 0, 'config', 'config_error_display', '1', 0),
-(30026, 0, 'config', 'config_compression', '8', 0),
-(30025, 0, 'config', 'config_encryption', '08061986', 0),
-(30024, 0, 'config', 'config_maintenance', '0', 0),
-(30023, 0, 'config', 'config_seo_url', '1', 0),
-(30022, 0, 'config', 'config_use_ssl', '1', 0),
-(30021, 0, 'config', 'baokim_status', '0', 0),
-(30020, 0, 'config', 'baokim_currency_id', '3', 0),
-(30019, 0, 'config', 'baokim_receiver', 'van.dao.dev@gmail.com', 0),
-(28229, 0, 'cat', 'cat_module', 'a:3:{i:0;a:5:{s:9:"layout_id";s:1:"1";s:8:"position";s:11:"column_left";s:5:"count";s:1:"0";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"2";}i:1;a:5:{s:9:"layout_id";s:2:"12";s:8:"position";s:12:"column_right";s:5:"count";s:1:"0";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"1";}i:2;a:5:{s:9:"layout_id";s:2:"13";s:8:"position";s:12:"column_right";s:5:"count";s:1:"0";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"2";}}', 1),
-(29096, 0, 'tnt_yahoo', 'tnt_yahoo_module', 'a:2:{i:0;a:4:{s:9:"layout_id";s:1:"1";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"5";}i:1;a:4:{s:9:"layout_id";s:1:"4";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"2";}}', 1),
-(30018, 0, 'config', 'baokim_secure_pass', 'a253ccc6d7fd17aa', 0),
-(30017, 0, 'config', 'baokim_merchant_site_code', '3374', 0),
-(29095, 0, 'tnt_yahoo', 'tnt_yahoo_image5', '', 0),
-(29094, 0, 'tnt_yahoo', 'tnt_yahoo_mobile5', '', 0),
-(29093, 0, 'tnt_yahoo', 'tnt_yahoo_yahooid5', '', 0),
-(28936, 0, 'featured', 'product', 'Hoa tình yêu', 0),
-(28233, 0, 'information', 'information_module', 'a:2:{i:0;a:4:{s:9:"layout_id";s:1:"1";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"3";}i:1;a:4:{s:9:"layout_id";s:1:"4";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"3";}}', 1),
-(30014, 0, 'config', 'nganluong_receiver', 'van.dao.dev@gmail.com', 0),
-(30015, 0, 'config', 'nganluong_currency_id', '3', 0),
-(30016, 0, 'config', 'nganluong_status', '0', 0),
-(30013, 0, 'config', 'nganluong_secure_pass', '654321', 0),
-(30012, 0, 'config', 'nganluong_merchant_site_code', '23306', 0),
-(30011, 0, 'config', 'config_fraud_status_id', '7', 0),
-(30010, 0, 'config', 'config_fraud_score', '', 0),
-(30009, 0, 'config', 'config_fraud_key', '', 0),
-(28225, 0, 'tnt_welcome', 'tnt_welcome_module', 'a:1:{i:1;a:6:{s:5:"title";a:1:{i:2;s:27:"Thông báo từ OpencartVN";}s:11:"description";a:1:{i:2;s:128:"&lt;p&gt;\r\n	Phiên bản thương mại opencartVN phát triển bởi Nencer.com chính thức được phát hành&lt;/p&gt;\r\n";}s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"1";}}', 1),
-(29092, 0, 'tnt_yahoo', 'tnt_yahoo_image4', '', 0),
-(29091, 0, 'tnt_yahoo', 'tnt_yahoo_mobile4', '', 0),
-(29090, 0, 'tnt_yahoo', 'tnt_yahoo_yahooid4', '', 0),
-(29089, 0, 'tnt_yahoo', 'tnt_yahoo_image3', '', 0),
-(29087, 0, 'tnt_yahoo', 'tnt_yahoo_yahooid3', '', 0),
-(29088, 0, 'tnt_yahoo', 'tnt_yahoo_mobile3', '', 0),
-(28297, 0, 'tnt_productcat', 'tnt_productcat_module', 'a:4:{i:0;a:8:{s:3:"cat";s:2:"63";s:5:"limit";s:1:"9";s:11:"image_width";s:3:"120";s:12:"image_height";s:3:"120";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"2";}i:1;a:8:{s:3:"cat";s:2:"65";s:5:"limit";s:1:"9";s:11:"image_width";s:3:"120";s:12:"image_height";s:3:"120";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"3";}i:2;a:8:{s:3:"cat";s:2:"20";s:5:"limit";s:1:"6";s:11:"image_width";s:3:"120";s:12:"image_height";s:3:"120";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"4";}i:3;a:8:{s:3:"cat";s:2:"64";s:5:"limit";s:1:"6";s:11:"image_width";s:3:"120";s:12:"image_height";s:3:"120";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"5";}}', 1),
-(30008, 0, 'config', 'config_fraud_detection', '0', 0),
-(30007, 0, 'config', 'config_alert_emails', '', 0),
-(30006, 0, 'config', 'config_account_mail', '0', 0),
-(28252, 0, 'tnt_weather', 'tnt_weather_module', 'a:1:{i:0;a:4:{s:9:"layout_id";s:1:"1";s:8:"position";s:12:"column_right";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"2";}}', 1),
-(28251, 0, 'tnt_weather', 'tnt_weather_code', 'tphcm', 0),
-(28935, 0, 'tnt_random', 'tnt_random_module', 'a:1:{i:0;a:7:{s:5:"limit";s:1:"8";s:11:"image_width";s:2:"60";s:12:"image_height";s:2:"60";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"2";}}', 1),
-(25640, 0, 'visitor', 'visitor_expire', '60', 0),
-(28309, 0, 'bestseller', 'bestseller_module', 'a:1:{i:0;a:7:{s:5:"limit";s:1:"8";s:11:"image_width";s:2:"60";s:12:"image_height";s:2:"60";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
-(29802, 0, 'free', 'free_status', '1', 0),
-(29801, 0, 'free', 'free_geo_zone_id', '4', 0),
-(29800, 0, 'free', 'free_total', '0', 0),
-(29814, 0, 'bank_transfer', 'bank_transfer_status', '1', 0),
-(29813, 0, 'bank_transfer', 'bank_transfer_geo_zone_id', '3', 0),
-(29812, 0, 'bank_transfer', 'bank_transfer_order_status_id', '1', 0),
-(29811, 0, 'bank_transfer', 'bank_transfer_total', '100000', 0),
-(30005, 0, 'config', 'config_alert_mail', '0', 0),
-(30004, 0, 'config', 'config_smtp_timeout', '10', 0),
-(30003, 0, 'config', 'config_smtp_port', '465', 0),
-(30002, 0, 'config', 'config_smtp_password', 'nguyenvan0', 0),
-(30001, 0, 'config', 'config_smtp_username', 'van.dao.dev@gmail.com', 0),
-(30000, 0, 'config', 'config_smtp_host', 'ssl://smtp.gmail.com', 0),
-(29999, 0, 'config', 'config_mail_parameter', '', 0),
-(29998, 0, 'config', 'config_mail_protocol', 'smtp', 0),
-(29997, 0, 'config', 'config_image_news_height', '100', 0),
-(29993, 0, 'config', 'config_image_cart_height', '47', 0),
-(29994, 0, 'config', 'config_image_cat_width', '100', 0),
-(29995, 0, 'config', 'config_image_cat_height', '100', 0),
-(28226, 0, 'newsfeatured', 'news', '', 0),
-(28227, 0, 'newsfeatured', 'newsfeatured_news', '53', 0),
-(28228, 0, 'newsfeatured', 'newsfeatured_module', 'a:1:{i:0;a:10:{s:5:"limit";s:1:"5";s:16:"limitdescription";s:3:"200";s:11:"image_width";s:2:"80";s:12:"image_height";s:2:"80";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:11:"description";s:1:"1";s:11:"imagestatus";s:1:"1";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"0";}}', 1),
-(29996, 0, 'config', 'config_image_news_width', '100', 0),
-(28231, 0, 'newslatest', 'newslatest_module', 'a:1:{i:0;a:10:{s:5:"limit";s:1:"5";s:16:"limitdescription";s:3:"200";s:11:"image_width";s:2:"80";s:12:"image_height";s:2:"80";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"column_left";s:11:"description";s:1:"1";s:11:"imagestatus";s:1:"0";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"3";}}', 1),
-(28242, 0, 'tnt_newscat', 'tnt_newscat_module', 'a:1:{i:0;a:11:{s:3:"cat";s:2:"59";s:5:"limit";s:1:"5";s:16:"limitdescription";s:3:"200";s:11:"image_width";s:2:"80";s:12:"image_height";s:2:"80";s:9:"layout_id";s:1:"1";s:8:"position";s:12:"column_right";s:11:"description";s:1:"1";s:11:"imagestatus";s:1:"1";s:6:"status";s:1:"0";s:10:"sort_order";s:1:"2";}}', 1),
-(29992, 0, 'config', 'config_image_cart_width', '47', 0),
-(29991, 0, 'config', 'config_image_wishlist_height', '47', 0),
-(29989, 0, 'config', 'config_image_compare_height', '90', 0),
-(29990, 0, 'config', 'config_image_wishlist_width', '47', 0),
-(29988, 0, 'config', 'config_image_compare_width', '90', 0),
-(29987, 0, 'config', 'config_image_related_height', '80', 0),
-(29986, 0, 'config', 'config_image_related_width', '80', 0),
-(29985, 0, 'config', 'config_image_additional_height', '74', 0),
-(29984, 0, 'config', 'config_image_additional_width', '74', 0),
-(29983, 0, 'config', 'config_image_product_height', '120', 0),
-(29982, 0, 'config', 'config_image_product_width', '120', 0),
-(29981, 0, 'config', 'config_image_popup_height', '500', 0),
-(29980, 0, 'config', 'config_image_popup_width', '500', 0),
-(29979, 0, 'config', 'config_image_thumb_height', '228', 0),
-(29978, 0, 'config', 'config_image_thumb_width', '228', 0),
-(29977, 0, 'config', 'config_image_category_height', '120', 0),
-(29976, 0, 'config', 'config_image_category_width', '120', 0),
-(29975, 0, 'config', 'config_icon', 'data/cart.png', 0),
-(29974, 0, 'config', 'config_logo', 'data/logo.png', 0),
-(29973, 0, 'config', 'config_return_status_id', '2', 0),
-(29972, 0, 'config', 'config_commission', '5', 0),
-(29971, 0, 'config', 'config_affiliate_id', '4', 0),
-(29970, 0, 'config', 'config_stock_status_id', '5', 0),
-(29969, 0, 'config', 'config_stock_checkout', '0', 0),
-(29968, 0, 'config', 'config_stock_warning', '0', 0),
-(29967, 0, 'config', 'config_stock_display', '0', 0),
-(29966, 0, 'config', 'config_complete_status_id', '5', 0),
-(29965, 0, 'config', 'config_order_status_id', '1', 0),
-(29964, 0, 'config', 'config_invoice_prefix', 'INV-2011-00', 0),
-(29963, 0, 'config', 'config_order_edit', '100', 0),
-(29962, 0, 'config', 'config_checkout_id', '5', 0),
-(29961, 0, 'config', 'config_guest_checkout', '1', 0),
-(29960, 0, 'config', 'config_cart_weight', '1', 0),
-(29958, 0, 'config', 'config_customer_price', '0', 0),
-(29959, 0, 'config', 'config_account_id', '3', 0),
-(29957, 0, 'config', 'config_customer_group_display', 'a:1:{i:0;s:1:"1";}', 1),
-(29956, 0, 'config', 'config_customer_group_id', '1', 0),
-(29955, 0, 'config', 'config_tax_customer', 'shipping', 0),
-(29954, 0, 'config', 'config_tax_default', 'shipping', 0),
-(29953, 0, 'config', 'config_vat', '0', 0),
-(29952, 0, 'config', 'config_tax', '1', 0),
-(29951, 0, 'config', 'config_voucher_max', '1000', 0),
-(29950, 0, 'config', 'config_voucher_min', '10', 0),
-(29949, 0, 'config', 'config_upload_allowed', 'jpg, JPG, jpeg, gif, png, txt', 0),
-(29948, 0, 'config', 'config_download', '1', 0),
-(29947, 0, 'config', 'config_review_status', '1', 0),
-(29946, 0, 'config', 'config_product_count', '0', 0),
-(29945, 0, 'config', 'config_admin_limit', '20', 0),
-(29944, 0, 'config', 'config_catalog_limit', '15', 0),
-(29943, 0, 'config', 'config_weight_class_id', '1', 0),
-(29942, 0, 'config', 'config_length_class_id', '1', 0),
-(29941, 0, 'config', 'config_currency_auto', '0', 0),
-(29940, 0, 'config', 'config_currency', 'vnd', 0),
-(29939, 0, 'config', 'config_admin_language', 'vn', 0),
-(29938, 0, 'config', 'config_language', 'vn', 0),
-(29937, 0, 'config', 'config_zone_id', '3778', 0),
-(29936, 0, 'config', 'config_country_id', '230', 0),
-(29935, 0, 'config', 'config_layout_id', '4', 0),
-(29934, 0, 'config', 'config_template', 'default', 0),
-(29933, 0, 'config', 'config_meta_description', 'Bán hàng online', 0),
-(29930, 0, 'config', 'config_telephone', '0904260064', 0),
-(29931, 0, 'config', 'config_fax', '', 0),
-(29932, 0, 'config', 'config_title', 'Fashion Online', 0),
-(29086, 0, 'tnt_yahoo', 'tnt_yahoo_image2', '14', 0),
-(29085, 0, 'tnt_yahoo', 'tnt_yahoo_mobile2', '0902307388', 0),
-(29083, 0, 'tnt_yahoo', 'tnt_yahoo_image1', '2', 0),
-(29084, 0, 'tnt_yahoo', 'tnt_yahoo_yahooid2', 'phan-thi-min', 0),
-(29929, 0, 'config', 'config_email', 'van.dao.dev@gmail.com', 0),
-(29928, 0, 'config', 'config_address', 'Quận 10, TP. HCM', 0),
-(29927, 0, 'config', 'config_owner', 'Fashion Online', 0),
-(29081, 0, 'tnt_yahoo', 'tnt_yahoo_yahooid1', 'dao-nguyen-van', 0),
-(29082, 0, 'tnt_yahoo', 'tnt_yahoo_mobile1', '0913631349', 0),
-(29926, 0, 'config', 'config_name', 'Fashion Online', 0),
-(29816, 0, 'cod', 'cod_total', '0.01', 0),
-(29810, 0, 'bank_transfer', 'bank_transfer_bank_2', 'Vui lòng chuyển số tiền cần thanh toán vào tài khoản\r\nĐào Nguyên Văn 0031001205631 \r\nNgân Hàng ViệtCombank', 0);
+(1, 0, 'shipping', 'shipping_sort_order', '3', 0),
+(2, 0, 'sub_total', 'sub_total_sort_order', '1', 0),
+(3, 0, 'sub_total', 'sub_total_status', '1', 0),
+(4, 0, 'tax', 'tax_status', '1', 0),
+(5, 0, 'total', 'total_sort_order', '9', 0),
+(6, 0, 'total', 'total_status', '1', 0),
+(7, 0, 'tax', 'tax_sort_order', '5', 0),
+(8, 0, 'free_checkout', 'free_checkout_sort_order', '1', 0),
+(9, 0, 'cod', 'cod_sort_order', '5', 0),
+(10, 0, 'cod', 'cod_total', '0.01', 0),
+(11, 0, 'cod', 'cod_order_status_id', '1', 0),
+(12, 0, 'cod', 'cod_geo_zone_id', '0', 0),
+(13, 0, 'cod', 'cod_status', '1', 0),
+(14, 0, 'shipping', 'shipping_status', '1', 0),
+(15, 0, 'shipping', 'shipping_estimator', '1', 0),
+(893, 0, 'autoseotitle', 'ast_separator', '-', 0),
+(1165, 0, 'config', 'config_error_filename', 'error.txt', 0),
+(1164, 0, 'config', 'config_error_log', '1', 0),
+(1163, 0, 'config', 'config_error_display', '1', 0),
+(1162, 0, 'config', 'config_compression', '0', 0),
+(1161, 0, 'config', 'config_encryption', '6e22f0b515a79cb85f42ec3770188cea', 0),
+(1159, 0, 'config', 'config_seo_url', '1', 0),
+(27, 0, 'coupon', 'coupon_sort_order', '4', 0),
+(28, 0, 'coupon', 'coupon_status', '1', 0),
+(1160, 0, 'config', 'config_maintenance', '0', 0),
+(1158, 0, 'config', 'config_use_ssl', '0', 0),
+(1157, 0, 'config', 'config_fraud_status_id', '7', 0),
+(34, 0, 'flat', 'flat_sort_order', '1', 0),
+(35, 0, 'flat', 'flat_status', '1', 0),
+(36, 0, 'flat', 'flat_geo_zone_id', '0', 0),
+(37, 0, 'flat', 'flat_tax_class_id', '9', 0),
+(414, 0, 'carousel', 'carousel_module', 'a:1:{i:0;a:9:{s:9:"banner_id";s:1:"8";s:5:"limit";s:1:"5";s:6:"scroll";s:1:"3";s:5:"width";s:3:"140";s:6:"height";s:3:"140";s:9:"layout_id";s:1:"1";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"5";}}', 1),
+(415, 0, 'featured', 'product', '', 0),
+(416, 0, 'featured', 'featured_product', '43,40,42,49,46,47,28', 0),
+(417, 0, 'featured', 'featured_module', 'a:1:{i:0;a:7:{s:5:"limit";s:1:"5";s:11:"image_width";s:2:"80";s:12:"image_height";s:2:"80";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"2";}}', 1),
+(41, 0, 'flat', 'flat_cost', '5.00', 0),
+(42, 0, 'credit', 'credit_sort_order', '7', 0),
+(43, 0, 'credit', 'credit_status', '1', 0),
+(1156, 0, 'config', 'config_fraud_score', '', 0),
+(1155, 0, 'config', 'config_fraud_key', '', 0),
+(1154, 0, 'config', 'config_fraud_detection', '0', 0),
+(1153, 0, 'config', 'config_alert_emails', '', 0),
+(1152, 0, 'config', 'config_account_mail', '0', 0),
+(1151, 0, 'config', 'config_alert_mail', '0', 0),
+(1150, 0, 'config', 'config_smtp_timeout', '5', 0),
+(53, 0, 'reward', 'reward_sort_order', '2', 0),
+(54, 0, 'reward', 'reward_status', '1', 0),
+(1149, 0, 'config', 'config_smtp_port', '25', 0),
+(56, 0, 'affiliate', 'affiliate_module', 'a:1:{i:0;a:4:{s:9:"layout_id";s:2:"10";s:8:"position";s:12:"column_right";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
+(57, 0, 'category', 'category_module', 'a:2:{i:0;a:5:{s:9:"layout_id";s:1:"3";s:8:"position";s:11:"column_left";s:5:"count";s:1:"0";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}i:1;a:5:{s:9:"layout_id";s:1:"2";s:8:"position";s:11:"column_left";s:5:"count";s:1:"0";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
+(1148, 0, 'config', 'config_smtp_password', '', 0),
+(1147, 0, 'config', 'config_smtp_username', '', 0),
+(409, 0, 'account', 'account_module', 'a:1:{i:0;a:4:{s:9:"layout_id";s:1:"6";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
+(1146, 0, 'config', 'config_smtp_host', '', 0),
+(1145, 0, 'config', 'config_mail_parameter', '', 0),
+(1144, 0, 'config', 'config_mail_protocol', 'mail', 0),
+(1143, 0, 'config', 'config_image_cart_height', '47', 0),
+(1142, 0, 'config', 'config_image_cart_width', '47', 0),
+(1141, 0, 'config', 'config_image_wishlist_height', '47', 0),
+(1140, 0, 'config', 'config_image_wishlist_width', '47', 0),
+(1139, 0, 'config', 'config_image_compare_height', '90', 0),
+(1138, 0, 'config', 'config_image_compare_width', '90', 0),
+(1137, 0, 'config', 'config_image_related_height', '132', 0),
+(1136, 0, 'config', 'config_image_related_width', '132', 0),
+(1135, 0, 'config', 'config_image_additional_height', '314', 0),
+(1134, 0, 'config', 'config_image_additional_width', '314', 0),
+(1133, 0, 'config', 'config_image_product_height', '132', 0),
+(1132, 0, 'config', 'config_image_product_width', '132', 0),
+(1131, 0, 'config', 'config_image_popup_height', '750', 0),
+(1130, 0, 'config', 'config_image_popup_width', '750', 0),
+(1129, 0, 'config', 'config_image_thumb_height', '314', 0),
+(1126, 0, 'config', 'config_image_category_width', '765', 0),
+(1127, 0, 'config', 'config_image_category_height', '140', 0),
+(1128, 0, 'config', 'config_image_thumb_width', '314', 0),
+(93, 0, 'voucher', 'voucher_sort_order', '8', 0),
+(94, 0, 'voucher', 'voucher_status', '1', 0),
+(1125, 0, 'config', 'config_icon', 'data/no_image.png', 0),
+(1123, 0, 'config', 'config_return_status_id', '2', 0),
+(1124, 0, 'config', 'config_logo', 'data/logo.png', 0),
+(1122, 0, 'config', 'config_commission', '5', 0),
+(102, 0, 'free_checkout', 'free_checkout_status', '1', 0),
+(103, 0, 'free_checkout', 'free_checkout_order_status_id', '1', 0),
+(1121, 0, 'config', 'config_affiliate_id', '4', 0),
+(1120, 0, 'config', 'config_stock_status_id', '5', 0),
+(405, 0, 'custom_slideshow', 'custom_slideshow_module', 'a:1:{i:0;a:7:{s:9:"banner_id";s:1:"9";s:5:"width";s:3:"960";s:6:"height";s:3:"400";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"1";}}', 1),
+(108, 0, 'banner', 'banner_module', 'a:1:{i:0;a:7:{s:9:"banner_id";s:1:"6";s:5:"width";s:3:"182";s:6:"height";s:3:"182";s:9:"layout_id";s:1:"3";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"3";}}', 1),
+(1118, 0, 'config', 'config_stock_warning', '0', 0),
+(1119, 0, 'config', 'config_stock_checkout', '0', 0),
+(1117, 0, 'config', 'config_stock_display', '0', 0),
+(1116, 0, 'config', 'config_complete_status_id', '5', 0),
+(1115, 0, 'config', 'config_order_status_id', '1', 0),
+(1114, 0, 'config', 'config_invoice_prefix', 'INV-2012-00', 0),
+(1113, 0, 'config', 'config_order_edit', '100', 0),
+(1112, 0, 'config', 'config_checkout_id', '5', 0),
+(1111, 0, 'config', 'config_guest_checkout', '1', 0),
+(1110, 0, 'config', 'config_cart_weight', '1', 0),
+(1106, 0, 'config', 'config_customer_group_id', '1', 0),
+(1107, 0, 'config', 'config_customer_group_display', 'a:1:{i:0;s:1:"1";}', 1),
+(1109, 0, 'config', 'config_account_id', '3', 0),
+(1108, 0, 'config', 'config_customer_price', '0', 0),
+(1105, 0, 'config', 'config_tax_customer', 'shipping', 0),
+(1104, 0, 'config', 'config_tax_default', 'shipping', 0),
+(1103, 0, 'config', 'config_vat', '0', 0),
+(1102, 0, 'config', 'config_tax', '1', 0),
+(1101, 0, 'config', 'config_voucher_max', '1000', 0),
+(1100, 0, 'config', 'config_voucher_min', '1', 0),
+(1099, 0, 'config', 'config_upload_allowed', 'jpg, JPG, jpeg, gif, png, txt', 0),
+(1098, 0, 'config', 'config_download', '1', 0),
+(1097, 0, 'config', 'config_review_status', '1', 0),
+(1096, 0, 'config', 'config_product_count', '0', 0),
+(1095, 0, 'config', 'config_admin_limit', '20', 0),
+(1094, 0, 'config', 'config_catalog_limit', '16', 0),
+(1093, 0, 'config', 'config_weight_class_id', '1', 0),
+(1091, 0, 'config', 'config_currency_auto', '1', 0),
+(1092, 0, 'config', 'config_length_class_id', '1', 0),
+(1090, 0, 'config', 'config_currency', 'VND', 0),
+(1089, 0, 'config', 'config_admin_language', 'vn', 0),
+(1088, 0, 'config', 'config_language', 'vn', 0),
+(1087, 0, 'config', 'config_zone_id', '3780', 0),
+(1086, 0, 'config', 'config_country_id', '230', 0),
+(1083, 0, 'config', 'config_meta_description', 'Fashion Shop', 0),
+(1084, 0, 'config', 'config_template', 'fashioncart', 0),
+(1085, 0, 'config', 'config_layout_id', '4', 0),
+(1082, 0, 'config', 'config_title', 'Fashion Shop', 0),
+(1081, 0, 'config', 'config_fax', '', 0),
+(407, 0, 'custom_banner', 'custom_banner_module', 'a:1:{i:0;a:7:{s:9:"banner_id";s:2:"10";s:5:"width";s:3:"310";s:6:"height";s:3:"170";s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"2";}}', 1),
+(408, 0, 'bestseller', 'bestseller_module', 'a:1:{i:0;a:7:{s:5:"limit";s:1:"4";s:11:"image_width";s:3:"132";s:12:"image_height";s:3:"132";s:9:"layout_id";s:1:"2";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:0:"";}}', 1),
+(412, 0, 'latest', 'latest_module', 'a:3:{i:0;a:7:{s:5:"limit";s:1:"5";s:11:"image_width";s:3:"132";s:12:"image_height";s:3:"132";s:9:"layout_id";s:1:"1";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"4";}i:1;a:7:{s:5:"limit";s:1:"5";s:11:"image_width";s:2:"64";s:12:"image_height";s:2:"64";s:9:"layout_id";s:1:"2";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"2";}i:2;a:7:{s:5:"limit";s:1:"4";s:11:"image_width";s:3:"132";s:12:"image_height";s:3:"132";s:9:"layout_id";s:1:"3";s:8:"position";s:14:"content_bottom";s:6:"status";s:1:"1";s:10:"sort_order";s:0:"";}}', 1),
+(418, 0, 'special', 'special_module', 'a:2:{i:0;a:7:{s:5:"limit";s:1:"5";s:11:"image_width";s:2:"64";s:12:"image_height";s:2:"64";s:9:"layout_id";s:1:"3";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"5";}i:1;a:7:{s:5:"limit";s:1:"5";s:11:"image_width";s:2:"64";s:12:"image_height";s:2:"64";s:9:"layout_id";s:1:"2";s:8:"position";s:11:"column_left";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"5";}}', 1),
+(521, 0, 'welcome', 'welcome_module', 'a:1:{i:1;a:5:{s:11:"description";a:2:{i:3;s:598:"&lt;p&gt;\r\n	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&lt;/p&gt;\r\n";i:1;s:598:"&lt;p&gt;\r\n	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&lt;/p&gt;\r\n";}s:9:"layout_id";s:1:"1";s:8:"position";s:11:"content_top";s:6:"status";s:1:"1";s:10:"sort_order";s:1:"4";}}', 1),
+(1080, 0, 'config', 'config_telephone', '123456789', 0),
+(1079, 0, 'config', 'config_email', 'jacknguyenvan@gmail.com', 0),
+(520, 0, 'styler', 'styler_module', 'a:15:{i:0;a:9:{s:9:"layout_id";i:1;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:1;a:9:{s:9:"layout_id";i:2;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:2;a:9:{s:9:"layout_id";i:3;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:3;a:9:{s:9:"layout_id";i:4;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:4;a:9:{s:9:"layout_id";i:5;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:5;a:9:{s:9:"layout_id";i:6;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:6;a:9:{s:9:"layout_id";i:7;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:7;a:9:{s:9:"layout_id";i:8;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:8;a:9:{s:9:"layout_id";i:9;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:9;a:9:{s:9:"layout_id";i:10;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:10;a:9:{s:9:"layout_id";i:11;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:11;a:9:{s:9:"layout_id";i:12;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:12;a:9:{s:9:"layout_id";i:13;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:13;a:9:{s:9:"layout_id";i:14;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}i:14;a:9:{s:9:"layout_id";i:15;s:8:"position";s:11:"content_top";s:10:"sort_order";s:0:"";s:6:"status";s:1:"1";s:22:"display_theme_settings";s:1:"0";s:10:"main_color";s:6:"F71277";s:7:"nav_bgr";s:6:"000000";s:9:"bgr_image";s:5:"1.png";s:14:"fading_effects";s:1:"0";}}', 1),
+(1076, 0, 'config', 'config_name', 'Fashion Shop', 0),
+(1077, 0, 'config', 'config_owner', 'Dao Nguyen Van', 0),
+(1078, 0, 'config', 'config_address', 'Address 1', 0),
+(892, 0, 'autoseotitle', 'ast_special', 'y', 0),
+(891, 0, 'autoseotitle', 'ast_price', 'y', 0),
+(890, 0, 'autoseotitle', 'ast_sitename', 'b', 0),
+(1166, 0, 'config', 'config_google_analytics', '', 0),
+(1167, 0, 'autoseotitle', 'ast_sitename', 'b', 0),
+(1168, 0, 'autoseotitle', 'ast_price', 'y', 0),
+(1169, 0, 'autoseotitle', 'ast_special', 'y', 0),
+(1170, 0, 'autoseotitle', 'ast_separator', '-', 0);
 
 -- --------------------------------------------------------
 
@@ -2957,6 +2763,7 @@ INSERT INTO `fs_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 -- Table structure for table `fs_stock_status`
 --
 
+DROP TABLE IF EXISTS `fs_stock_status`;
 CREATE TABLE IF NOT EXISTS `fs_stock_status` (
   `stock_status_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
@@ -2969,10 +2776,10 @@ CREATE TABLE IF NOT EXISTS `fs_stock_status` (
 --
 
 INSERT INTO `fs_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
-(7, 2, 'Còn hàng'),
-(8, 2, 'Đặt hàng trước'),
-(5, 2, 'Hết hàng'),
-(6, 2, '2 - 3 Ngày');
+(5, 3, 'Out Of Stock'),
+(8, 3, 'Pre-Order'),
+(7, 3, 'In Stock'),
+(6, 3, '2 - 3 Days');
 
 -- --------------------------------------------------------
 
@@ -2980,6 +2787,7 @@ INSERT INTO `fs_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
 -- Table structure for table `fs_store`
 --
 
+DROP TABLE IF EXISTS `fs_store`;
 CREATE TABLE IF NOT EXISTS `fs_store` (
   `store_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_bin NOT NULL,
@@ -2999,6 +2807,7 @@ CREATE TABLE IF NOT EXISTS `fs_store` (
 -- Table structure for table `fs_tax_class`
 --
 
+DROP TABLE IF EXISTS `fs_tax_class`;
 CREATE TABLE IF NOT EXISTS `fs_tax_class` (
   `tax_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -3006,14 +2815,15 @@ CREATE TABLE IF NOT EXISTS `fs_tax_class` (
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`tax_class_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `fs_tax_class`
 --
 
 INSERT INTO `fs_tax_class` (`tax_class_id`, `title`, `description`, `date_added`, `date_modified`) VALUES
-(9, 'Giá trị gia tăng', 'Giá trị gia tăng', '2009-01-06 23:21:53', '2012-05-25 00:16:17');
+(9, 'Taxable Goods', 'Taxed Stuff', '2009-01-06 23:21:53', '2011-09-23 14:07:50'),
+(10, 'Downloadable Products', 'Downloadable', '2011-09-21 22:19:39', '2011-09-22 10:27:36');
 
 -- --------------------------------------------------------
 
@@ -3021,6 +2831,7 @@ INSERT INTO `fs_tax_class` (`tax_class_id`, `title`, `description`, `date_added`
 -- Table structure for table `fs_tax_rate`
 --
 
+DROP TABLE IF EXISTS `fs_tax_rate`;
 CREATE TABLE IF NOT EXISTS `fs_tax_rate` (
   `tax_rate_id` int(11) NOT NULL AUTO_INCREMENT,
   `geo_zone_id` int(11) NOT NULL DEFAULT '0',
@@ -3030,14 +2841,15 @@ CREATE TABLE IF NOT EXISTS `fs_tax_rate` (
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`tax_rate_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=87 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=88 ;
 
 --
 -- Dumping data for table `fs_tax_rate`
 --
 
 INSERT INTO `fs_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`, `date_added`, `date_modified`) VALUES
-(86, 4, 'Giá trị gia tăng', '10.0000', 'P', '2011-03-09 21:17:10', '2012-05-25 00:16:48');
+(86, 3, 'VAT (17.5%)', '17.5000', 'P', '2011-03-09 21:17:10', '2011-09-22 22:24:29'),
+(87, 3, 'Eco Tax (-2.00)', '2.0000', 'F', '2011-09-21 21:49:23', '2011-09-23 00:40:19');
 
 -- --------------------------------------------------------
 
@@ -3045,6 +2857,7 @@ INSERT INTO `fs_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`,
 -- Table structure for table `fs_tax_rate_to_customer_group`
 --
 
+DROP TABLE IF EXISTS `fs_tax_rate_to_customer_group`;
 CREATE TABLE IF NOT EXISTS `fs_tax_rate_to_customer_group` (
   `tax_rate_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
@@ -3057,7 +2870,9 @@ CREATE TABLE IF NOT EXISTS `fs_tax_rate_to_customer_group` (
 
 INSERT INTO `fs_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`) VALUES
 (86, 6),
-(86, 8);
+(86, 8),
+(87, 6),
+(87, 8);
 
 -- --------------------------------------------------------
 
@@ -3065,6 +2880,7 @@ INSERT INTO `fs_tax_rate_to_customer_group` (`tax_rate_id`, `customer_group_id`)
 -- Table structure for table `fs_tax_rule`
 --
 
+DROP TABLE IF EXISTS `fs_tax_rule`;
 CREATE TABLE IF NOT EXISTS `fs_tax_rule` (
   `tax_rule_id` int(11) NOT NULL AUTO_INCREMENT,
   `tax_class_id` int(11) NOT NULL,
@@ -3072,14 +2888,17 @@ CREATE TABLE IF NOT EXISTS `fs_tax_rule` (
   `based` varchar(10) COLLATE utf8_bin NOT NULL,
   `priority` int(5) NOT NULL DEFAULT '1',
   PRIMARY KEY (`tax_rule_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=131 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=129 ;
 
 --
 -- Dumping data for table `fs_tax_rule`
 --
 
 INSERT INTO `fs_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`, `priority`) VALUES
-(130, 9, 86, 'shipping', 1);
+(121, 10, 86, 'payment', 1),
+(120, 10, 87, 'store', 0),
+(128, 9, 86, 'shipping', 1),
+(127, 9, 87, 'shipping', 2);
 
 -- --------------------------------------------------------
 
@@ -3087,12 +2906,13 @@ INSERT INTO `fs_tax_rule` (`tax_rule_id`, `tax_class_id`, `tax_rate_id`, `based`
 -- Table structure for table `fs_url_alias`
 --
 
+DROP TABLE IF EXISTS `fs_url_alias`;
 CREATE TABLE IF NOT EXISTS `fs_url_alias` (
   `url_alias_id` int(11) NOT NULL AUTO_INCREMENT,
   `query` varchar(255) COLLATE utf8_bin NOT NULL,
   `keyword` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`url_alias_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=835 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=783 ;
 
 --
 -- Dumping data for table `fs_url_alias`
@@ -3100,26 +2920,17 @@ CREATE TABLE IF NOT EXISTS `fs_url_alias` (
 
 INSERT INTO `fs_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (704, 'product_id=48', 'ipod_classic'),
-(503, 'category_id=26', 'pc'),
+(774, 'category_id=20', 'desktops'),
+(775, 'category_id=26', 'pc'),
+(776, 'category_id=27', 'mac'),
 (730, 'manufacturer_id=8', 'apple'),
-(807, 'information_id=4', 'gioi-thieu.html'),
-(768, 'product_id=42', 'test'),
-(794, 'category_id=34', 'mp3-players'),
+(772, 'information_id=4', 'about_us'),
+(780, 'product_id=42', 'Apple-Cinema-30'),
+(782, 'category_id=18', 'laptops-notebooks'),
 (536, 'category_id=36', 'Normal'),
-(778, 'news_id=19', 'the-dien-thoai'),
-(775, 'categorynews_id=9', 'newsletter'),
-(780, 'news_id=20', '1221'),
-(781, 'categorynews_id=10', ''),
-(784, 'news_id=21', 'mot-bai-viet-thu'),
-(785, 'categorynews_id=11', ''),
-(830, 'cat_id=59', 'tin-cong-ty'),
-(829, 'information_id=6', 'tuyen-dung.html'),
-(809, 'information_id=3', 'quyen-rieng-tu.html'),
-(810, 'information_id=5', 'dieu-khoan-va-dieu-kien.html'),
-(815, 'news_id=53', '2809-phat-hien-dau-vet-urani-lam-giau-cap-do-cao-hon-tai-iran.html'),
-(831, 'cat_id=60', 'tin-xa-hoi'),
-(832, 'cat_id=61', 'tin-van-hoa'),
-(828, 'product_id=58', '3364-hoa-cam-chuong.html');
+(778, 'category_id=46', 'Macbook'),
+(779, 'category_id=45', 'Windows'),
+(781, 'product_id=40', 'iphone');
 
 -- --------------------------------------------------------
 
@@ -3127,6 +2938,7 @@ INSERT INTO `fs_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 -- Table structure for table `fs_user`
 --
 
+DROP TABLE IF EXISTS `fs_user`;
 CREATE TABLE IF NOT EXISTS `fs_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_group_id` int(11) NOT NULL,
@@ -3140,14 +2952,14 @@ CREATE TABLE IF NOT EXISTS `fs_user` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `fs_user`
 --
 
 INSERT INTO `fs_user` (`user_id`, `user_group_id`, `username`, `password`, `firstname`, `lastname`, `email`, `code`, `ip`, `status`, `date_added`) VALUES
-(1, 1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Van', 'Dao', 'van.dao.dev@gmail.com', '', '127.0.0.1', 1, '2013-05-25 20:46:12');
+(1, 1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', '', '', 'jacknguyenvan@gmail.com', '', '127.0.0.1', 1, '2013-06-26 10:51:34');
 
 -- --------------------------------------------------------
 
@@ -3155,6 +2967,7 @@ INSERT INTO `fs_user` (`user_id`, `user_group_id`, `username`, `password`, `firs
 -- Table structure for table `fs_user_group`
 --
 
+DROP TABLE IF EXISTS `fs_user_group`;
 CREATE TABLE IF NOT EXISTS `fs_user_group` (
   `user_group_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_bin NOT NULL,
@@ -3167,8 +2980,8 @@ CREATE TABLE IF NOT EXISTS `fs_user_group` (
 --
 
 INSERT INTO `fs_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Quản trị cao nhất', 'a:2:{s:6:"access";a:145:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:19:"catalog/information";i:5;s:20:"catalog/manufacturer";i:6;s:14:"catalog/option";i:7;s:15:"catalog/product";i:8;s:14:"catalog/review";i:9;s:18:"common/filemanager";i:10;s:11:"content/cat";i:11;s:15:"content/comment";i:12;s:12:"content/news";i:13;s:13:"design/banner";i:14;s:13:"design/layout";i:15;s:14:"extension/feed";i:16;s:16:"extension/module";i:17;s:17:"extension/payment";i:18;s:18:"extension/shipping";i:19;s:15:"extension/total";i:20;s:16:"feed/google_base";i:21;s:19:"feed/google_sitemap";i:22;s:20:"localisation/country";i:23;s:21:"localisation/currency";i:24;s:21:"localisation/geo_zone";i:25;s:21:"localisation/language";i:26;s:25:"localisation/length_class";i:27;s:25:"localisation/order_status";i:28;s:26:"localisation/return_action";i:29;s:26:"localisation/return_reason";i:30;s:26:"localisation/return_status";i:31;s:25:"localisation/stock_status";i:32;s:22:"localisation/tax_class";i:33;s:21:"localisation/tax_rate";i:34;s:25:"localisation/weight_class";i:35;s:17:"localisation/zone";i:36;s:14:"module/account";i:37;s:17:"module/bestseller";i:38;s:15:"module/category";i:39;s:15:"module/featured";i:40;s:18:"module/information";i:41;s:13:"module/latest";i:42;s:16:"module/slideshow";i:43;s:14:"module/special";i:44;s:16:"module/tnt_yahoo";i:45;s:14:"module/welcome";i:46;s:13:"news/category";i:47;s:11:"news/config";i:48;s:9:"news/news";i:49;s:16:"payment/alertpay";i:50;s:24:"payment/authorizenet_aim";i:51;s:21:"payment/bank_transfer";i:52;s:14:"payment/cheque";i:53;s:11:"payment/cod";i:54;s:21:"payment/free_checkout";i:55;s:14:"payment/liqpay";i:56;s:20:"payment/moneybookers";i:57;s:14:"payment/nochex";i:58;s:15:"payment/paymate";i:59;s:16:"payment/paypoint";i:60;s:26:"payment/perpetual_payments";i:61;s:14:"payment/pp_pro";i:62;s:17:"payment/pp_pro_uk";i:63;s:19:"payment/pp_standard";i:64;s:15:"payment/sagepay";i:65;s:22:"payment/sagepay_direct";i:66;s:18:"payment/sagepay_us";i:67;s:19:"payment/twocheckout";i:68;s:28:"payment/web_payment_software";i:69;s:16:"payment/worldpay";i:70;s:27:"report/affiliate_commission";i:71;s:22:"report/customer_credit";i:72;s:21:"report/customer_order";i:73;s:22:"report/customer_reward";i:74;s:24:"report/product_purchased";i:75;s:21:"report/product_viewed";i:76;s:18:"report/sale_coupon";i:77;s:17:"report/sale_order";i:78;s:18:"report/sale_return";i:79;s:20:"report/sale_shipping";i:80;s:15:"report/sale_tax";i:81;s:14:"sale/affiliate";i:82;s:12:"sale/contact";i:83;s:11:"sale/coupon";i:84;s:13:"sale/customer";i:85;s:23:"sale/customer_blacklist";i:86;s:19:"sale/customer_group";i:87;s:10:"sale/order";i:88;s:11:"sale/return";i:89;s:12:"sale/voucher";i:90;s:18:"sale/voucher_theme";i:91;s:15:"setting/setting";i:92;s:13:"setting/store";i:93;s:17:"shipping/citylink";i:94;s:13:"shipping/flat";i:95;s:13:"shipping/free";i:96;s:13:"shipping/item";i:97;s:23:"shipping/parcelforce_48";i:98;s:15:"shipping/pickup";i:99;s:19:"shipping/royal_mail";i:100;s:12:"shipping/ups";i:101;s:13:"shipping/usps";i:102;s:15:"shipping/weight";i:103;s:11:"tool/backup";i:104;s:14:"tool/error_log";i:105;s:12:"total/coupon";i:106;s:12:"total/credit";i:107;s:14:"total/handling";i:108;s:19:"total/low_order_fee";i:109;s:12:"total/reward";i:110;s:14:"total/shipping";i:111;s:15:"total/sub_total";i:112;s:9:"total/tax";i:113;s:11:"total/total";i:114;s:13:"total/voucher";i:115;s:9:"user/user";i:116;s:20:"user/user_permission";i:117;s:10:"module/cat";i:118;s:16:"module/tnt_yahoo";i:119;s:18:"module/information";i:120;s:14:"module/welcome";i:121;s:18:"module/tnt_welcome";i:122;s:21:"module/tnt_productcat";i:123;s:13:"module/banner";i:124;s:18:"module/tnt_weather";i:125;s:17:"module/tnt_random";i:126;s:14:"module/visitor";i:127;s:17:"module/bestseller";i:128;s:14:"module/special";i:129;s:13:"shipping/free";i:130;s:21:"payment/bank_transfer";i:131;s:16:"payment/alertpay";i:132;s:18:"payment/pp_express";i:133;s:17:"module/newslatest";i:134;s:19:"module/newsfeatured";i:135;s:19:"module/newsfeatured";i:136;s:17:"module/newslatest";i:137;s:18:"module/tnt_newscat";i:138;s:21:"module/journal_banner";i:139;s:23:"module/journal_bgslider";i:140;s:17:"module/journal_cp";i:141;s:21:"module/journal_filter";i:142;s:21:"module/journal_slider";i:143;s:14:"module/special";i:144;s:14:"module/welcome";}s:6:"modify";a:145:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:19:"catalog/information";i:5;s:20:"catalog/manufacturer";i:6;s:14:"catalog/option";i:7;s:15:"catalog/product";i:8;s:14:"catalog/review";i:9;s:18:"common/filemanager";i:10;s:11:"content/cat";i:11;s:15:"content/comment";i:12;s:12:"content/news";i:13;s:13:"design/banner";i:14;s:13:"design/layout";i:15;s:14:"extension/feed";i:16;s:16:"extension/module";i:17;s:17:"extension/payment";i:18;s:18:"extension/shipping";i:19;s:15:"extension/total";i:20;s:16:"feed/google_base";i:21;s:19:"feed/google_sitemap";i:22;s:20:"localisation/country";i:23;s:21:"localisation/currency";i:24;s:21:"localisation/geo_zone";i:25;s:21:"localisation/language";i:26;s:25:"localisation/length_class";i:27;s:25:"localisation/order_status";i:28;s:26:"localisation/return_action";i:29;s:26:"localisation/return_reason";i:30;s:26:"localisation/return_status";i:31;s:25:"localisation/stock_status";i:32;s:22:"localisation/tax_class";i:33;s:21:"localisation/tax_rate";i:34;s:25:"localisation/weight_class";i:35;s:17:"localisation/zone";i:36;s:14:"module/account";i:37;s:17:"module/bestseller";i:38;s:15:"module/category";i:39;s:15:"module/featured";i:40;s:18:"module/information";i:41;s:13:"module/latest";i:42;s:16:"module/slideshow";i:43;s:14:"module/special";i:44;s:16:"module/tnt_yahoo";i:45;s:14:"module/welcome";i:46;s:13:"news/category";i:47;s:11:"news/config";i:48;s:9:"news/news";i:49;s:16:"payment/alertpay";i:50;s:24:"payment/authorizenet_aim";i:51;s:21:"payment/bank_transfer";i:52;s:14:"payment/cheque";i:53;s:11:"payment/cod";i:54;s:21:"payment/free_checkout";i:55;s:14:"payment/liqpay";i:56;s:20:"payment/moneybookers";i:57;s:14:"payment/nochex";i:58;s:15:"payment/paymate";i:59;s:16:"payment/paypoint";i:60;s:26:"payment/perpetual_payments";i:61;s:14:"payment/pp_pro";i:62;s:17:"payment/pp_pro_uk";i:63;s:19:"payment/pp_standard";i:64;s:15:"payment/sagepay";i:65;s:22:"payment/sagepay_direct";i:66;s:18:"payment/sagepay_us";i:67;s:19:"payment/twocheckout";i:68;s:28:"payment/web_payment_software";i:69;s:16:"payment/worldpay";i:70;s:27:"report/affiliate_commission";i:71;s:22:"report/customer_credit";i:72;s:21:"report/customer_order";i:73;s:22:"report/customer_reward";i:74;s:24:"report/product_purchased";i:75;s:21:"report/product_viewed";i:76;s:18:"report/sale_coupon";i:77;s:17:"report/sale_order";i:78;s:18:"report/sale_return";i:79;s:20:"report/sale_shipping";i:80;s:15:"report/sale_tax";i:81;s:14:"sale/affiliate";i:82;s:12:"sale/contact";i:83;s:11:"sale/coupon";i:84;s:13:"sale/customer";i:85;s:23:"sale/customer_blacklist";i:86;s:19:"sale/customer_group";i:87;s:10:"sale/order";i:88;s:11:"sale/return";i:89;s:12:"sale/voucher";i:90;s:18:"sale/voucher_theme";i:91;s:15:"setting/setting";i:92;s:13:"setting/store";i:93;s:17:"shipping/citylink";i:94;s:13:"shipping/flat";i:95;s:13:"shipping/free";i:96;s:13:"shipping/item";i:97;s:23:"shipping/parcelforce_48";i:98;s:15:"shipping/pickup";i:99;s:19:"shipping/royal_mail";i:100;s:12:"shipping/ups";i:101;s:13:"shipping/usps";i:102;s:15:"shipping/weight";i:103;s:11:"tool/backup";i:104;s:14:"tool/error_log";i:105;s:12:"total/coupon";i:106;s:12:"total/credit";i:107;s:14:"total/handling";i:108;s:19:"total/low_order_fee";i:109;s:12:"total/reward";i:110;s:14:"total/shipping";i:111;s:15:"total/sub_total";i:112;s:9:"total/tax";i:113;s:11:"total/total";i:114;s:13:"total/voucher";i:115;s:9:"user/user";i:116;s:20:"user/user_permission";i:117;s:10:"module/cat";i:118;s:16:"module/tnt_yahoo";i:119;s:18:"module/information";i:120;s:14:"module/welcome";i:121;s:18:"module/tnt_welcome";i:122;s:21:"module/tnt_productcat";i:123;s:13:"module/banner";i:124;s:18:"module/tnt_weather";i:125;s:17:"module/tnt_random";i:126;s:14:"module/visitor";i:127;s:17:"module/bestseller";i:128;s:14:"module/special";i:129;s:13:"shipping/free";i:130;s:21:"payment/bank_transfer";i:131;s:16:"payment/alertpay";i:132;s:18:"payment/pp_express";i:133;s:17:"module/newslatest";i:134;s:19:"module/newsfeatured";i:135;s:19:"module/newsfeatured";i:136;s:17:"module/newslatest";i:137;s:18:"module/tnt_newscat";i:138;s:21:"module/journal_banner";i:139;s:23:"module/journal_bgslider";i:140;s:17:"module/journal_cp";i:141;s:21:"module/journal_filter";i:142;s:21:"module/journal_slider";i:143;s:14:"module/special";i:144;s:14:"module/welcome";}}'),
-(10, 'Quản trị', 'a:1:{s:6:"access";a:120:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:19:"catalog/information";i:5;s:20:"catalog/manufacturer";i:6;s:14:"catalog/option";i:7;s:15:"catalog/product";i:8;s:14:"catalog/review";i:9;s:18:"common/filemanager";i:10;s:11:"content/cat";i:11;s:15:"content/comment";i:12;s:12:"content/news";i:13;s:13:"design/banner";i:14;s:13:"design/layout";i:15;s:14:"extension/feed";i:16;s:16:"extension/module";i:17;s:17:"extension/payment";i:18;s:18:"extension/shipping";i:19;s:15:"extension/total";i:20;s:16:"feed/google_base";i:21;s:19:"feed/google_sitemap";i:22;s:20:"localisation/country";i:23;s:21:"localisation/currency";i:24;s:21:"localisation/geo_zone";i:25;s:21:"localisation/language";i:26;s:25:"localisation/length_class";i:27;s:25:"localisation/order_status";i:28;s:26:"localisation/return_action";i:29;s:26:"localisation/return_reason";i:30;s:26:"localisation/return_status";i:31;s:25:"localisation/stock_status";i:32;s:22:"localisation/tax_class";i:33;s:21:"localisation/tax_rate";i:34;s:25:"localisation/weight_class";i:35;s:17:"localisation/zone";i:36;s:14:"module/account";i:37;s:13:"module/banner";i:38;s:17:"module/bestseller";i:39;s:10:"module/cat";i:40;s:15:"module/category";i:41;s:15:"module/featured";i:42;s:18:"module/information";i:43;s:13:"module/latest";i:44;s:16:"module/slideshow";i:45;s:14:"module/special";i:46;s:21:"module/tnt_productcat";i:47;s:17:"module/tnt_random";i:48;s:18:"module/tnt_weather";i:49;s:18:"module/tnt_welcome";i:50;s:16:"module/tnt_yahoo";i:51;s:14:"module/visitor";i:52;s:16:"payment/alertpay";i:53;s:24:"payment/authorizenet_aim";i:54;s:21:"payment/bank_transfer";i:55;s:14:"payment/cheque";i:56;s:11:"payment/cod";i:57;s:21:"payment/free_checkout";i:58;s:14:"payment/liqpay";i:59;s:20:"payment/moneybookers";i:60;s:14:"payment/nochex";i:61;s:15:"payment/paymate";i:62;s:16:"payment/paypoint";i:63;s:26:"payment/perpetual_payments";i:64;s:14:"payment/pp_pro";i:65;s:17:"payment/pp_pro_uk";i:66;s:19:"payment/pp_standard";i:67;s:15:"payment/sagepay";i:68;s:22:"payment/sagepay_direct";i:69;s:18:"payment/sagepay_us";i:70;s:19:"payment/twocheckout";i:71;s:28:"payment/web_payment_software";i:72;s:16:"payment/worldpay";i:73;s:27:"report/affiliate_commission";i:74;s:22:"report/customer_credit";i:75;s:21:"report/customer_order";i:76;s:22:"report/customer_reward";i:77;s:24:"report/product_purchased";i:78;s:21:"report/product_viewed";i:79;s:18:"report/sale_coupon";i:80;s:17:"report/sale_order";i:81;s:18:"report/sale_return";i:82;s:20:"report/sale_shipping";i:83;s:15:"report/sale_tax";i:84;s:14:"sale/affiliate";i:85;s:12:"sale/contact";i:86;s:11:"sale/coupon";i:87;s:13:"sale/customer";i:88;s:23:"sale/customer_blacklist";i:89;s:19:"sale/customer_group";i:90;s:10:"sale/order";i:91;s:11:"sale/return";i:92;s:12:"sale/voucher";i:93;s:18:"sale/voucher_theme";i:94;s:15:"setting/setting";i:95;s:13:"setting/store";i:96;s:17:"shipping/citylink";i:97;s:13:"shipping/flat";i:98;s:13:"shipping/free";i:99;s:13:"shipping/item";i:100;s:23:"shipping/parcelforce_48";i:101;s:15:"shipping/pickup";i:102;s:19:"shipping/royal_mail";i:103;s:12:"shipping/ups";i:104;s:13:"shipping/usps";i:105;s:15:"shipping/weight";i:106;s:11:"tool/backup";i:107;s:14:"tool/error_log";i:108;s:12:"total/coupon";i:109;s:12:"total/credit";i:110;s:14:"total/handling";i:111;s:19:"total/low_order_fee";i:112;s:12:"total/reward";i:113;s:14:"total/shipping";i:114;s:15:"total/sub_total";i:115;s:9:"total/tax";i:116;s:11:"total/total";i:117;s:13:"total/voucher";i:118;s:9:"user/user";i:119;s:20:"user/user_permission";}}');
+(1, 'Top Administrator', 'a:2:{s:6:"access";a:124:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:19:"catalog/information";i:5;s:20:"catalog/manufacturer";i:6;s:14:"catalog/option";i:7;s:15:"catalog/product";i:8;s:14:"catalog/review";i:9;s:18:"common/filemanager";i:10;s:13:"design/banner";i:11;s:13:"design/layout";i:12;s:14:"extension/feed";i:13;s:16:"extension/module";i:14;s:17:"extension/payment";i:15;s:18:"extension/shipping";i:16;s:15:"extension/total";i:17;s:16:"feed/google_base";i:18;s:19:"feed/google_sitemap";i:19;s:20:"localisation/country";i:20;s:21:"localisation/currency";i:21;s:21:"localisation/geo_zone";i:22;s:21:"localisation/language";i:23;s:25:"localisation/length_class";i:24;s:25:"localisation/order_status";i:25;s:26:"localisation/return_action";i:26;s:26:"localisation/return_reason";i:27;s:26:"localisation/return_status";i:28;s:25:"localisation/stock_status";i:29;s:22:"localisation/tax_class";i:30;s:21:"localisation/tax_rate";i:31;s:25:"localisation/weight_class";i:32;s:17:"localisation/zone";i:33;s:14:"module/account";i:34;s:16:"module/affiliate";i:35;s:13:"module/banner";i:36;s:17:"module/bestseller";i:37;s:15:"module/carousel";i:38;s:15:"module/category";i:39;s:15:"module/featured";i:40;s:18:"module/google_talk";i:41;s:18:"module/information";i:42;s:13:"module/latest";i:43;s:16:"module/slideshow";i:44;s:14:"module/special";i:45;s:12:"module/store";i:46;s:14:"module/welcome";i:47;s:16:"payment/alertpay";i:48;s:24:"payment/authorizenet_aim";i:49;s:21:"payment/bank_transfer";i:50;s:14:"payment/cheque";i:51;s:11:"payment/cod";i:52;s:21:"payment/free_checkout";i:53;s:14:"payment/liqpay";i:54;s:20:"payment/moneybookers";i:55;s:14:"payment/nochex";i:56;s:15:"payment/paymate";i:57;s:16:"payment/paypoint";i:58;s:26:"payment/perpetual_payments";i:59;s:14:"payment/pp_pro";i:60;s:17:"payment/pp_pro_uk";i:61;s:19:"payment/pp_standard";i:62;s:15:"payment/sagepay";i:63;s:22:"payment/sagepay_direct";i:64;s:18:"payment/sagepay_us";i:65;s:19:"payment/twocheckout";i:66;s:28:"payment/web_payment_software";i:67;s:16:"payment/worldpay";i:68;s:27:"report/affiliate_commission";i:69;s:22:"report/customer_credit";i:70;s:21:"report/customer_order";i:71;s:22:"report/customer_reward";i:72;s:24:"report/product_purchased";i:73;s:21:"report/product_viewed";i:74;s:18:"report/sale_coupon";i:75;s:17:"report/sale_order";i:76;s:18:"report/sale_return";i:77;s:20:"report/sale_shipping";i:78;s:15:"report/sale_tax";i:79;s:14:"sale/affiliate";i:80;s:12:"sale/contact";i:81;s:11:"sale/coupon";i:82;s:13:"sale/customer";i:83;s:23:"sale/customer_blacklist";i:84;s:19:"sale/customer_group";i:85;s:10:"sale/order";i:86;s:11:"sale/return";i:87;s:12:"sale/voucher";i:88;s:18:"sale/voucher_theme";i:89;s:15:"setting/setting";i:90;s:13:"setting/store";i:91;s:17:"shipping/citylink";i:92;s:13:"shipping/flat";i:93;s:13:"shipping/free";i:94;s:13:"shipping/item";i:95;s:23:"shipping/parcelforce_48";i:96;s:15:"shipping/pickup";i:97;s:19:"shipping/royal_mail";i:98;s:12:"shipping/ups";i:99;s:13:"shipping/usps";i:100;s:15:"shipping/weight";i:101;s:11:"tool/backup";i:102;s:14:"tool/error_log";i:103;s:12:"total/coupon";i:104;s:12:"total/credit";i:105;s:14:"total/handling";i:106;s:19:"total/low_order_fee";i:107;s:12:"total/reward";i:108;s:14:"total/shipping";i:109;s:15:"total/sub_total";i:110;s:9:"total/tax";i:111;s:11:"total/total";i:112;s:13:"total/voucher";i:113;s:9:"user/user";i:114;s:20:"user/user_permission";i:115;s:23:"module/custom_slideshow";i:116;s:20:"module/custom_banner";i:117;s:17:"module/bestseller";i:118;s:13:"module/latest";i:119;s:14:"module/special";i:120;s:14:"module/welcome";i:121;s:13:"module/styler";i:122;s:19:"module/autoseotitle";i:123;s:19:"module/autoseotitle";}s:6:"modify";a:124:{i:0;s:17:"catalog/attribute";i:1;s:23:"catalog/attribute_group";i:2;s:16:"catalog/category";i:3;s:16:"catalog/download";i:4;s:19:"catalog/information";i:5;s:20:"catalog/manufacturer";i:6;s:14:"catalog/option";i:7;s:15:"catalog/product";i:8;s:14:"catalog/review";i:9;s:18:"common/filemanager";i:10;s:13:"design/banner";i:11;s:13:"design/layout";i:12;s:14:"extension/feed";i:13;s:16:"extension/module";i:14;s:17:"extension/payment";i:15;s:18:"extension/shipping";i:16;s:15:"extension/total";i:17;s:16:"feed/google_base";i:18;s:19:"feed/google_sitemap";i:19;s:20:"localisation/country";i:20;s:21:"localisation/currency";i:21;s:21:"localisation/geo_zone";i:22;s:21:"localisation/language";i:23;s:25:"localisation/length_class";i:24;s:25:"localisation/order_status";i:25;s:26:"localisation/return_action";i:26;s:26:"localisation/return_reason";i:27;s:26:"localisation/return_status";i:28;s:25:"localisation/stock_status";i:29;s:22:"localisation/tax_class";i:30;s:21:"localisation/tax_rate";i:31;s:25:"localisation/weight_class";i:32;s:17:"localisation/zone";i:33;s:14:"module/account";i:34;s:16:"module/affiliate";i:35;s:13:"module/banner";i:36;s:17:"module/bestseller";i:37;s:15:"module/carousel";i:38;s:15:"module/category";i:39;s:15:"module/featured";i:40;s:18:"module/google_talk";i:41;s:18:"module/information";i:42;s:13:"module/latest";i:43;s:16:"module/slideshow";i:44;s:14:"module/special";i:45;s:12:"module/store";i:46;s:14:"module/welcome";i:47;s:16:"payment/alertpay";i:48;s:24:"payment/authorizenet_aim";i:49;s:21:"payment/bank_transfer";i:50;s:14:"payment/cheque";i:51;s:11:"payment/cod";i:52;s:21:"payment/free_checkout";i:53;s:14:"payment/liqpay";i:54;s:20:"payment/moneybookers";i:55;s:14:"payment/nochex";i:56;s:15:"payment/paymate";i:57;s:16:"payment/paypoint";i:58;s:26:"payment/perpetual_payments";i:59;s:14:"payment/pp_pro";i:60;s:17:"payment/pp_pro_uk";i:61;s:19:"payment/pp_standard";i:62;s:15:"payment/sagepay";i:63;s:22:"payment/sagepay_direct";i:64;s:18:"payment/sagepay_us";i:65;s:19:"payment/twocheckout";i:66;s:28:"payment/web_payment_software";i:67;s:16:"payment/worldpay";i:68;s:27:"report/affiliate_commission";i:69;s:22:"report/customer_credit";i:70;s:21:"report/customer_order";i:71;s:22:"report/customer_reward";i:72;s:24:"report/product_purchased";i:73;s:21:"report/product_viewed";i:74;s:18:"report/sale_coupon";i:75;s:17:"report/sale_order";i:76;s:18:"report/sale_return";i:77;s:20:"report/sale_shipping";i:78;s:15:"report/sale_tax";i:79;s:14:"sale/affiliate";i:80;s:12:"sale/contact";i:81;s:11:"sale/coupon";i:82;s:13:"sale/customer";i:83;s:23:"sale/customer_blacklist";i:84;s:19:"sale/customer_group";i:85;s:10:"sale/order";i:86;s:11:"sale/return";i:87;s:12:"sale/voucher";i:88;s:18:"sale/voucher_theme";i:89;s:15:"setting/setting";i:90;s:13:"setting/store";i:91;s:17:"shipping/citylink";i:92;s:13:"shipping/flat";i:93;s:13:"shipping/free";i:94;s:13:"shipping/item";i:95;s:23:"shipping/parcelforce_48";i:96;s:15:"shipping/pickup";i:97;s:19:"shipping/royal_mail";i:98;s:12:"shipping/ups";i:99;s:13:"shipping/usps";i:100;s:15:"shipping/weight";i:101;s:11:"tool/backup";i:102;s:14:"tool/error_log";i:103;s:12:"total/coupon";i:104;s:12:"total/credit";i:105;s:14:"total/handling";i:106;s:19:"total/low_order_fee";i:107;s:12:"total/reward";i:108;s:14:"total/shipping";i:109;s:15:"total/sub_total";i:110;s:9:"total/tax";i:111;s:11:"total/total";i:112;s:13:"total/voucher";i:113;s:9:"user/user";i:114;s:20:"user/user_permission";i:115;s:23:"module/custom_slideshow";i:116;s:20:"module/custom_banner";i:117;s:17:"module/bestseller";i:118;s:13:"module/latest";i:119;s:14:"module/special";i:120;s:14:"module/welcome";i:121;s:13:"module/styler";i:122;s:19:"module/autoseotitle";i:123;s:19:"module/autoseotitle";}}'),
+(10, 'Demonstration', '');
 
 -- --------------------------------------------------------
 
@@ -3176,6 +2989,7 @@ INSERT INTO `fs_user_group` (`user_group_id`, `name`, `permission`) VALUES
 -- Table structure for table `fs_voucher`
 --
 
+DROP TABLE IF EXISTS `fs_voucher`;
 CREATE TABLE IF NOT EXISTS `fs_voucher` (
   `voucher_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -3203,6 +3017,7 @@ CREATE TABLE IF NOT EXISTS `fs_voucher` (
 -- Table structure for table `fs_voucher_history`
 --
 
+DROP TABLE IF EXISTS `fs_voucher_history`;
 CREATE TABLE IF NOT EXISTS `fs_voucher_history` (
   `voucher_history_id` int(11) NOT NULL AUTO_INCREMENT,
   `voucher_id` int(11) NOT NULL,
@@ -3223,6 +3038,7 @@ CREATE TABLE IF NOT EXISTS `fs_voucher_history` (
 -- Table structure for table `fs_voucher_theme`
 --
 
+DROP TABLE IF EXISTS `fs_voucher_theme`;
 CREATE TABLE IF NOT EXISTS `fs_voucher_theme` (
   `voucher_theme_id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -3244,6 +3060,7 @@ INSERT INTO `fs_voucher_theme` (`voucher_theme_id`, `image`) VALUES
 -- Table structure for table `fs_voucher_theme_description`
 --
 
+DROP TABLE IF EXISTS `fs_voucher_theme_description`;
 CREATE TABLE IF NOT EXISTS `fs_voucher_theme_description` (
   `voucher_theme_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
@@ -3256,9 +3073,9 @@ CREATE TABLE IF NOT EXISTS `fs_voucher_theme_description` (
 --
 
 INSERT INTO `fs_voucher_theme_description` (`voucher_theme_id`, `language_id`, `name`) VALUES
-(6, 2, 'Giáng sinh'),
-(7, 2, 'Sinh nhật'),
-(8, 2, 'Nghỉ lễ');
+(7, 3, 'Birthday'),
+(6, 3, 'Christmas'),
+(8, 3, 'General');
 
 -- --------------------------------------------------------
 
@@ -3266,6 +3083,7 @@ INSERT INTO `fs_voucher_theme_description` (`voucher_theme_id`, `language_id`, `
 -- Table structure for table `fs_weight_class`
 --
 
+DROP TABLE IF EXISTS `fs_weight_class`;
 CREATE TABLE IF NOT EXISTS `fs_weight_class` (
   `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` decimal(15,8) NOT NULL DEFAULT '0.00000000',
@@ -3288,6 +3106,7 @@ INSERT INTO `fs_weight_class` (`weight_class_id`, `value`) VALUES
 -- Table structure for table `fs_weight_class_description`
 --
 
+DROP TABLE IF EXISTS `fs_weight_class_description`;
 CREATE TABLE IF NOT EXISTS `fs_weight_class_description` (
   `weight_class_id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) NOT NULL,
@@ -3301,10 +3120,10 @@ CREATE TABLE IF NOT EXISTS `fs_weight_class_description` (
 --
 
 INSERT INTO `fs_weight_class_description` (`weight_class_id`, `language_id`, `title`, `unit`) VALUES
-(1, 2, 'Kilogram', 'kg'),
-(2, 2, 'Gram', 'g'),
-(5, 2, 'Pound ', 'lb'),
-(6, 2, 'Ounce', 'oz');
+(5, 3, 'Pound ', 'lb'),
+(2, 3, 'Gram', 'g'),
+(1, 3, 'Kilogram', 'kg'),
+(6, 3, 'Ounce', 'oz');
 
 -- --------------------------------------------------------
 
@@ -3312,6 +3131,7 @@ INSERT INTO `fs_weight_class_description` (`weight_class_id`, `language_id`, `ti
 -- Table structure for table `fs_zone`
 --
 
+DROP TABLE IF EXISTS `fs_zone`;
 CREATE TABLE IF NOT EXISTS `fs_zone` (
   `zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
@@ -3319,7 +3139,7 @@ CREATE TABLE IF NOT EXISTS `fs_zone` (
   `name` varchar(128) COLLATE utf8_bin NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`zone_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3999 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3969 ;
 
 --
 -- Dumping data for table `fs_zone`
@@ -4214,20 +4034,20 @@ INSERT INTO `fs_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (886, 55, 'I', 'Limassol', 1),
 (887, 55, 'N', 'Nicosia', 1),
 (888, 55, 'P', 'Paphos', 1),
-(889, 56, 'U', 'Ustecky', 1),
-(890, 56, 'C', 'Jihocesky', 1),
-(891, 56, 'B', 'Jihomoravsky', 1),
-(892, 56, 'K', 'Karlovarsky', 1),
-(893, 56, 'H', 'Kralovehradecky', 1),
-(894, 56, 'L', 'Liberecky', 1),
-(895, 56, 'T', 'Moravskoslezsky', 1),
-(896, 56, 'M', 'Olomoucky', 1),
-(897, 56, 'E', 'Pardubicky', 1),
-(898, 56, 'P', 'Plzensky', 1),
+(889, 56, 'U', 'Ústecký', 1),
+(890, 56, 'C', 'Jihočeský', 1),
+(891, 56, 'B', 'Jihomoravský', 1),
+(892, 56, 'K', 'Karlovarský', 1),
+(893, 56, 'H', 'Královehradecký', 1),
+(894, 56, 'L', 'Liberecký', 1),
+(895, 56, 'T', 'Moravskoslezský', 1),
+(896, 56, 'M', 'Olomoucký', 1),
+(897, 56, 'E', 'Pardubický', 1),
+(898, 56, 'P', 'Plzeňský', 1),
 (899, 56, 'A', 'Praha', 1),
-(900, 56, 'S', 'Stredocesky', 1),
-(901, 56, 'J', 'Vysocina', 1),
-(902, 56, 'Z', 'Zlinsky', 1),
+(900, 56, 'S', 'Středočeský', 1),
+(901, 56, 'J', 'Vysočina', 1),
+(902, 56, 'Z', 'Zlínský', 1),
 (903, 57, 'AR', 'Arhus', 1),
 (904, 57, 'BH', 'Bornholm', 1),
 (905, 57, 'CO', 'Copenhagen', 1),
@@ -6401,7 +6221,7 @@ INSERT INTO `fs_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (3072, 202, 'M', 'Manzini', 1),
 (3073, 202, 'S', 'Shishelweni', 1),
 (3074, 203, 'K', 'Blekinge', 1),
-(3075, 203, 'W', 'Dalama', 1),
+(3075, 203, 'W', 'Dalarna', 1),
 (3076, 203, 'X', 'G&auml;vleborg', 1),
 (3077, 203, 'I', 'Gotland', 1),
 (3078, 203, 'N', 'Halland', 1),
@@ -6642,48 +6462,48 @@ INSERT INTO `fs_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (3313, 214, 'TU', 'Tunis', 1),
 (3314, 214, 'ZA', 'Zaghouan', 1),
 (3315, 215, 'ADA', 'Adana', 1),
-(3316, 215, 'ADI', 'Adiyaman', 1),
+(3316, 215, 'ADI', 'Adıyaman', 1),
 (3317, 215, 'AFY', 'Afyonkarahisar', 1),
-(3318, 215, 'AGR', 'Agri', 1),
+(3318, 215, 'AGR', 'Ağrı', 1),
 (3319, 215, 'AKS', 'Aksaray', 1),
 (3320, 215, 'AMA', 'Amasya', 1),
 (3321, 215, 'ANK', 'Ankara', 1),
 (3322, 215, 'ANT', 'Antalya', 1),
 (3323, 215, 'ARD', 'Ardahan', 1),
 (3324, 215, 'ART', 'Artvin', 1),
-(3325, 215, 'AYI', 'Aydin', 1),
-(3326, 215, 'BAL', 'Balikesir', 1),
-(3327, 215, 'BAR', 'Bartin', 1),
+(3325, 215, 'AYI', 'Aydın', 1),
+(3326, 215, 'BAL', 'Balıkesir', 1),
+(3327, 215, 'BAR', 'Bartın', 1),
 (3328, 215, 'BAT', 'Batman', 1),
 (3329, 215, 'BAY', 'Bayburt', 1),
 (3330, 215, 'BIL', 'Bilecik', 1),
-(3331, 215, 'BIN', 'Bingol', 1),
+(3331, 215, 'BIN', 'Bingöl', 1),
 (3332, 215, 'BIT', 'Bitlis', 1),
 (3333, 215, 'BOL', 'Bolu', 1),
 (3334, 215, 'BRD', 'Burdur', 1),
 (3335, 215, 'BRS', 'Bursa', 1),
-(3336, 215, 'CKL', 'Canakkale', 1),
-(3337, 215, 'CKR', 'Cankiri', 1),
-(3338, 215, 'COR', 'Corum', 1),
+(3336, 215, 'CKL', 'Çanakkale', 1),
+(3337, 215, 'CKR', 'Çankırı', 1),
+(3338, 215, 'COR', 'Çorum', 1),
 (3339, 215, 'DEN', 'Denizli', 1),
 (3340, 215, 'DIY', 'Diyarbakir', 1),
-(3341, 215, 'DUZ', 'Duzce', 1),
+(3341, 215, 'DUZ', 'Düzce', 1),
 (3342, 215, 'EDI', 'Edirne', 1),
 (3343, 215, 'ELA', 'Elazig', 1),
 (3344, 215, 'EZC', 'Erzincan', 1),
 (3345, 215, 'EZR', 'Erzurum', 1),
-(3346, 215, 'ESK', 'Eskisehir', 1),
+(3346, 215, 'ESK', 'Eskişehir', 1),
 (3347, 215, 'GAZ', 'Gaziantep', 1),
 (3348, 215, 'GIR', 'Giresun', 1),
-(3349, 215, 'GMS', 'Gumushane', 1),
+(3349, 215, 'GMS', 'Gümüşhane', 1),
 (3350, 215, 'HKR', 'Hakkari', 1),
 (3351, 215, 'HTY', 'Hatay', 1),
-(3352, 215, 'IGD', 'Igdir', 1),
+(3352, 215, 'IGD', 'Iğdır', 1),
 (3353, 215, 'ISP', 'Isparta', 1),
-(3354, 215, 'IST', 'Istanbul', 1),
-(3355, 215, 'IZM', 'Izmir', 1),
-(3356, 215, 'KAH', 'Kahramanmaras', 1),
-(3357, 215, 'KRB', 'Karabuk', 1),
+(3354, 215, 'IST', 'İstanbul', 1),
+(3355, 215, 'IZM', 'İzmir', 1),
+(3356, 215, 'KAH', 'Kahramanmaraş', 1),
+(3357, 215, 'KRB', 'Karabük', 1),
 (3358, 215, 'KRM', 'Karaman', 1),
 (3359, 215, 'KRS', 'Kars', 1),
 (3360, 215, 'KAS', 'Kastamonu', 1),
@@ -6694,30 +6514,30 @@ INSERT INTO `fs_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (3365, 215, 'KRH', 'Kirsehir', 1),
 (3366, 215, 'KOC', 'Kocaeli', 1),
 (3367, 215, 'KON', 'Konya', 1),
-(3368, 215, 'KUT', 'Kutahya', 1),
+(3368, 215, 'KUT', 'Kütahya', 1),
 (3369, 215, 'MAL', 'Malatya', 1),
 (3370, 215, 'MAN', 'Manisa', 1),
 (3371, 215, 'MAR', 'Mardin', 1),
 (3372, 215, 'MER', 'Mersin', 1),
-(3373, 215, 'MUG', 'Mugla', 1),
-(3374, 215, 'MUS', 'Mus', 1),
-(3375, 215, 'NEV', 'Nevsehir', 1),
-(3376, 215, 'NIG', 'Nigde', 1),
+(3373, 215, 'MUG', 'Muğla', 1),
+(3374, 215, 'MUS', 'Muş', 1),
+(3375, 215, 'NEV', 'Nevşehir', 1),
+(3376, 215, 'NIG', 'Niğde', 1),
 (3377, 215, 'ORD', 'Ordu', 1),
 (3378, 215, 'OSM', 'Osmaniye', 1),
 (3379, 215, 'RIZ', 'Rize', 1),
 (3380, 215, 'SAK', 'Sakarya', 1),
 (3381, 215, 'SAM', 'Samsun', 1),
-(3382, 215, 'SAN', 'Sanliurfa', 1),
+(3382, 215, 'SAN', 'Şanlıurfa', 1),
 (3383, 215, 'SII', 'Siirt', 1),
 (3384, 215, 'SIN', 'Sinop', 1),
-(3385, 215, 'SIR', 'Sirnak', 1),
+(3385, 215, 'SIR', 'Şırnak', 1),
 (3386, 215, 'SIV', 'Sivas', 1),
-(3387, 215, 'TEL', 'Tekirdag', 1),
+(3387, 215, 'TEL', 'Tekirdağ', 1),
 (3388, 215, 'TOK', 'Tokat', 1),
 (3389, 215, 'TRA', 'Trabzon', 1),
 (3390, 215, 'TUN', 'Tunceli', 1),
-(3391, 215, 'USK', 'Usak', 1),
+(3391, 215, 'USK', 'Uşak', 1),
 (3392, 215, 'VAN', 'Van', 1),
 (3393, 215, 'YAL', 'Yalova', 1),
 (3394, 215, 'YOZ', 'Yozgat', 1),
@@ -7078,37 +6898,37 @@ INSERT INTO `fs_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (3749, 229, 'YA', 'Yaracuy', 1),
 (3750, 229, 'ZU', 'Zulia', 1),
 (3751, 230, 'AG', 'An Giang', 1),
-(3752, 230, 'BR', 'Bà Rịa Vũng Tàu', 1),
-(3753, 230, 'BL', 'Bạc Liêu', 1),
-(3754, 230, 'BC', 'Bắc Cạn', 1),
-(3755, 230, 'BG', 'Bắc Giang', 1),
-(3756, 230, 'BN', 'Bắc Ninh', 1),
-(3757, 230, 'BT', 'Bến Tre', 1),
-(3758, 230, 'BD', 'Bình Dương', 1),
-(3759, 230, 'BK', 'Bình Định', 1),
-(3760, 230, 'BP', 'Bình Phước', 1),
-(3761, 230, 'BT', 'Bình Thuận', 1),
-(3762, 230, 'CM', 'Cà Mau', 1),
-(3763, 230, 'CB', 'Cao Bằng', 1),
-(3764, 230, 'CT', 'Cần Thơ', 1),
-(3765, 230, 'DN', 'Đà Nẵng', 1),
-(3766, 230, 'DL', 'Đắk Lắk', 1),
-(3767, 230, 'DN', 'Đồng Nai', 1),
-(3768, 230, 'DT', 'Đồng Tháp', 1),
-(3769, 230, 'GL', 'Gia Lai', 1),
-(3770, 230, 'HG', 'Hà Giang', 1),
-(3771, 230, 'HA', 'Hà Nam', 1),
-(3772, 230, 'HN', 'Hà Nội', 1),
-(3773, 230, 'HT', 'Hà Tĩnh', 1),
-(3774, 230, 'HP', 'Hải Phòng', 1),
-(3775, 230, 'HD', 'Hải Dương', 1),
-(3776, 230, 'HB', 'Hòa Bình', 1),
-(3777, 230, 'HY', 'Hưng Yên', 1),
-(3778, 230, 'HM', 'Hồ Chí Minh', 1),
-(3779, 230, 'KH', 'Khánh Hòa', 1),
-(3780, 230, 'KG', 'Kiên Giang', 1),
-(3781, 230, 'KT', 'Kon Tum', 1),
-(3782, 230, 'LC', 'Lai Châu', 1),
+(3752, 230, 'BG', 'Bac Giang', 1),
+(3753, 230, 'BK', 'Bac Kan', 1),
+(3754, 230, 'BL', 'Bac Lieu', 1),
+(3755, 230, 'BC', 'Bac Ninh', 1),
+(3756, 230, 'BR', 'Ba Ria-Vung Tau', 1),
+(3757, 230, 'BN', 'Ben Tre', 1),
+(3758, 230, 'BH', 'Binh Dinh', 1),
+(3759, 230, 'BU', 'Binh Duong', 1),
+(3760, 230, 'BP', 'Binh Phuoc', 1),
+(3761, 230, 'BT', 'Binh Thuan', 1),
+(3762, 230, 'CM', 'Ca Mau', 1),
+(3763, 230, 'CT', 'Can Tho', 1),
+(3764, 230, 'CB', 'Cao Bang', 1),
+(3765, 230, 'DL', 'Dak Lak', 1),
+(3766, 230, 'DG', 'Dak Nong', 1),
+(3767, 230, 'DN', 'Da Nang', 1),
+(3768, 230, 'DB', 'Dien Bien', 1),
+(3769, 230, 'DI', 'Dong Nai', 1),
+(3770, 230, 'DT', 'Dong Thap', 1),
+(3771, 230, 'GL', 'Gia Lai', 1),
+(3772, 230, 'HG', 'Ha Giang', 1),
+(3773, 230, 'HD', 'Hai Duong', 1),
+(3774, 230, 'HP', 'Hai Phong', 1),
+(3775, 230, 'HM', 'Ha Nam', 1),
+(3776, 230, 'HI', 'Ha Noi', 1),
+(3777, 230, 'HT', 'Ha Tay', 1),
+(3778, 230, 'HH', 'Ha Tinh', 1),
+(3779, 230, 'HB', 'Hoa Binh', 1),
+(3780, 230, 'HC', 'Ho Chi Minh City', 1),
+(3781, 230, 'HU', 'Hau Giang', 1),
+(3782, 230, 'HY', 'Hung Yen', 1),
 (3783, 232, 'C', 'Saint Croix', 1),
 (3784, 232, 'J', 'Saint John', 1),
 (3785, 232, 'T', 'Saint Thomas', 1),
@@ -7275,37 +7095,7 @@ INSERT INTO `fs_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 (3965, 190, '10', 'Notranjsko-kraška', 1),
 (3966, 190, '11', 'Goriška', 1),
 (3967, 190, '12', 'Obalno-kraška', 1),
-(3968, 230, 'LS', 'Lạng Sơn', 1),
-(3969, 230, 'LK', 'Lào Cai', 1),
-(3970, 230, 'LD', 'Lâm Đồng', 1),
-(3971, 230, 'LA', 'Long An', 1),
-(3972, 230, 'ND', 'Nam Định', 1),
-(3973, 230, 'NA', 'Nghệ An', 1),
-(3974, 230, 'NB', 'Ninh Bình', 1),
-(3975, 230, 'NT', 'Ninh Thuận', 1),
-(3976, 230, 'PT', 'Phú Thọ', 1),
-(3977, 230, 'PY', 'Phú Yên', 1),
-(3978, 230, 'QB', 'Quảng Bình', 1),
-(3979, 230, 'QN', 'Quảng Nam', 1),
-(3980, 230, 'KN', 'Quảng Ngãi', 1),
-(3981, 230, 'QH', 'Quảng Ninh', 1),
-(3982, 230, 'QT', 'Quảng Trị', 1),
-(3983, 230, 'ST', 'Sóc Trăng', 1),
-(3984, 230, 'SL', 'Sơn La', 1),
-(3985, 230, 'TN', 'Tây Ninh', 1),
-(3986, 230, 'TB', 'Thái Bình', 1),
-(3987, 230, 'TG', 'Thái Nguyên', 1),
-(3988, 230, 'TH', 'Thanh Hóa', 1),
-(3989, 230, 'TT', 'Thừa Thiên Huế', 1),
-(3990, 230, 'TR', 'Tiền Giang', 1),
-(3991, 230, 'TV', 'Trà Vinh', 1),
-(3992, 230, 'TQ', 'Tuyên Quang', 1),
-(3993, 230, 'VL', 'Vĩnh Long', 1),
-(3994, 230, 'VP', 'Vĩnh Phúc', 1),
-(3995, 230, 'YB', 'Yên Bái', 1),
-(3996, 230, 'DB', 'Điện Biên', 1),
-(3997, 230, 'HR', 'Hậu Giang', 1),
-(3998, 230, 'KL', 'Đắk Nông', 1);
+(3968, 33, '', 'Ruse', 1);
 
 -- --------------------------------------------------------
 
@@ -7313,6 +7103,7 @@ INSERT INTO `fs_zone` (`zone_id`, `country_id`, `code`, `name`, `status`) VALUES
 -- Table structure for table `fs_zone_to_geo_zone`
 --
 
+DROP TABLE IF EXISTS `fs_zone_to_geo_zone`;
 CREATE TABLE IF NOT EXISTS `fs_zone_to_geo_zone` (
   `zone_to_geo_zone_id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL,
@@ -7321,17 +7112,16 @@ CREATE TABLE IF NOT EXISTS `fs_zone_to_geo_zone` (
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`zone_to_geo_zone_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=73 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=66 ;
 
 --
 -- Dumping data for table `fs_zone_to_geo_zone`
 --
 
 INSERT INTO `fs_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES
-(70, 230, 3767, 3, '2013-05-26 15:18:03', '0000-00-00 00:00:00'),
-(68, 230, 3778, 4, '2013-05-25 21:04:23', '0000-00-00 00:00:00'),
-(71, 230, 3758, 3, '2013-05-26 15:18:03', '0000-00-00 00:00:00'),
-(72, 230, 3778, 3, '2013-05-26 15:18:03', '0000-00-00 00:00:00');
+(57, 222, 0, 3, '2010-02-26 22:33:24', '0000-00-00 00:00:00'),
+(65, 222, 0, 4, '2010-12-15 15:18:13', '0000-00-00 00:00:00');
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
