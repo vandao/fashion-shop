@@ -412,10 +412,10 @@ class VQModLog {
 			}
 		}
 
-		$result = file_put_contents($logPath, implode(PHP_EOL, $txt), ($append ? FILE_APPEND : 0));
-		if(!$result) {
-			die('LOG FILE COULD NOT BE WRITTEN');
-		}
+	//	$result = file_put_contents($logPath, implode(PHP_EOL, $txt), ($append ? FILE_APPEND : 0));
+	//	if(!$result) {
+	//		die('LOG FILE COULD NOT BE WRITTEN');
+	//	}
 	}
 
 	/**
