@@ -68,3 +68,4 @@
 2013-08-02 20:29:58 - PHP Notice:  Error: Could not load controller module/tnt_yahoo! in F:\opencart-1.5.5.1\source\vqmod\vqcache\vq2-system_engine_controller.php on line 50
 2013-08-02 20:30:21 - PHP Notice:  Error: Could not load controller module/tnt_yahoo! in F:\opencart-1.5.5.1\source\vqmod\vqcache\vq2-system_engine_controller.php on line 50
 2013-08-02 20:30:54 - PHP Notice:  Error: Could not load controller module/tnt_yahoo! in F:\opencart-1.5.5.1\source\vqmod\vqcache\vq2-system_engine_controller.php on line 50
+2013-08-02 14:34:54 - PHP Warning:  file_put_contents(F:\fashion-shop\vqmod/logs/Fri.log): failed to open stream: No such file or directory in /home/vandao/website/fashion-shop/vqmod/vqmod.php on line 415
