@@ -18,9 +18,9 @@
   <div class="column">
     <h3><?php echo $text_extra; ?></h3>
     <ul>
-      <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
+      <!--<li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
       <li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
-      <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
+      <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>-->
       <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
     </ul>
   </div>
@@ -34,12 +34,12 @@
     </ul>
   </div>
   <div class="big_column">
-  	<a href='http://www.twitter.com/' class='icon_tweet' title='Tweeter'>Tweeter</a>
-  	<a href='http://www.skype.com/' class='icon_skype' title='Skype'>Skype</a>
+  	<!-- <a href='http://www.twitter.com/' class='icon_tweet' title='Tweeter'>Tweeter</a>
+  	<a href='http://www.skype.com/' class='icon_skype' title='Skype'>Skype</a> -->
   	<a href='http://www.google.com/' class='icon_google' title='Google+'>Google+</a>
   	<a href='http://www.facebook.com/' class='icon_facebook' title='Facebook'>Facebook</a>
   	<div class='clear'></div>
-  	<div class='h20'></div>
+  	<!--<div class='h20'></div>
   	<div class='h20'></div>
   	<div class='h20'></div>
   	<div class='h10'></div>
@@ -47,7 +47,7 @@
   	<span class='icon_discover' title='Discover'>Discover</span>
   	<span class='icon_mastercard' title='Mastercard'>Mastercard</span>
   	<span class='icon_paypal' title='Paypal'>Paypal</span>
-  	<span class='icon_visa' title='Visa'>Visa</span>
+  	<span class='icon_visa' title='Visa'>Visa</span>-->
   </div>  
   <div class="clear"></div>
   <div class="footer_btm">

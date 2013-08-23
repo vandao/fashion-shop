@@ -4,6 +4,15 @@ $_['heading_title']            = 'Thiết lập';
 
 // Text
 $_['text_success']             = 'Thành công: Thiết lập của bạn đã được thay đổi!';
+$_['text_items']               = 'Các hạng mục';
+$_['text_product']             = 'Cấu hình sản phẩm';
+$_['text_voucher']             = 'Chứng từ';
+$_['text_tax']                 = 'Thuế';
+$_['text_account']             = 'Tài khoản';
+$_['text_checkout']            = 'Thanh toán';
+$_['text_stock']               = 'Kho hàng';
+$_['text_affiliate']           = 'Chia sẻ doanh thu';
+$_['text_return']              = 'Hoàn trả hàng';
 $_['text_image_manager']       = 'Quản lý hình ảnh';
 $_['text_browse']              = 'Duyệt file';
 $_['text_clear']               = 'Xóa Ảnh';

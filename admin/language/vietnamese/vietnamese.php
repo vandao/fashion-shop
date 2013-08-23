@@ -92,13 +92,13 @@ $_['tab_address']             = 'Địa chỉ';
 $_['tab_admin']               = 'Quản trị';
 $_['tab_attribute']           = 'Thuộc tính';
 $_['tab_coupon_history']      = 'Lịch sử Coupon';
-$_['tab_customer']            = 'Customer Details';
+$_['tab_customer']            = 'Chi tiết khách hàng';
 $_['tab_data']                = 'Dữ liệu';
 $_['tab_design']              = 'Thiết kế';
 $_['tab_discount']            = 'Giảm giá';
 $_['tab_general']             = 'Tổng quan';
-$_['tab_fraud']               = 'Fraud';
-$_['tab_ip']                 = 'Địa chỉ IP';
+$_['tab_fraud']               = 'Gian lận';
+$_['tab_ip']                  = 'Địa chỉ IP';
 $_['tab_links']               = 'Liên kết';
 $_['tab_image']               = 'Hình ảnh';
 $_['tab_option']              = 'Tùy chọn';
@@ -118,7 +118,7 @@ $_['tab_reward']              = 'Điểm thưởng';
 $_['tab_shipping']            = 'Địa chỉ giao hàng';
 $_['tab_total']               = 'Tổng số';
 $_['tab_transaction']         = 'Giao dịch';
-$_['tab_voucher']             = 'Vouchers';
+$_['tab_voucher']             = 'Voucher';
 $_['tab_voucher_history']     = 'Lịch sử chứng từ';
 
 // Error

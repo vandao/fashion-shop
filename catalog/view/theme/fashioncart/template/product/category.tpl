@@ -1,4 +1,4 @@
-<?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
+<?php echo $header; ?><?php //echo $column_left; ?><?php echo $column_right; ?>
 <div id="content" class="inside_page"><?php echo $content_top; ?>
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -10,9 +10,9 @@
     <?php if ($thumb) { ?>
     <div class="image"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" /></div>
     <?php } ?>
-    
+
     <h1><?php echo $heading_title; ?></h1>
-    
+
     <?php if ($description) { ?>
     <?php echo $description; ?>
     <?php } ?>
@@ -48,38 +48,44 @@
     <div class="limit"><b><?php echo $text_limit; ?></b>
       <select onchange="location = this.value;">
 
-<?php 
-// Swapping the $limits Array values for 4 items in a row! 
+<?php
+// Swapping the $limits Array values for 4 items in a row!
 function swap_limits_values($limits){
-		$new_limits = $limits;
-		foreach($limits as $i=>$limit_item){
-			if($limit_item['value']==25){
-				$new_limits[$i]['text'] = 32;
-				$new_limits[$i]['value'] = 32;
-				$new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'32';
-			}elseif($limit_item['value']==50){
-				$new_limits[$i]['text'] = 64;
-				$new_limits[$i]['value'] = 64;
-				$new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'64';
-			}elseif($limit_item['value']==75){
-				unset($new_limits[$i]);
-			}
-		}
-		return $new_limits;
-}
+    $new_limits = $limits;
+    foreach($limits as $i=>$limit_item){
+          if($limit_item['value']==16){
+          $new_limits[$i]['text'] = 20;
+          $new_limits[$i]['value'] = 20;
+          $new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'20';
+          }elseif($limit_item['value']==25){
+          $new_limits[$i]['text'] = 40;
+          $new_limits[$i]['value'] = 40;
+          $new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'40';
+          }elseif($limit_item['value']==50){
+          $new_limits[$i]['text'] = 60;
+          $new_limits[$i]['value'] = 60;
+          $new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'60';
+          }elseif($limit_item['value']==75){
+          $new_limits[$i]['text'] = 80;
+          $new_limits[$i]['value'] = 80;
+          $new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'80';
+          }
+          }
+          return $new_limits;
+          }
 
 $limits = swap_limits_values($limits);
-?> 
- 
+?>
 
-      	
+
+
         <?php foreach ($limits as $limits) { ?>
         <?php if ($limits['value'] == $limit) { ?>
         <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
         <?php } else { ?>
         <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
         <?php } ?>
-        <?php } ?>  
+        <?php } ?>
       </select>
     </div>
     <div class="sort"><b><?php echo $text_sort; ?></b>
@@ -95,12 +101,12 @@ $limits = swap_limits_values($limits);
     </div>
   </div>
   <div class="product-grid">
-    <?php foreach ($products as $product) { ?><div class="product_holder">  
+    <?php foreach ($products as $product) { ?><div class="product_holder">
      <div class="product_holder_inside">
      <?php if ($product['special']) { ?>
 	 <?php echo '<div class="special_promo"></div>'; ?>
-	 <?php } ?> 
-     
+	 <?php } ?>
+
       <?php if ($product['thumb']) { ?>
       <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
       <?php } ?>
@@ -143,102 +149,103 @@ $limits = swap_limits_values($limits);
 function display(view) {
 	if (view == 'list') {
 		$('.product-grid').attr('class', 'product-list');
-		
+
 		$('.product-list > div.product_holder > div.product_holder_inside').each(function(index, element) {
 
 			html = '';
 			if ($(element).children().hasClass("special_promo")){
 				html += '<div class="special_promo"></div>'
 			};
-						
+
 			html += '<div class="right">';
 			html += '  <div class="cart">' + $(element).find('.cart').html() + '</div>';
 			html += '  <div class="wishlist">' + $(element).find('.wishlist').html() + '</div>';
 			html += '  <div class="compare">' + $(element).find('.compare').html() + '</div>';
-			html += '</div>';			
-			
-			html += '<div class="left">';
-			
-			var image = $(element).find('.image').html();
-			
-			if (image != null) { 
-				html += '<div class="image">' + image + '</div>';
-			}
-			
-			var price = $(element).find('.price').html();
-			
-			if (price != null) {
-				html += '<div class="price">' + price  + '</div>';
-			}
-					
-			html += '  <div class="name">' + $(element).find('.name').html() + '</div>';
-			html += '  <div class="description">' + $(element).find('.description').html() + '</div>';
-			
-			var rating = $(element).find('.rating').html();
-			
-			if (rating != null) {
-				html += '<div class="rating">' + rating + '</div>';
-			}
-				
 			html += '</div>';
 
-						
-			$(element).html(html);
-		});		
-		
-		$('.display').html('<b><?php echo $text_display; ?></b> &nbsp;&nbsp;<a onclick="display(\'list\');" class="list_view_link"><?php echo $text_list; ?></a>   <a onclick="display(\'grid\');" class="grid_view_link_active"><?php echo $text_grid; ?></a>');
-		
-		$.cookie('display', 'list'); 
-	} else {
-		$('.product-list').attr('class', 'product-grid');
-		
-		$('.product-grid > div.product_holder > div.product_holder_inside').each(function(index, element) {
-			html = '';
-			
+			html += '<div class="left">';
+
 			var image = $(element).find('.image').html();
-			
-			if ($(element).children().hasClass("special_promo")){
-				html += '<div class="special_promo"></div>'
-			};
-			
+
 			if (image != null) {
 				html += '<div class="image">' + image + '</div>';
 			}
-			
-			html += '<div class="name">' + $(element).find('.name').html() + '</div>';
-			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
-			
+
 			var price = $(element).find('.price').html();
-			
+
 			if (price != null) {
 				html += '<div class="price">' + price  + '</div>';
 			}
-			
+
+			html += '  <div class="name">' + $(element).find('.name').html() + '</div>';
+			html += '  <div class="description">' + $(element).find('.description').html() + '</div>';
+
 			var rating = $(element).find('.rating').html();
-			
+
 			if (rating != null) {
 				html += '<div class="rating">' + rating + '</div>';
 			}
-						
+
+			html += '</div>';
+
+
+			$(element).html(html);
+		});
+
+		$('.display').html('<b><?php echo $text_display; ?></b> &nbsp;&nbsp;<a onclick="display(\'list\');" class="list_view_link"><?php echo $text_list; ?></a>   <a onclick="display(\'grid\');" class="grid_view_link_active"><?php echo $text_grid; ?></a>');
+
+		$.cookie('display', 'list');
+	} else {
+		$('.product-list').attr('class', 'product-grid');
+
+		$('.product-grid > div.product_holder > div.product_holder_inside').each(function(index, element) {
+			html = '';
+
+			var image = $(element).find('.image').html();
+
+			if ($(element).children().hasClass("special_promo")){
+				html += '<div class="special_promo"></div>'
+			};
+
+			if (image != null) {
+				html += '<div class="image">' + image + '</div>';
+			}
+
+			html += '<div class="name">' + $(element).find('.name').html() + '</div>';
+			html += '<div class="description">' + $(element).find('.description').html() + '</div>';
+
+			var price = $(element).find('.price').html();
+
+			if (price != null) {
+				html += '<div class="price">' + price  + '</div>';
+			}
+
+			var rating = $(element).find('.rating').html();
+
+			if (rating != null) {
+				html += '<div class="rating">' + rating + '</div>';
+			}
+
 			html += '<div class="cart">' + $(element).find('.cart').html() + '</div>';
 			html += '<div class="wishlist">' + $(element).find('.wishlist').html() + '</div>';
 			html += '<div class="compare">' + $(element).find('.compare').html() + '</div>';
-			
+
 			$(element).html(html);
-		});	
-					
+		});
+
 		$('.display').html('<b><?php echo $text_display; ?></b> &nbsp;&nbsp;<a onclick="display(\'list\');" class="list_view_link_active"><?php echo $text_list; ?></a>   <a onclick="display(\'grid\');" class="grid_view_link"><?php echo $text_grid; ?></a>');
-		
+
 		$.cookie('display', 'grid');
 	}
 }
 
 view = $.cookie('display');
 
-if (view) {
-	display(view);
-} else {
-	display('list');
-}
-//--></script> 
+display('grid');
+//if (view) {
+//	display(view);
+//} else {
+//	display('grid');
+//}
+//--></script>
 <?php echo $footer; ?>

@@ -50,13 +50,13 @@
 	    <input type="checkbox" name="filter_sub_category" value="1" id="sub_category" />
 	    <?php } ?>
 	    <label for="sub_category"><?php echo $text_sub_category; ?></label>
-        &nbsp; &nbsp;
-	    <?php if ($filter_description) { ?>
-	    <input type="checkbox" name="filter_description" value="1" id="description" checked="checked" />
-	    <?php } else { ?>
-	    <input type="checkbox" name="filter_description" value="1" id="description" />
-	    <?php } ?>
-	    <label for="description"><?php echo $entry_description; ?></label>
+         <!--&nbsp; &nbsp;
+         <?php if ($filter_description) { ?>
+         <input type="checkbox" name="filter_description" value="1" id="description" checked="checked" />
+         <?php } else { ?>
+         <input type="checkbox" name="filter_description" value="1" id="description" />
+         <?php } ?>
+         <label for="description"><?php echo $entry_description; ?></label>-->
 	    <div class="h10"></div>
   </td></tr>
   
@@ -76,21 +76,27 @@
 <?php 
 // Swapping the $limits Array values for 4 items in a row! 
 function swap_limits_values($limits){
-		$new_limits = $limits;
-		foreach($limits as $i=>$limit_item){
-			if($limit_item['value']==25){
-				$new_limits[$i]['text'] = 32;
-				$new_limits[$i]['value'] = 32;
-				$new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'32';
-			}elseif($limit_item['value']==50){
-				$new_limits[$i]['text'] = 64;
-				$new_limits[$i]['value'] = 64;
-				$new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'64';
-			}elseif($limit_item['value']==75){
-				unset($new_limits[$i]);
-			}
-		}
-		return $new_limits;
+    $new_limits = $limits;
+    foreach($limits as $i=>$limit_item){
+        if($limit_item['value']==16){
+            $new_limits[$i]['text'] = 20;
+            $new_limits[$i]['value'] = 20;
+            $new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'20';
+            }elseif($limit_item['value']==25){
+            $new_limits[$i]['text'] = 40;
+            $new_limits[$i]['value'] = 40;
+            $new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'40';
+            }elseif($limit_item['value']==50){
+            $new_limits[$i]['text'] = 60;
+            $new_limits[$i]['value'] = 60;
+            $new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'60';
+            }elseif($limit_item['value']==75){
+            $new_limits[$i]['text'] = 80;
+            $new_limits[$i]['value'] = 80;
+            $new_limits[$i]['href'] = substr($limit_item['href'], 0, -2).'80';
+        }
+    }
+    return $new_limits;
 }
 
 $limits = swap_limits_values($limits);
