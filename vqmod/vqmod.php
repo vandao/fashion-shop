@@ -326,7 +326,8 @@ final class VQMod {
 		$checkFilePath = str_replace('\\', '/', $checkFilePath);
 		
 		if(strpos($modFilePath, '*') !== false) {
-			$modFilePath = preg_replace('/([^*]+)/e', 'preg_quote("$1", "~")', $modFilePath);
+			//$modFilePath = preg_replace('/([^*]+)/e', 'preg_quote("$1", "~")', $modFilePath);
+			$modFilePath = preg_replace_callback('/([^*]+)/', function ($m) { return preg_quote($m[1], "~"); }, $modFilePath);
 			$modFilePath = str_replace('*', '[^/]*', $modFilePath);
 			$return = (bool) preg_match('~^' . $modFilePath . '$~', $checkFilePath);
 		} else {
